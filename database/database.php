@@ -60,21 +60,22 @@ function check_admin_db() {
 
 <?php
 function check_login_db ($username, $password){
-        global $conn;
-        
-        $query = "SELECT id_c
+		$query = "SELECT id_c
                   FROM clientes
-                  WHERE username = '$username' AND 
-                        password = '$password'";
-
-        $result = pg_exec ($conn, $query);
-        $numrows = pg_numrows($result);
+                  WHERE username = :username AND 
+                        password = :password";
+		$values = array($username, $password);
+		$insert = array(':username', ':password');
+		
+		$result = execQuery($query, $insert, $values);
+		
+        $numrows = $result->rowCount($result);
         
         if ($numrows > 0){
-            $result_elem = pg_fetch_assoc ($result);
+            $result_elem = $result->fetch(PDO::FETCH_ASSOC);
             return $result_elem["id_c"];
         }
         else
-            return NULL;
+            return NULL; 
     }
 ?>
