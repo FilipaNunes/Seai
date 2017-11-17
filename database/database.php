@@ -35,3 +35,46 @@ error_log("\ndbg:SQL-Query: " . $query . " --end--");
   return $result;
 }
 ?>
+
+<?php
+function check_admin_db() {
+        global $conn;
+        $user_id = $_SESSION["user_id"];
+
+        $query = "SELECT admin
+                  FROM clientes
+                  WHERE id_c = $user_id";
+
+        $result = pg_exec($conn, $query);
+
+        $admin = pg_fetch_assoc($result);
+
+        if ($admin["admin"] == 't'){
+            return 1;
+        }
+        else { 
+            return 0;
+        }
+    }
+?>
+
+<?php
+function check_login_db ($username, $password){
+        global $conn;
+        
+        $query = "SELECT id_c
+                  FROM clientes
+                  WHERE username = '$username' AND 
+                        password = '$password'";
+
+        $result = pg_exec ($conn, $query);
+        $numrows = pg_numrows($result);
+        
+        if ($numrows > 0){
+            $result_elem = pg_fetch_assoc ($result);
+            return $result_elem["id_c"];
+        }
+        else
+            return NULL;
+    }
+?>
