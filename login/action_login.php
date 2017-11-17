@@ -10,7 +10,7 @@
             db();
         }
 
-        return check_login_db($username, $password);
+        return check_login_db($username, $password_md5);
     } 
 
     session_start();
