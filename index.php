@@ -1,3 +1,6 @@
+<?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305659/public_html/SEAI/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/Seai/"); ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,16 +33,17 @@ body {font-size:16px;}
   </div>
   </br>
     <?php 
-	include_once("/usr/users2/mieec2013/up201305659/public_html/SEAI/database/database.php");
-	include_once("/usr/users2/mieec2013/up201305659/public_html/SEAI/login/session.php");
+	include_once("database/database.php");
+	include_once("login/session.php");
+	
 	if ($_SESSION["user_id"] == NULL){
 		echo '<div class="w3-bar-block w3-center">
-		<a href="../login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
+		<a href="login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
 		</div>';
 		}
 	else {
 		echo '<div class="w3-bar-block w3-center">
-		<a href="../login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
+		<a href="login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
 		</div>';
 		}
 	?>
