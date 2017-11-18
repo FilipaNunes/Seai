@@ -48,12 +48,7 @@ body {font-size:16px;}
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <div class="w3-container" id="packages" style="margin-top:75px">
-  </div>
-     <?php 
-        /* $user_data = user_data_db();
-        $user_data = pg_fetch_assoc($user_data); */
-    ?> 
-	
+  </div>	
 				<div class="w3-row w3-center">
 					<a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'dados1');">
 					  <div class="w3-col tablink w3-bottombar w3-hover-light-grey w3-padding">Dados do Utilizador</div>
@@ -61,25 +56,21 @@ body {font-size:16px;}
 				</div>
 				<br>
 				<?php
-				/* $user_data = user_data_db();
-				$user_data = pg_fetch_assoc($user_data); */
-				
-				/* Separa o código postal nas suas duas componentes */
-				/*	$dash_pos = strpos($user_data["codigo_postal"], "-");
-        
-					$postcode1 = substr($user_data["codigo_postal"], 0, $dash_pos);
-					$postcode2 = substr($user_data["codigo_postal"], $dash_pos+1); */
+					include_once("../database/database.php");
+					include_once("../login/session.php");
+					$user_data = user_data_db();
+					$user_data1 = $user_data->fetch(PDO::FETCH_ASSOC);
 				?>
 				<div id="dados1" class="content dados">
-				<h102>Dados Pessoais</h102>
-				<form method="POST" action="" autocomplete="on">
+				<div style="font-size: 16pt">Dados Pessoais</div>
+				<form method="POST" action="action_update.php" autocomplete="on">
 				<table>
 					<tr>
 						<td>
 							<b>Nome: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input" name="name" value="Sérgio Fernandes" placeholder="nome" required />
+							<input type="text" class="text-input" name="name" value="<?=$user_data1["nome_completo"]?>" placeholder="nome" required />
 						</td>
 					</tr>
 					<tr>
@@ -87,7 +78,7 @@ body {font-size:16px;}
 							<b>E-mail: </b>
 						</td>
 						<td>
-							<input type="email" class="text-input" name="email" value="up201305659@fe.up.pt" size = "46" required readonly/>
+							<input type="email" class="text-input" name="email" value="<?=$user_data1["email"]?>" size = "46" required readonly/>
 						</td>
 					</tr>
 					<tr>
@@ -95,7 +86,7 @@ body {font-size:16px;}
 							<b>Nome de Utilizador: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input" name="username" size="46" value="Mini_Miudo" required readonly/>
+							<input type="text" class="text-input" name="username" size="46" value="<?=$user_data1["username"]?>" required readonly/>
 						</td>
 					</tr>
 					<tr>
@@ -108,22 +99,30 @@ body {font-size:16px;}
                         </tr>
 						<tr>
                             <td>
+                                <b>Nova Password: </b>
+                            </td>
+                            <td>
+                                <input type="password" class="text-input" name="new_password" size="46" autocomplete="off" />
+                            </td>
+                        </tr>
+						<tr>
+                            <td>
                                 <b>Telemóvel: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input" name="telephone" value="918995644" size="9" maxlength="9" />
+                                <input type="text" class="text-input" name="telephone" value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" />
                             </td>
                         </tr>
 						</table>
 						<br>
-						<h102>Dados de Faturação</h102>
+						<div style="font-size: 16pt">Dados de Faturação</div>
 						<table>
 						<tr>
                             <td>
                                 <b>NIF: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input" name="nif" value="696969696" size="9" maxlength="9" />
+                                <input type="text" class="text-input" name="nif" value="<?=$user_data1["nif"]?>" size="9" maxlength="9" />
                             </td>
                         </tr>
 						<tr>
@@ -131,17 +130,7 @@ body {font-size:16px;}
                                 <b>Morada: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input" name="address" value="Rua da Escusa" style="width:93%" required />
-                            </td>
-                        </tr>
-						<tr>
-                            <td>
-                                <b>Código Postal: </b>
-                            </td>
-                            <td>
-                                <input type="text" class="text-input" name="post-code1" size="4" maxlength="4" style="width:46px" required value="4440"/> &ndash; 
-                                <input type="text" class="text-input" name="post-code2" size="3" maxlength="3" style="width:30px" required value="135"/> 
-                                <input type="text" class="text-input" name="localidade" value="Campo-Valongo" required>
+                                <input type="text" class="text-input" name="address" value="<?=$user_data1["morada"]?>" style="width:93%" required />
                             </td>
                         </tr>
 					</table>                  
