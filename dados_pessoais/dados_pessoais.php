@@ -51,8 +51,10 @@ body {font-size:16px;}
 	</div>
 
      <?php 
-        /* $user_data = user_data_db(); <- função que obtem dados do utilizador autenticado
-        $user_data = pg_fetch_assoc($user_data); */
+		include_once("../database/database.php");
+		include_once("../login/session.php");
+        $user_data = user_data_db();
+        $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC);
     ?> 
 	
 				<div class="w3-row w3-center">
@@ -65,35 +67,32 @@ body {font-size:16px;}
 				</div>
 				<br>
 				<div id="dados1" class="content dados">
-				<h102>Dados Pessoais</h102>
+				<div style="font-size: 16pt">Dados Pessoais</div>
 				<p>
-                    <b>Nome: </b>&nbsp Sérgio Fernandes
+                    <b>Nome: </b>&nbsp
+					<?=$user_data1["nome_completo"]?>
                 </p>
                 <p>
-                    <b>E-mail: </b>&nbsp up201305659@fe.up.pt
-                    <?=/*$user_data["email"] */?>
+                    <b>E-mail: </b>&nbsp
+                    <?=$user_data1["email"]?>
                 </p>
                 <p>
-                    <b>Nome de utilizador: </b>&nbsp Mini_Miudo
-                    <?=/* $user_data["username"] */?>
+                    <b>Nome de utilizador: </b>&nbsp
+                    <?=$user_data1["username"]?>
                 </p>
                 <p>
-                    <b>Telemóvel: </b>&nbsp 918995644
-                    <?=/* $user_data["telemovel"] */?>
+                    <b>Telemóvel: </b>&nbsp
+                    <?=$user_data1["telemovel"]?>
                 </p>
-				<br>
-				<h102>Dados de Faturação</h102>
+				<br><br>
+				<div style="font-size: 16pt">Dados de Faturação</div>
                 <p>
-                    <b>NIF: </b>&nbsp 6969696
-                    <?=/* $user_data["nif"] */?>
-                </p>
-                <p>
-                    <b>Morada: </b>&nbsp Rua da Escusa
-                    <?=/* $user_data["morada"] */?>
+                    <b>NIF: </b>&nbsp
+                    <?=$user_data1["nif"]?>
                 </p>
                 <p>
-                    <b>Código Postal: </b>&nbsp 4440-135 Campo-Valongo
-                    <?=/* $user_data["codigo_postal"] . " " . $user_data["localidade"] */?>
+                    <b>Morada: </b>&nbsp
+                    <?=$user_data1["morada"]?>
                 </p>
 				<br>
 				<div style="text-align: right"><a class="button" href="update_dados.php">Alterar</a></div>
