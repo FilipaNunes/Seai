@@ -79,3 +79,19 @@ function check_login_db ($username, $password){
             return NULL; 
     }
 ?>
+
+<?php
+function user_data_db (){
+		$user_id = $_SESSION["user_id"]; /* lê o id do utilizador já registado por sessão */
+		
+		$query = "SELECT *
+                  FROM clientes
+                  WHERE id_c = :id";
+		$values = array($user_id);
+		$insert = array(':id');
+		
+		$result = execQuery($query, $insert, $values);
+		
+        return $result;
+    }
+?>
