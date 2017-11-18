@@ -14,18 +14,27 @@
 	}
 
 	function CheckUser($user){
-	$query = "SELECT username FROM clientes WHERE username = '".$user."'";
-	$result = execQuery($query,$array($user));
-	$num_registos = pg_numrows($result);
+	$query = "SELECT username FROM clientes WHERE username = :user";
+	
+	$values = array($user);
+	$insert = array(':user');
+	
+	$result = execQuery($query,$insert,$values);
+	
+	$num_registos = $result->rowCount($result);
 	
 	return $num_registos;
 }
 
 
 function CheckEmail($email){
-	$query = "SELECT email FROM clientes WHERE email = '".$email."'";
-	$result = execQuery($query);
-	$num_registos = pg_numrows($result);
+	$query = "SELECT email FROM clientes WHERE email = :email";
+	
+	$values = array($email);
+	$insert = array(':email');
+	
+	$result = execQuery($query,$insert,$values);
+	$num_registos = $result->rowCount($result);
 	
 	return $num_registos;
 }

@@ -1,34 +1,18 @@
-<?php include_once("../database/database.php"); ?>
-
-
+<!DOCTYPE html>
 <html>
 <title>Drone2u</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/notificacao.css">
+<link rel='stylesheet' href='../css/notificacao.css'>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
 <script src='registo.js' charset='utf-8'></script>
 
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;}
-.notification-container{
-  position: fixed;
-  opacity: 1;
-  overflow: auto;
-  right: 2px;
-  left: 2px;
-  bottom: 1px;
-  z-index: 3;
-}
-
-.notification{
-  margin-bottom: 2px;
-  opacity: 1 !important;
-}
-
 </style>
 <body>
 
@@ -87,7 +71,10 @@ body {font-size:16px;}
 
   <!-- End page content -->
   </div>
+  
+<div id='notification-container' class='notification-container'></div>
 
+  
   <script>
   // Script to open and close sidebar
   function w3_open() {
@@ -103,5 +90,6 @@ body {font-size:16px;}
   </script>
 
   </body>
+   
 </html>
 

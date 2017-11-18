@@ -6,9 +6,12 @@
   left: 2px;
   bottom: 1px;
   z-index: 3;
+  text-align: center;
 }
 
 .notification{
   margin-bottom: 2px;
   opacity: 1 !important;
+  background-color:#f44336!important;
+  color: white;
 }

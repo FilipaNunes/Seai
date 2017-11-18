@@ -1,14 +1,9 @@
-var evaluate_username;
-var evaluate_pass;
-var evaluate_email;
-
 notificationNumber = 0;
 function displayNotification(notification){
   var noteNumber = notificationNumber++;
-  var container = document.getElementById('notification-container').className;
+  var container = document.getElementById("notification-container");
   var notificationElement = document.createElement("DIV");
   var txt = document.createTextNode(notification);
-  console.log(container);
   notificationElement.appendChild(txt);
   notificationElement.setAttribute('class', 'notification');
   notificationElement.setAttribute('id', 'note'+noteNumber);
@@ -18,6 +13,11 @@ function displayNotification(notification){
     container.removeChild(notificationElement);
   },5000)
 }
+
+var evaluate_username;
+var evaluate_pass;
+var evaluate_email;
+
 
 function CheckUsername(){
 	evaluate_username=0;
@@ -32,7 +32,7 @@ function CheckUsername(){
 		  var response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
 				document.getElementById('submit').disabled = true;
-				//displayNotification("Nome de utilizador não disponível! Por favor tente outro!");
+				displayNotification("Nome de utilizador não disponível! Por favor tente outro!");
 			}
 		  else {
 			  evaluate_username = 1;
@@ -52,7 +52,7 @@ function ValidatePassword(){
 	
     if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
 		document.getElementById('submit').disabled = true;
-		//displayNotification("Password inseridas não correspondem!Tente outra vez");
+		displayNotification("Password inseridas não correspondem! Tente outra vez");
         return false;
 	}
 	else{
@@ -74,6 +74,7 @@ function CheckEmail(){
 		  var response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
 				document.getElementById('submit').disabled = true;
+				displayNotification("Email já existe! Por favor tente outro!");
 			}
 		  else{
 		  evaluate_email = 1;
