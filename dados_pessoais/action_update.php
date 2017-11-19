@@ -37,7 +37,8 @@
 	}
 
 	elseif ($_POST["update"] AND $_POST["new_password"]!=NULL) {
-		update_user_db($_POST["name"], $_POST["email"], $_POST["username"], $_POST["new_password"], $_POST["telephone"], $_POST["nif"], $_POST["address"]);
+		$new_password_md5 = md5($_POST["new_password"]);
+		update_user_db($_POST["name"], $_POST["email"], $_POST["username"], $new_password_md5, $_POST["telephone"], $_POST["nif"], $_POST["address"]);
 		header("Location: dados_pessoais.php");
 	}
 ?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Drone 2u</title>
+	<title>Drone2u</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <meta charset="UTF-8">
@@ -38,7 +38,7 @@ body {font-size:16px;}
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Droneu2</span>
+  <span>Drone2u</span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
