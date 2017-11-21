@@ -1,3 +1,6 @@
+<?php include_once('user.php'); ?>
+
+
 <!DOCTYPE html>
 <html>
 <title>Drone2u</title>
@@ -16,15 +19,19 @@ body {font-size:16px;}
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Fechar Menu</a>
   <div class="w3-container w3-center">
-    <img src="icone.png" style="width:80%">
+    <img src="../img/icone.png" style="width:80%">
   </div>
   <div class="w3-bar-block w3-center">
   </br>
-    <a href="servicos.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
-	<a href="utilizadores.html" onclick="w3_close()" class="w3-bar-item w3-button w3-red">Gestão de Utilizadores</a>
-	<a href="funcionarios.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Funcionários</a>
+    <a href="../index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
+    <a href="../servicos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
+    <a href="../colaboradores/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
+	<a href="../ontactos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
   </div>
   </br>
+    <div class="w3-bar-block w3-center">
+      <a href="../login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
+    </div>
 </nav>
 
 <!-- Top menu on small screens -->
@@ -47,38 +54,14 @@ body {font-size:16px;}
   <table class="w3-table-all">
   <tbody>
 	<tr >
-	<th style='background-color:#f44336'> <font color='white'> Nome do Cliente</th>
-	<th style='background-color:#f44336'> <font color='white'> Morada </th>
-	<th style='background-color:#f44336'> <font color='white'> Email</th>
-	<th style='background-color:#f44336'> <font color='white'> Contacto Telefónico </th>
-	<th style='background-color:#f44336'> <font color='white'> Encomendas</th>
-	<th style='background-color:#f44336'> <font color='white'> Eliminar </th>
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> Nome do Cliente</th>
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> Morada </th>
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> Email</th>
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> Contacto Telefónico </th>
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> Encomendas</th>
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> Eliminar </th>
 	</tr>
-	<tr>
-		<td> Ana</td>
-		<td> Rua xxxx </td>
-		<td> ana@fe.up.pt </td>
-		<td> xxxxxxxx </td>
-		<td> 2</td>
-		<td align='right'><img src='delete.jpg' height='10%'></td>
-	</tr>
-	<tr>
-		<td> Daniel</td>
-		<td> Rua xxxx </td>
-		<td> daniel@fe.up.pt </td>
-		<td> xxxxxxxx </td>
-		<td> 4</td>
-		<td align='right'><img src='delete.jpg' height='10%'></td>
-	</tr>
-	<tr>
-		<td> Filipa</td>
-		<td> Rua xxxx </td>
-		<td> filipa@fe.up.pt </td>
-		<td> xxxxxxxx </td>
-		<td> 1</td>
-		<td align='right'><img src='delete.jpg' height='10%'> </td>
-	</tr>
-  
+	<?php Utilizadores(); ?>
   </tbody>
   </table>
 

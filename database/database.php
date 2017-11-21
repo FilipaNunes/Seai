@@ -32,6 +32,7 @@ error_log("\ndbg:SQL-Query: " . $query . " --end--");
 	  $result->bindParam($insert[$i], $array[$i]);
 	}
   $result->execute();
+  $result->setFetchMode(PDO::FETCH_ASSOC);
   return $result;
 }
 ?>
@@ -72,7 +73,7 @@ function check_login_db ($username, $password){
         $numrows = $result->rowCount($result);
         
         if ($numrows > 0){
-            $result_elem = $result->fetch(PDO::FETCH_ASSOC);
+            $result_elem = $result->fetch();
             return $result_elem["id_c"];
         }
         else
