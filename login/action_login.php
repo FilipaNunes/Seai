@@ -20,7 +20,14 @@
     if (isset($_POST["login"])){
         $id = verifica_login($_POST["username"], $_POST["password"]);
         $_SESSION["user_id"] = $id;
-        header("Location: ../index.php"); // Depois do login confirmado, encaminha para a página inicial
+        
+        if ($id != NULL) {
+        header("Location: ../index.php");
+		}
+
+		else {
+		header("Location: wronglogin.html");
+		}
     }
 
 ?>
