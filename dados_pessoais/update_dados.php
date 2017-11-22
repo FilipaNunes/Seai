@@ -70,7 +70,7 @@ body {font-size:16px;}
 							<b>Nome: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input" name="name" value="<?=$user_data1["nome_completo"]?>" placeholder="nome" required />
+							<input type="text" class="text-input w3-border" name="name" value="<?=$user_data1["nome_completo"]?>" placeholder="nome" required />
 						</td>
 					</tr>
 					<tr>
@@ -78,7 +78,7 @@ body {font-size:16px;}
 							<b>E-mail: </b>
 						</td>
 						<td>
-							<input type="email" class="text-input" name="email" value="<?=$user_data1["email"]?>" size = "46" required readonly/>
+							<input type="email" class="text-input w3-border" name="email" value="<?=$user_data1["email"]?>" size = "46" required readonly/>
 						</td>
 					</tr>
 					<tr>
@@ -86,7 +86,7 @@ body {font-size:16px;}
 							<b>Nome de Utilizador: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input" name="username" size="46" value="<?=$user_data1["username"]?>" required readonly/>
+							<input type="text" class="text-input w3-border" name="username" size="46" value="<?=$user_data1["username"]?>" required readonly/>
 						</td>
 					</tr>
 					<tr>
@@ -94,7 +94,7 @@ body {font-size:16px;}
                                 <b>Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input" name="password" size="46" autocomplete="off" required />
+                                <input type="password" class="text-input w3-border" name="password" placeholder='Insira a sua password atual' size="46" autocomplete="off" required />
                             </td>
                         </tr>
 						<tr>
@@ -102,7 +102,7 @@ body {font-size:16px;}
                                 <b>Nova Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input" name="new_password" size="46" autocomplete="off" />
+                                <input type="password" class="text-input w3-border" name="new_password" placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
                             </td>
                         </tr>
 						<tr>
@@ -110,7 +110,7 @@ body {font-size:16px;}
                                 <b>Telemóvel: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input" name="telephone" value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" />
+                                <input type="text" class="text-input w3-border" name="telephone" value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" />
                             </td>
                         </tr>
 						</table>
@@ -122,7 +122,7 @@ body {font-size:16px;}
                                 <b>NIF: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input" name="nif" value="<?=$user_data1["nif"]?>" size="9" maxlength="9" />
+                                <input type="text" class="text-input w3-border" name="nif" value="<?=$user_data1["nif"]?>" size="9" maxlength="9" />
                             </td>
                         </tr>
 						<tr>
@@ -130,7 +130,7 @@ body {font-size:16px;}
                                 <b>Morada: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input" name="address" value="<?=$user_data1["morada"]?>" style="width:93%" required />
+                                <input type="text" class="text-input w3-border" name="address" value="<?=$user_data1["morada"]?>" style="width:93%" required />
                             </td>
                         </tr>
 					</table>                  
