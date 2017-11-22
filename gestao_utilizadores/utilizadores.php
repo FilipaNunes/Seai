@@ -2,37 +2,47 @@
 
 <?php include_once("database/database.php");?>
 
+<?php		
 
-
-<?php
 
 	function Utilizadores(){
 	
-		$query = "SELECT username, morada, email, telemovel FROM clientes";
-		$query2 = "SELECT COUNT(id_e),id_c FROM faz GROUP BY id_c ORDER BY id_c ASC";
+		$query = "SELECT id_c,username, nome_completo, morada, email, telemovel FROM clientes ORDER BY nome_completo";
+		$query2 = "SELECT COUNT(id_e),id_c FROM faz GROUP BY id_c ";
 		
 		$result = execQuery($query,null,null);
 		$result2 = execQuery($query2,null,null);
 		
 		$num_registos = $result->rowCount($result);
+		$n_encomendas = $result2->fetchAll();
 		
 		for($i=0;$i<$num_registos;$i++){
 			$array = $result->fetch();
+			$id = $array['id_c'];
 			$username = $array['username'];
+			$nome = $array['nome_completo'];
 			$morada = $array['morada'];
 			$email = $array['email'];
 			$telemovel = $array['telemovel'];
-			$n_encomendas = $result2->fetch();
-			$encomendas = $n_encomendas['count'];
 			
+			$key = array_search($id,array_column($n_encomendas,'id_c'));
+			
+			if($key===false)$encomendas = 0;
+			else $encomendas = $n_encomendas[$key]['count'];
+		
 			echo"
 				<tr style='text-align:center'>
 					<td style='text-align:center'> $username </td>
+					<td style='text-align:center'> $nome </td>
 					<td style='text-align:center'> $morada </td>
 					<td style='text-align:center'> $email </td>
 					<td style='text-align:center'> $telemovel </td>
-					<td style='text-align:center'> $encomendas</td>
-					<td style='text-align:center'><img src='../img/delete.jpg' height='10%'></td>
+					<td style='text-align:center'> $encomendas </td>
+					<td style='text-align:center'>
+						<a onclick='javascript:ConfirmarDelete($(this));return false;' href='delete.php?id=".$id."'>
+							<img src='../img/delete.jpg' height='10%'>
+						</a>
+					</td>
 				</tr>
 			";
 		}

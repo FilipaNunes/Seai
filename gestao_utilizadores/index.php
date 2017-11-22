@@ -1,4 +1,4 @@
-<?php include_once('user.php'); ?>
+<?php include_once('utilizadores.php'); ?>
 
 
 <!DOCTYPE html>
@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+<script src='utilizadores.js' charset='utf-8'></script>
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -23,10 +25,10 @@ body {font-size:16px;}
   </div>
   <div class="w3-bar-block w3-center">
   </br>
-    <a href="../index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
+    <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
     <a href="../servicos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
     <a href="../colaboradores/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
-	<a href="../ontactos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
+	<a href="../contactos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
   </div>
   </br>
     <div class="w3-bar-block w3-center">
@@ -54,6 +56,7 @@ body {font-size:16px;}
   <table class="w3-table-all">
   <tbody>
 	<tr >
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> Username</th>
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> Nome do Cliente</th>
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> Morada </th>
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> Email</th>
