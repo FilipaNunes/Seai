@@ -115,6 +115,7 @@ function get_encomendas_db (){
 
 <?php
 function getMonthReceitas(){
+	db();
   global $conn;
 
   $date = getdate();
@@ -125,13 +126,14 @@ function getMonthReceitas(){
                           FROM receitas
                           WHERE data = ?');
   $stmt->execute(array($dateString));
-  return $stmt->fetch();
+  return $stmt->fetch(PDO::FETCH_ASSOC);
 
 }
 ?>
 
 <?php
 function getAverageReceitas(){
+	db();
   global $conn;
 
   $date = getdate();
@@ -140,7 +142,7 @@ function getAverageReceitas(){
 
   $stmt = $conn->prepare('SELECT avg("0a1") as "0a1", avg("1a2") as "1a2", avg("2a3") as "2a3", avg("3a4") as "3a4", avg("outras") as "outras"
                           FROM "receitas"
-                          WHERE "id"<(SELECT "id"
+                          WHERE "id_r"<(SELECT "id_r"
                                       FROM "receitas"
                                       WHERE "data"= ?
                                     );');
@@ -152,6 +154,7 @@ function getAverageReceitas(){
 
 <?php
 function getMonthDespesas(){
+	db();
   global $conn;
 
   $date = getdate();
@@ -169,6 +172,7 @@ function getMonthDespesas(){
 
 <?php
 function getAverageDespesas(){
+	db();
   global $conn;
 
   $date = getdate();
@@ -177,7 +181,7 @@ function getAverageDespesas(){
 
   $stmt = $conn->prepare('SELECT avg("salarios") as "salarios", avg("aguagas") as "aguagas", avg("energia") as "energia", avg("aluguer") as "aluguer", avg("manutencao") as "manutencao", avg("outras") as "outras"
                           FROM "despesas"
-                          WHERE "id"<(SELECT "id"
+                          WHERE "id_de"<(SELECT "id_de"
                                       FROM "despesas"
                                       WHERE "data"= ?
                                     );');

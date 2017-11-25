@@ -5,7 +5,7 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <?php
-    include_once('database/database.php');
+    include_once('../database/database.php');
  ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-<script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js" type="text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js" type="text/javascript"></script>
 <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
@@ -80,7 +80,7 @@ body {font-size:16px;}
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Company Name</span>
+  <span>Drone2u</span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -100,10 +100,10 @@ body {font-size:16px;}
     <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Receitas');">
       <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Receitas</div>
     </a>
-    <a href="javascript:void(0)" onclick="openTab(event, 'Despesas');">
+    <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Despesas');">
       <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Despesas</div>
     </a>
-    <a href="javascript:void(0)" onclick="openTab(event, 'Lucros');">
+    <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Lucros');">
       <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Lucros</div>
     </a>
   </div>

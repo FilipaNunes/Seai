@@ -70,7 +70,7 @@ body {font-size:16px;}
       </ul>
     </br>
 	<ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-dark-grey w3-xlarge w3-padding-32">2 a 3 Kg</li>
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">>2 a 3 Kg</li>
         <li class="w3-padding-16">Tempo médio, em minutos, gasto por km: 1.2</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
@@ -88,7 +88,7 @@ body {font-size:16px;}
 
     <div class="w3-half">
       <ul class="w3-ul w3-light-grey w3-center">
-      <li class="w3-dark-grey w3-xlarge w3-padding-32">1 a 2 Kg</li>
+      <li class="w3-dark-grey w3-xlarge w3-padding-32">>1 a 2 Kg</li>
       <li class="w3-padding-16">Tempo médio, em minutos, gasto por km: 1.2</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
@@ -104,7 +104,7 @@ body {font-size:16px;}
       </ul>
     </br>
     <ul class="w3-ul w3-light-grey w3-center">
-      <li class="w3-dark-grey w3-xlarge w3-padding-32">3 a 4 Kg</li>
+      <li class="w3-dark-grey w3-xlarge w3-padding-32">>3 a 4 Kg</li>
       <li class="w3-padding-16">Tempo médio, em minutos, gasto por km: 1.2</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
@@ -123,7 +123,7 @@ body {font-size:16px;}
 
   <!-- End page content -->
   </div>
-
+  
   <script>
   // Script to open and close sidebar
   function w3_open() {

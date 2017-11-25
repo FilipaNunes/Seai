@@ -3,8 +3,11 @@
 <title>Drone2u</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href="../css/notificacao.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+<script src='servicos.js' charset='utf-8'></script>
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -49,38 +52,38 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <form class="w3-container w3-card-4" action="/action_page.php">
+  <form class="w3-container w3-card-4" action="registar_encomenda.php">
     <p>
     <label class="w3-text-red"><b>Serviço</b></label>
-    <select class="w3-select" name="option">
+    <select class="w3-select" name="option" id="limite_peso">
 	<?php
 		if(isset($_GET['first']))
 		{
 			echo'<option value="1" selected>0 a 1 Kg</option>
-				 <option value="2">1 a 2 Kg</option>
-				 <option value="3">2 a 3 kg</option>
-				 <option value="4">3 a 4 kg</option>';
+				 <option value="2">>1 a 2 Kg</option>
+				 <option value="3">>2 a 3 kg</option>
+				 <option value="4">>3 a 4 kg</option>';
 		}
 		elseif(isset($_GET['second']))
 		{
 			echo'<option value="1">0 a 1 Kg</option>
-				 <option value="2" selected>1 a 2 Kg</option>
-				 <option value="3">2 a 3 kg</option>
-				 <option value="4">3 a 4 kg</option>';
+				 <option value="2" selected>>1 a 2 Kg</option>
+				 <option value="3">>2 a 3 kg</option>
+				 <option value="4">>3 a 4 kg</option>';
 		}
 		elseif(isset($_GET['third']))
 		{
 			echo'<option value="1">0 a 1 Kg</option>
-				 <option value="2">1 a 2 Kg</option>
-				 <option value="3" selected>2 a 3 kg</option>
-				 <option value="4">3 a 4 kg</option>';
+				 <option value="2">>1 a 2 Kg</option>
+				 <option value="3" selected>>2 a 3 kg</option>
+				 <option value="4">>3 a 4 kg</option>';
 		}
 		elseif(isset($_GET['fourth']))
 		{
 			echo'<option value="1">0 a 1 Kg</option>
-				 <option value="2">1 a 2 Kg</option>
-				 <option value="3">2 a 3 kg</option>
-				 <option value="4" selected>3 a 4 kg</option>';
+				 <option value="2">>1 a 2 Kg</option>
+				 <option value="3">>2 a 3 kg</option>
+				 <option value="4" selected>>3 a 4 kg</option>';
 		}
 	?>
   </select></p>
@@ -96,14 +99,18 @@ body {font-size:16px;}
 	<option value="6">Brinquedos</option>
 	<option value="7">Pequenos Eletrodomésticos</option>
 	<option value="8">Artigos de Cuidado Pessoal</option>
-  </select> Para mais informações sobre os produtos clique <a target="_blank" href="informacoes.html">aqui</a> </p>
+  </select> Para mais informações sobre os produtos clique <a target="_blank" href="informacoes.php">aqui</a> </p>
 	<p>
     <label class="w3-text-red"><b>Dimensões</b></label>
     <input class="w3-input w3-border" name="dime" type="text" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura'></p>
 	</p>
 	<p>
+    <label class="w3-text-red"><b>Peso</b></label>
+    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='Insira com estes formatos 2,45 ou 2.45' title='O peso deve ser inserido em quilogramas!' onChange= 'VerificaPeso()'></p>
+	</p>
+	<p>
     <label class="w3-text-red"><b>Quantidade</b></label>
-    <input class="w3-input w3-border" name="quat" type="text" title='Quantindade de produtos com as características inseridas'></p>
+    <input class="w3-input w3-border" name="quant" type="text" title='Quantindade de produtos com as características inseridas. O peso não precisa de ser igual nas várias encomendas, apenas precisam de estar no mesmo intervalo de peso.'></p>
 	</p>
     <p>
     <label class="w3-text-red"><b>Ponto de recolha</b></label>
@@ -121,12 +128,15 @@ body {font-size:16px;}
     <label class="w3-text-red"><b>Preço previsto</b></label></p>
     <p>...</p>
     <p>
-    <button class="w3-btn w3-red">Adicionar ao Carrinho</button></p>
+    <button class="w3-btn w3-red" id="btnSubmit" >Adicionar ao Carrinho</button></p>
   </form>
 
   <!-- End page content -->
   </div>
 
+  <div id='notification-container' class='notification-container'></div>
+
+  
   <script>
   // Script to open and close sidebar
   function w3_open() {
