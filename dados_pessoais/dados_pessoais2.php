@@ -143,7 +143,7 @@ body {font-size:16px;}
 
   <!-- End page content -->
   </div>
-
+  
   <script>
   // Script to open and close sidebar
   function w3_open() {
@@ -158,7 +158,8 @@ body {font-size:16px;}
 
   </script>
   
-   <script>
+  
+<script>
   function openTab(evt, tabName) {
     var i, x, tablinks;
     x = document.getElementsByClassName("dados");
@@ -171,14 +172,19 @@ body {font-size:16px;}
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.firstElementChild.className += " w3-border-red";
-	document.getElementById("defaultOpen").click();
+	
   }
-</script>
+</script> 
 
 <script>
   var mybtn = document.getElementById("testbtn");
   mybtn.click();
 </script>
+
+<script>
+   	document.getElementById("defaultOpen").click();
+</script>
+
 
   </body>
   </html>
