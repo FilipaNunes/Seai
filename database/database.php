@@ -96,3 +96,19 @@ function user_data_db (){
         return $result;
     }
 ?>
+
+<?php
+function get_encomendas_db (){
+		$user_id = $_SESSION["user_id"];
+		
+		$query = "SELECT * FROM faz
+				  JOIN encomenda ON faz.id_e=encomenda.id_e
+				  WHERE id_c = :id";
+		$values = array($user_id);
+		$insert = array(':id');
+		
+		$result = execQuery($query, $insert, $values);
+		
+        return $result;
+    }
+?>
