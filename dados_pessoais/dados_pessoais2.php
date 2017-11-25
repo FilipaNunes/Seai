@@ -9,6 +9,13 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="../css/style.css">
+
+<script src='dados_pessoais.js' charset='utf-8'></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -24,10 +31,10 @@ body {font-size:16px;}
   </div>
   <div class="w3-bar-block w3-center">
   </br>
-   <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
-    <a href="../servicos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
-    <a href="../colaboradores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
-	<a href="../contactos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
+   <a href="../index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
+    <a href="../servicos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
+    <a href="../colaboradores/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
+	<a href="../contactos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
   </div>
   </br>
     <div class="w3-bar-block w3-center">
@@ -56,18 +63,16 @@ body {font-size:16px;}
         $user_data = user_data_db();
         $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC);
     ?> 
-	
-				<div class="w3-row w3-center">
+			<div class="w3-row w3-center">
 					<a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'dados1');">
 					  <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Dados do Utilizador</div>
 					</a>
-					<a href="javascript:void(0)" onclick="openTab(event, 'historico');">
-					  <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Histórico de Encomendas</div>
+					<a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'historico');">
+					  <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding"  id="defaultOpen">Histórico de Encomendas</div>
 					</a>
 				</div>
 				<br>
 				<div id="dados1" class="content dados">
-				<div class="w3-text-red"><center>A password que introduziu não está correta.<center></div>
 				<div style="font-size: 16pt">Dados Pessoais</div>
 				<p>
                     <b>Nome: </b>&nbsp
@@ -98,7 +103,6 @@ body {font-size:16px;}
 				<br>
 				<div style="text-align: right"><a class="button" href="update_dados.php">Alterar</a></div>
 				</div>
-				
 				<div id="historico" class="dados">
 				<div class="w3-container">
 					<table class="w3-table-all">
@@ -107,35 +111,32 @@ body {font-size:16px;}
 						  <th>Serviço</th>
 						  <th>Produto</th>
 						  <th>Custo</th>
+						  <th>Destino</th>
 						  <th>Envio</th>
 						  <th>Entrega</th>
 						  <th>Estado</th>
+						  <th></th>
 						</tr>
 					  </thead>
-					  <tr>
-						<td>0 a 1 Kg</td>
-						<td>Livro</td>
-						<td>19,99 €</td>
-						<td>04/11/2017 14:02</td>
-						<td>04/11/2017 14:15</td>
-						<td>Entregue</td>
+					  <?php
+						$encomendas = get_encomendas_db();
+				
+						while ($encomenda = $encomendas->fetch(PDO::FETCH_ASSOC)) { ?>
+					    <tr>
+						<td><?php if(0 < $encomenda["peso"] AND 1 >= $encomenda["peso"]) echo "0 a 1 Kg";
+								  if(1 < $encomenda["peso"] AND 2 >= $encomenda["peso"]) echo "1 a 2 Kg";
+								  if(2 < $encomenda["peso"] AND 3 >= $encomenda["peso"]) echo "2 a 3 Kg";
+								  if(3 < $encomenda["peso"] AND 4 >= $encomenda["peso"]) echo "3 a 4 Kg";?></td>
+						<td><?php echo ''.$encomenda["tipo_encomenda"].'';?></td>
+						<td><?php echo ''.$encomenda["custo"].'';?></td>
+						<td><?php echo ''.$encomenda["morada_destino"].'';?></td>
+						<td><?php $data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;?></td>
+						<td><?php $data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;?></td>
+						<td><?php echo ''.$encomenda["estado"].'';?></td>
+						<td><?php $id = $encomenda["id_e"];
+								  if ($encomenda["estado"] == "Pendente") echo"<img src='../img/edit.png' height='10%'><a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#><img src='../img/delete.png' height='10%'></a>";?></td>
 					  </tr>
-					  <tr>
-						<td>2 a 3 Kg</td>
-						<td>Telemovel</td>
-						<td>39,99 €</td>
-						<td>04/11/2017 14:05</td>
-						<td>04/11/2017 14:18</td>
-						<td>Entregue</td>
-					  </tr>
-					  <tr>
-						<td>1 a 2 Kg</td>
-						<td>Relógio</td>
-						<td>29,99 €</td>
-						<td>08/11/2017 17:01</td>
-						<td>08/11/2017 17:20</td>
-						<td>Entregue</td>
-					  </tr>
+					  <?php } ?>
 					</table>
 				  </div>
 				</div>
@@ -170,6 +171,7 @@ body {font-size:16px;}
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.firstElementChild.className += " w3-border-red";
+	document.getElementById("defaultOpen").click();
   }
 </script>
 
