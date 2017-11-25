@@ -27,7 +27,7 @@
 	$password_md5 = md5($_POST["password"]);
 	
 	if ($_POST["update"] AND ($password_md5 != $user_data1["password"])) {
-		header("Location: dados_pessoais2.php");
+		header("Location: update_dados2.php");
 		exit();
 	}
 	
