@@ -14,7 +14,7 @@ function displayNotification(notification){
   },5500)
 }
 
-var evaluate_username;
+var avaliar_peso;
 var evaluate_pass;
 var evaluate_email;
 
@@ -34,10 +34,7 @@ function VerificaPeso(){
 	}
 	
 	var comp = peso.length;
-	n = peso.search('\.');
-	
-	console.log(peso);
-	console.log(n);
+	n = peso.indexOf('.');
 	
 	if(comp > 1 && n === -1){
 		displayNotification("O peso não está no formato correto. Por favor insira neste formato 2 ou 2,3 ou 2.3");
@@ -59,6 +56,7 @@ function VerificaPeso(){
 		
 		document.getElementById('limite_peso').value = peso_reaj;
 	}
+	else evaluate_peso = 1;
 
 }
 

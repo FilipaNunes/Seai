@@ -126,7 +126,7 @@ function getMonthReceitas(){
                           FROM receitas
                           WHERE data = ?');
   $stmt->execute(array($dateString));
-  return $stmt->fetch(PDO::FETCH_ASSOC);
+  return $stmt->fetch();
 
 }
 ?>
@@ -142,7 +142,7 @@ function getAverageReceitas(){
 
   $stmt = $conn->prepare('SELECT avg("0a1") as "0a1", avg("1a2") as "1a2", avg("2a3") as "2a3", avg("3a4") as "3a4", avg("outras") as "outras"
                           FROM "receitas"
-                          WHERE "id_r"<(SELECT "id_r"
+                          WHERE "id"<(SELECT "id"
                                       FROM "receitas"
                                       WHERE "data"= ?
                                     );');
@@ -181,7 +181,7 @@ function getAverageDespesas(){
 
   $stmt = $conn->prepare('SELECT avg("salarios") as "salarios", avg("aguagas") as "aguagas", avg("energia") as "energia", avg("aluguer") as "aluguer", avg("manutencao") as "manutencao", avg("outras") as "outras"
                           FROM "despesas"
-                          WHERE "id_de"<(SELECT "id_de"
+                          WHERE "id"<(SELECT "id"
                                       FROM "despesas"
                                       WHERE "data"= ?
                                     );');

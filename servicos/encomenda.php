@@ -55,7 +55,7 @@ body {font-size:16px;}
   <form class="w3-container w3-card-4" action="registar_encomenda.php">
     <p>
     <label class="w3-text-red"><b>Serviço</b></label>
-    <select class="w3-select" name="option" id="limite_peso">
+    <select class="w3-select" name="option" id="limite_peso" required>
 	<?php
 		if(isset($_GET['first']))
 		{
@@ -89,7 +89,7 @@ body {font-size:16px;}
   </select></p>
     <p>
     <label class="w3-text-red"><b>Produto</b></label>
-    <select class="w3-select" name="option">
+    <select class="w3-select" name="option" required>
     <option value="" disabled selected>Escolher</option>
     <option value="1">Artigos tecnológicos</option>
     <option value="2">Relógio</option>
@@ -128,7 +128,7 @@ body {font-size:16px;}
     <label class="w3-text-red"><b>Preço previsto</b></label></p>
     <p>...</p>
     <p>
-    <button class="w3-btn w3-red" id="btnSubmit" >Adicionar ao Carrinho</button></p>
+    <button class="w3-btn w3-red" id="btnSubmit" disabled>Adicionar ao Carrinho</button></p>
   </form>
 
   <!-- End page content -->
