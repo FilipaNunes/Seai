@@ -6,10 +6,15 @@
 <title>Drone2u</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/notificacao.css"> 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
 <script src='utilizadores.js' charset='utf-8'></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -65,8 +70,6 @@ body {font-size:16px;}
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> Eliminar </th>
 	</tr>
 	<?php Utilizadores(); ?>
-  </tbody>
-  </table>
 
   <script>
   // Script to open and close sidebar

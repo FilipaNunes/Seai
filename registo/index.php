@@ -11,6 +11,9 @@
 
 <script src='registo.js' charset='utf-8'></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -53,7 +56,7 @@ body {font-size:16px;}
     <h1 class="w3-xxxlarge w3-text-red"><b>Registo</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
 
-<form class="w3-container w3-card-4" action="registo.php" method="post">
+<form class="w3-container w3-card-4" action="registo.php" method="post" id="form">
 
   <p>
   <label class="w3-text-red"><b>Username</b></label>
@@ -68,7 +71,7 @@ body {font-size:16px;}
   <label class="w3-text-red"><b>Email</b></label>
   <input class="w3-input w3-border" id="email" name="email" type="email" placeholder='Insira o email para o registo' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Introduza o email com este formato email@email.com' onChange = 'CheckEmail()' required></p>
   <p>
-  <input class="w3-red w3-input" type='submit' name='submit' value='Registo' id='submit' ><!--disabled-->
+  <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Registo' id='btnSubmit' onClick='event.preventDefault(); RegistoFeito()' disabled>
 </form>
 
   <!-- End page content -->

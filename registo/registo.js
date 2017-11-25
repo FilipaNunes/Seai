@@ -11,7 +11,7 @@ function displayNotification(notification){
   //notificationElement = document.getElementById('note'+noteNumber);
   setTimeout(()=>{
     container.removeChild(notificationElement);
-  },5000)
+  },2500)
 }
 
 var evaluate_username;
@@ -31,7 +31,7 @@ function CheckUsername(){
 		if (this.readyState == 4 && this.status == 200) {
 		  var response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
-				document.getElementById('submit').disabled = true;
+				document.getElementById('btnSubmit').disabled = true;
 				displayNotification("Nome de utilizador não disponível! Por favor tente outro!");
 			}
 		  else {
@@ -51,7 +51,7 @@ function ValidatePassword(){
 	evaluate_pass=0;
 	
     if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
-		document.getElementById('submit').disabled = true;
+		document.getElementById('btnSubmit').disabled = true;
 		displayNotification("Password inseridas não correspondem! Tente outra vez");
         return false;
 	}
@@ -73,7 +73,7 @@ function CheckEmail(){
 		if (this.readyState == 4 && this.status == 200) {
 		  var response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
-				document.getElementById('submit').disabled = true;
+				document.getElementById('btnSubmit').disabled = true;
 				displayNotification("Email já existe! Por favor tente outro!");
 			}
 		  else{
@@ -91,6 +91,18 @@ function CheckEmail(){
 
 function ActivateSubmit(){
 
-	if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)) document.getElementById('submit').disabled = false;
+	if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)) document.getElementById('btnSubmit').disabled = false;
 
+}
+
+function RegistoFeito(){
+	swal({
+		title: 'Registo Efetuado com Sucesso!',
+		text: 'Vai ser rederecionado para a página para completar os seus dados pessoais',
+		timer: 1500,
+		onOpen: function () {
+			swal.showLoading()
+		}
+	})
+	document.getElementById("form").submit();
 }

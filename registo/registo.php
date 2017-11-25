@@ -5,9 +5,9 @@
 <?php include_once ("login/action_login.php") ?>
 
 <?php 
-	$login = $_POST['user'];
-	$password = $_POST['pass'];
-	$email = $_POST['email'];
+	$login = strip_tags($_POST['user']);
+	$password = strip_tags($_POST['pass']);
+	$email = strip_tags($_POST['email']);
 
 
 	addUser($login,$password,$email);
