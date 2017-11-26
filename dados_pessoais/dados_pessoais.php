@@ -131,11 +131,11 @@ body {font-size:16px;}
 						<td><?php echo ''.$encomenda["tipo_encomenda"].'';?></td>
 						<td><?php echo ''.$encomenda["custo"].'';?></td>
 						<td><?php echo ''.$encomenda["morada_destino"].'';?></td>
-						<td><?php $data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;?></td>
-						<td><?php $data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;?></td>
+						<td><?php if($encomenda["data_env"] != NULL AND $encomenda["hora_env"] != NULL) {$data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;}?></td>
+						<td><?php if($encomenda["data_entr"] != NULL AND $encomenda["hora_entr"] != NULL) {$data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;}?></td>
 						<td><?php echo ''.$encomenda["estado"].'';?></td>
 						<td><?php $id = $encomenda["id_e"];
-								  if ($encomenda["estado"] == "Pendente") echo"<img src='../img/edit.png' height='10%'><a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#><img src='../img/delete.png' height='10%'></a>";?></td>
+								  if ($encomenda["estado"] == "Pendente") echo"<a href='update_encomenda.php?id=$id'><img src='../img/edit.png' height='10%'></a><a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#><img src='../img/delete.png' height='10%'></a>";?></td>
 					  </tr>
 					  <?php } ?>
 					</table>
