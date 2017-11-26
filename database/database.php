@@ -114,6 +114,20 @@ function get_encomendas_db (){
 ?>
 
 <?php
+function get_encomendas2_db ($id){
+		$query = "SELECT * FROM faz
+				  JOIN encomenda ON faz.id_e=encomenda.id_e
+				  WHERE encomenda.id_e = :id";
+		$values = array($id);
+		$insert = array(':id');
+
+		$result = execQuery($query, $insert, $values);
+
+        return $result;
+    }
+?>
+
+<?php
 function getMonthReceitas(){
 	db();
   global $conn;
