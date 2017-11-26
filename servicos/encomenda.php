@@ -23,10 +23,10 @@ body {font-size:16px;}
   </div>
   <div class="w3-bar-block w3-center">
   </br>
-   <a href="../index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
-    <a href="../servicos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
-    <a href="../colaboradores/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
-	<a href="../contactos/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
+   <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
+    <a href="../servicos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
+    <a href="../colaboradores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
+	<a href="../contactos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
   </div>
   </br>
     <div class="w3-bar-block w3-center">
@@ -102,7 +102,7 @@ body {font-size:16px;}
   </select> Para mais informações sobre os produtos clique <a target="_blank" href="informacoes.php">aqui</a> </p>
 	<p>
     <label class="w3-text-red"><b>Dimensões</b></label>
-    <input class="w3-input w3-border" name="dime" type="text" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura'></p>
+    <input class="w3-input w3-border" name="dime" id="dime" type="text" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura'></p>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
@@ -110,7 +110,7 @@ body {font-size:16px;}
 	</p>
 	<p>
     <label class="w3-text-red"><b>Quantidade</b></label>
-    <input class="w3-input w3-border" name="quant" type="text" title='Quantindade de produtos com as características inseridas. O peso não precisa de ser igual nas várias encomendas, apenas precisam de estar no mesmo intervalo de peso.'></p>
+    <input class="w3-input w3-border" name="quant" id="quant" type="text" title='Quantindade de produtos com as características inseridas. O peso não precisa de ser igual nas várias encomendas, apenas precisam de estar no mesmo intervalo de peso.'></p>
 	</p>
     <p>
     <label class="w3-text-red"><b>Ponto de recolha</b></label>
@@ -136,7 +136,7 @@ body {font-size:16px;}
 
   <div id='notification-container' class='notification-container'></div>
 
-  
+
   <script>
   // Script to open and close sidebar
   function w3_open() {
