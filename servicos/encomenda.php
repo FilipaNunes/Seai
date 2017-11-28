@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
 <script src='servicos.js' charset='utf-8'></script>
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
@@ -118,19 +122,21 @@ body {font-size:16px;}
     <label class="w3-text-red"><b>Ponto de recolha</b></label>
     <select class="w3-select" name="option" required>
     <option value="" disabled selected>Escolher</option>
-    <option value="1">Armazém 1</option>
-    <option value="2">Armazém 2</option>
-    <option value="3">Armazém 3</option>
-    <option value="3">Armazém 4</option>
-  </select></p>
+    <?php PontoRecolha(); ?>
+	</select>
+	</p>
     <p>
     <label class="w3-text-red"><b>Morada de destino</b></label>
-    <input class="w3-input w3-border" name="first" type="text" required></p>
+    <select class="w3-select" name="option2" required>
+    <option value="" disabled selected>Escolher</option>
+    <?php MoradaEntrega(); ?>
+	</select>
+	</p>
     <p>
     <label class="w3-text-red"><b>Preço previsto(€)</b></label></p>
     <p id="custo"> </p>
     <p>
-    <button class="w3-btn w3-red" id="btnSubmit" disabled>Adicionar ao Carrinho</button></p>
+    <button type='submit' class="w3-btn w3-red" id="btnSubmit" onClick='Adicionado()' disabled>Adicionar ao Carrinho</button></p>
   </form>
 
   <!-- End page content -->

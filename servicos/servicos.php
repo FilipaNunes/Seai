@@ -4,12 +4,43 @@
 
 <?php 
 	function PontoRecolha(){
-		$query = 'SELECT nome,morada_arm FROM armazem WHERE ocupacao = :ocupacao';
+
+		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao = :ocupacao';
 		
-		$values = array('livre');
+		$values = array('Livre');
 		$insert = array(':ocupacao');
 		
 		$result = execQuery($query,$insert,$values);
+		
+		$num_registos = $result->rowCount($result);
+		
+		for($i=0;$i<$num_registos;$i++){
+			$array = $result->fetch();
+			$nome = $array['nome'];
+			$morada = $array['morada_arm'];
+					
+			echo"
+					<option value=$id> $nome - $morada </option>
+				";
+		}
+	}
+	
+	function MoradaEntrega(){
+		
+		$query = 'SELECT localizacao FROM waypoint ';
+
+		$result = execQuery($query,null,null);
+		
+		$num_registos = $result->rowCount($result);
+		
+		for($i=0;$i<$num_registos;$i++){
+			$array = $result->fetch();
+			$nome = $array['localizacao'];
+					
+			echo"
+					<option value=$id> $nome </option>
+				";
+		}
 		
 	}
 ?>

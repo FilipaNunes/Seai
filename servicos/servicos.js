@@ -145,6 +145,7 @@ function Quantidade(){
 	}
 }
 
+
 function ActivateSubmit(){
 	
 	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1)) document.getElementById('btnSubmit').disabled = false;
@@ -183,12 +184,12 @@ function Adicionado(){
 	swal({
 		title: 'Adicionado ao Carrinho Com Sucesso!',
 		text: 'Vai ser redirecionado para o carrinho para completar a compra!',
-		timer: 1500,
+		timer: 4500,
 		onOpen: function () {
 			swal.showLoading()
 		}
 	})
 	setTimeout(()=>{
-		document.getElementById("form").submit();
-	},2500)
+		document.getElementById("btnSubmit").submit();
+	},4500)
 }
