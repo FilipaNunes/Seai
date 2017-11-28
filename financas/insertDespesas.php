@@ -1,6 +1,6 @@
 <?php
   include_once('../database/database.php');
-
+db();
 global $conn;
 
 $ANO = $_POST["ano"];

@@ -238,7 +238,7 @@ body {font-size:16px;}
         <hr style="width:50px;border:5px solid red" class="w3-round">
           <h2 class="w3-text-red"><b>Inserir despesa</b></h2>
     </br>
-              <form class="w3-container w3-card-4" action="../financas/insertDespesas.php" method="post">
+              <form class="w3-container w3-card-4" action="insertDespesas.php" method="post">
                 <select class="w3-select" name="ano">
                 <option value="" disabled selected>Ano</option>
                 <option value="2017">2017</option>
