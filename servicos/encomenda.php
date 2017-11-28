@@ -1,3 +1,5 @@
+<?php include_once("servicos.php")?>
+
 <!DOCTYPE html>
 <html>
 <title>Drone2u</title>
@@ -55,7 +57,7 @@ body {font-size:16px;}
   <form class="w3-container w3-card-4" action="registar_encomenda.php">
     <p>
     <label class="w3-text-red"><b>Serviço</b></label>
-    <select class="w3-select" name="option" id="limite_peso" required>
+    <select class="w3-select" name="option" id="limite_peso" onChange='VerificaCategoria()' required>
 	<?php
 		if(isset($_GET['first']))
 		{
@@ -102,19 +104,19 @@ body {font-size:16px;}
   </select> Para mais informações sobre os produtos clique <a target="_blank" href="informacoes.php">aqui</a> </p>
 	<p>
     <label class="w3-text-red"><b>Dimensões</b></label>
-    <input class="w3-input w3-border" name="dime" id="dime" type="text" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura'></p>
+    <input class="w3-input w3-border" name="dim" id="dim" type="text" placeholder="Dimensões máximas 30x30x30 cm" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura' onChange='VerificarDimensao()' required></p>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
-    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='Insira com estes formatos 2,45 ou 2.45' title='O peso deve ser inserido em quilogramas!' onChange= 'VerificaPeso()'></p>
+    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='Insira com estes formatos 2,45 ou 2.45' title='O peso deve ser inserido em quilogramas!' onChange= 'VerificaPeso()' required></p>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Quantidade</b></label>
-    <input class="w3-input w3-border" name="quant" id="quant" type="text" title='Quantindade de produtos com as características inseridas. O peso não precisa de ser igual nas várias encomendas, apenas precisam de estar no mesmo intervalo de peso.'></p>
+    <input class="w3-input w3-border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas. O peso não precisa de ser igual nas várias encomendas, apenas precisam de estar no mesmo intervalo de peso.' onChange='Quantidade()' required></p>
 	</p>
     <p>
     <label class="w3-text-red"><b>Ponto de recolha</b></label>
-    <select class="w3-select" name="option">
+    <select class="w3-select" name="option" required>
     <option value="" disabled selected>Escolher</option>
     <option value="1">Armazém 1</option>
     <option value="2">Armazém 2</option>
@@ -123,10 +125,10 @@ body {font-size:16px;}
   </select></p>
     <p>
     <label class="w3-text-red"><b>Morada de destino</b></label>
-    <input class="w3-input w3-border" name="first" type="text"></p>
+    <input class="w3-input w3-border" name="first" type="text" required></p>
     <p>
-    <label class="w3-text-red"><b>Preço previsto</b></label></p>
-    <p>...</p>
+    <label class="w3-text-red"><b>Preço previsto(€)</b></label></p>
+    <p id="custo"> </p>
     <p>
     <button class="w3-btn w3-red" id="btnSubmit" disabled>Adicionar ao Carrinho</button></p>
   </form>

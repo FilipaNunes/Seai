@@ -98,11 +98,15 @@ function ActivateSubmit(){
 function RegistoFeito(){
 	swal({
 		title: 'Registo Efetuado com Sucesso!',
-		text: 'Vai ser rederecionado para a página para completar os seus dados pessoais',
-		timer: 1500,
+		text: 'Vai ser redirecionado para a página para completar os seus dados pessoais',
+		timer: 4500,
 		onOpen: function () {
-			swal.showLoading()
+		swal.showLoading()
 		}
 	})
-	document.getElementById("form").submit();
+	setTimeout(()=>{
+		document.getElementById("form").submit();
+	},2500)
+	
+	
 }
