@@ -235,6 +235,44 @@ body {font-size:16px;}
 		  </br>
 		<div class="w3-container" id="chartdiv3"></div>
 		</br>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+          <h2 class="w3-text-red"><b>Inserir despesa</b></h2>
+    </br>
+              <form class="w3-container w3-card-4" action="../financas/insertDespesas.php" method="post">
+                <select class="w3-select" name="ano">
+                <option value="" disabled selected>Ano</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+              </select>
+              <select class="w3-select" name="mes">
+              <option value="" disabled selected>Mês</option>
+              <option value="01">Janeiro</option>
+              <option value="02">Fevereiro</option>
+              <option value="03">Março</option>
+              <option value="04">Abril</option>
+              <option value="05">Maio</option>
+              <option value="06">Junho</option>
+              <option value="07">Julho</option>
+              <option value="08">Agosto</option>
+              <option value="09">Setembro</option>
+              <option value="10">Outubro</option>
+              <option value="11">Novembro</option>
+              <option value="12">Dezembro</option>
+            </select>
+            <select class="w3-select" name="categoria">
+            <option value="" disabled selected>Categoria</option>
+            <option value="salarios">Salários</option>
+            <option value="aguagas">Água/Gás</option>
+            <option value="energia">Energia</option>
+            <option value="aluguer">Aluguer</option>
+            <option value="manutencao">Manutenção</option>
+            <option value="outras">Outras</option>
+            </select>
+            <p>
+              <label class="w3-text-red"><b>Valor (€)</b></label>
+              <input class="w3-input w3-border" name="valor" type="number"></p>
+              <button class="w3-btn w3-red" type="submit">Submeter</button></p>
+            </form>
         </div>
       </div>
 
