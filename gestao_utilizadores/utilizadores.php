@@ -50,7 +50,7 @@
 					<td style='text-align:center'> $encomendas </td>
 					<td style='text-align:center'>
 						<a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#>
-							<img src='../img/delete.jpg' height='10%'>
+							<img src='../img/delete.png' height='10%'>
 						</a>
 					</td>
 				</tr>
