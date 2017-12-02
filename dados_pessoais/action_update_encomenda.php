@@ -31,12 +31,7 @@
 		return $result;	
 }
 
-	if ($_POST["update"] AND ($_POST["peso"] <= 0 OR $_POST["peso"] > 4)) {
-		$id = $_POST["id"];
-		header("Location: update_encomenda2.php?id=$id");
-	}
-	
-	elseif ($_POST["update"]) {
+	if ($_POST["update"]) {
 		update_encomenda_db($_POST["produto"], $_POST["peso"], $_POST["dimensao"], $_POST["destino"]);
 		update_faz_db($_POST["caracteristicas"]);
 		header("Location: dados_pessoais2.php");
