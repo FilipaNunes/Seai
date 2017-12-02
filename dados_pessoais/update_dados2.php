@@ -71,7 +71,7 @@ body {font-size:16px;}
 							<b>Nome: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="name" value="<?=$user_data1["nome_completo"]?>" placeholder="nome" required />
+							<input type="text" class="text-input w3-border" name="name" value="<?=$user_data1["nome_completo"]?>" placeholder="Nome" required />
 						</td>
 					</tr>
 					<tr>
@@ -111,7 +111,7 @@ body {font-size:16px;}
                                 <b>Telemóvel: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="telephone" value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" />
+                                <input type="text" class="text-input w3-border" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" required />
                             </td>
                         </tr>
 						</table>
@@ -123,7 +123,7 @@ body {font-size:16px;}
                                 <b>NIF: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="nif" value="<?=$user_data1["nif"]?>" size="9" maxlength="9" />
+                                <input type="text" class="text-input w3-border" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" required />
                             </td>
                         </tr>
 						<tr>
@@ -131,7 +131,7 @@ body {font-size:16px;}
                                 <b>Morada: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="address" value="<?=$user_data1["morada"]?>" style="width:93%" required />
+                                <input type="text" class="text-input w3-border" name="address" placeholder='Morada' value="<?=$user_data1["morada"]?>" style="width:93%" required />
                             </td>
                         </tr>
 					</table>                  
