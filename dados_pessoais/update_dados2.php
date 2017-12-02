@@ -111,7 +111,7 @@ body {font-size:16px;}
                                 <b>Telemóvel: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" required />
+                                <input type="text" class="text-input w3-border" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" pattern="\d{9}" required />
                             </td>
                         </tr>
 						</table>
@@ -123,7 +123,7 @@ body {font-size:16px;}
                                 <b>NIF: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" required />
+                                <input type="text" class="text-input w3-border" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" pattern="\d{9}" required />
                             </td>
                         </tr>
 						<tr>
