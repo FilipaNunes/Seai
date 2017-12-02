@@ -11,7 +11,8 @@
 		else $page=1;  
 		$inicio = ($page-1) * $limite;  
   	
-		$query = "SELECT id_e FROM faz";
+		$query = "SELECT id_e FROM faz
+				  WHERE id_e IS NOT NULL";
 		
 		$result = execQuery($query,null,null);
 		
