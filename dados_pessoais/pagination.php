@@ -27,7 +27,7 @@
 		
 		$query = "SELECT * FROM faz
 				  JOIN encomenda ON faz.id_e=encomenda.id_e
-				  WHERE id_c = :id
+				  WHERE faz.id_c = :id
 				  ORDER BY encomenda.id_e DESC
 				  OFFSET $inicio
 				  LIMIT $limite";
