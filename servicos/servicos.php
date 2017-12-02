@@ -1,8 +1,9 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305659/public_html/SEAI/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/Seai/"); ?>
 
-<?php include_once("database/database.php")?>
+<?php include_once("database/database.php"); ?>
 
 <?php 
+	
 	function PontoRecolha(){
 
 		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao = :ocupacao';
@@ -18,9 +19,9 @@
 			$array = $result->fetch();
 			$nome = $array['nome'];
 			$morada = $array['morada_arm'];
-					
+			$value = $i + 1;
 			echo"
-					<option value=$id> $nome - $morada </option>
+					<option value=$value> $nome - $morada </option>
 				";
 		}
 	}
@@ -36,9 +37,10 @@
 		for($i=0;$i<$num_registos;$i++){
 			$array = $result->fetch();
 			$nome = $array['localizacao'];
+			$value = $i + 1;
 					
 			echo"
-					<option value=$id> $nome </option>
+					<option value=$value> $nome </option>
 				";
 		}
 		

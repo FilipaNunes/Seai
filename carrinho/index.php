@@ -1,19 +1,22 @@
-<?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305659/public_html/SEAI/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/Seai/"); ?>
+<?php 
+		session_start();
+		include_once('listar.php');
+?>
 
 <!DOCTYPE html>
 <html>
 <title>Drone2u</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel='stylesheet' href='../css/notificacao.css'>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-
-<script src='registo.js' charset='utf-8'></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+<script src='carrinho.js' charset='utf-8'></script>
+
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -29,14 +32,14 @@ body {font-size:16px;}
   </div>
   <div class="w3-bar-block w3-center">
   </br>
-    <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
+   <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
     <a href="../servicos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
     <a href="../colaboradores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
 	<a href="../contactos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
   </div>
   </br>
     <div class="w3-bar-block w3-center">
-      <a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
+      <a href="../login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
     </div>
 </nav>
 
@@ -52,33 +55,52 @@ body {font-size:16px;}
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
+  <!-- Packages / Pricing Tables -->
   <div class="w3-container" id="packages" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Registo</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Carrinho</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
 
-<form class="w3-container w3-card-4" action="registo.php" method="post" id="form">
+  <?php
+		if($_SESSION["carrinho"] == NULL){
+			
+			echo"
+				<p>O carrinho está vazio!</p>
+			";
+			
+			
+		}else{
+				echo"
+				  <table class='w3-table-all'>
+				  <tbody>
+					<tr >
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Serviço</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Produto</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Peso</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Dimensões</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Ponto Recolha</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Morada de Destino</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Preço Previsto</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> Quantidade</th>
+					</tr>
+					<?php ListaCarrinho(); ?>
+				  <p></p>";
 
-  <p>
-  <label class="w3-text-red"><b>Username</b></label>
-  <input class="w3-input w3-border" id="user" name="user" type="text" placeholder='Nome pretendido para o utilizador' pattern='[a-z0-9_-]{3,20}' title='O username deve ter entre 3 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onChange = 'CheckUsername()' required></p>
-  <p>
-  <label class="w3-text-red"><b>Password</b></label>
-  <input class="w3-input w3-border" id="pass" name="pass" type="password" placeholder='Insira Password' pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' required></p>
-  <p>
-  <label class="w3-text-red"><b>Confirmar Password</b></label>
-  <input class="w3-input w3-border" id="c_pass" name="c_pass" type="password" placeholder='Repita a Password' pattern='[a-zA-Z0-9_-]{6,20}' title='Repita a password inserida acima.' onChange = 'ValidatePassword()' required></p>
-  <p>
-  <label class="w3-text-red"><b>Email</b></label>
-  <input class="w3-input w3-border" id="email" name="email" type="email" placeholder='Insira o email para o registo' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Introduza o email com este formato email@email.com' onChange = 'CheckEmail()' required></p>
-  <p>
-  <button class="w3-red w3-btn" type='submit' name='btnSubmit' id='btnSubmit' onClick='event.preventDefault(); RegistoFeito()' disabled>Registo</button></p>
-</form>
-
+				if($_SESSION["user_id"] == NULL){
+					echo"
+						<a href='../login/index.html'><button class='w3-btn w3-red'>Tem de fazer login para finalizar a encomenda!</button></a>
+					";
+				}else{
+					echo"
+						<form action='finalizar.php' id='finalizar'>
+							<button type='submit' form='finalizar' class='w3-btn w3-red' id='btnSubmit' onClick='event.preventDefault(); Finalizar()'>Finalizar Compra</button>
+						</form>
+					";
+				}
+		}
+  ?>
   <!-- End page content -->
   </div>
-  
-<div id='notification-container' class='notification-container'></div>
-
   
   <script>
   // Script to open and close sidebar
@@ -95,6 +117,4 @@ body {font-size:16px;}
   </script>
 
   </body>
-   
-</html>
-
+  </html>

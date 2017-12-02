@@ -1,4 +1,9 @@
-<?php include_once("servicos.php")?>
+<?php
+
+	include_once("servicos.php");
+
+	session_start();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -58,7 +63,7 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <form class="w3-container w3-card-4" action="registar_encomenda.php">
+  <form class="w3-container w3-card-4" action="../carrinho/adicionar.php" id="encomenda">
     <p>
     <label class="w3-text-red"><b>Serviço</b></label>
     <select class="w3-select" name="option" id="limite_peso" onChange='VerificaCategoria()' required>
@@ -95,7 +100,7 @@ body {font-size:16px;}
   </select></p>
     <p>
     <label class="w3-text-red"><b>Produto</b></label>
-    <select class="w3-select" name="option" required>
+    <select class="w3-select" name="option" id="produto" required>
     <option value="" disabled selected>Escolher</option>
     <option value="1">Artigos tecnológicos</option>
     <option value="2">Relógio</option>
@@ -112,22 +117,22 @@ body {font-size:16px;}
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
-    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='Insira com estes formatos 2,45 ou 2.45' title='O peso deve ser inserido em quilogramas!' onChange= 'VerificaPeso()' required></p>
+    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='Insira com estes formatos 2 ou 2.45' title='O peso deve ser inserido em quilogramas!' onChange= 'VerificaPeso()' required></p>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Quantidade</b></label>
-    <input class="w3-input w3-border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas. O peso não precisa de ser igual nas várias encomendas, apenas precisam de estar no mesmo intervalo de peso.' onChange='Quantidade()' required></p>
+    <input class="w3-input w3-border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas.' onChange='Quantidade()' required></p>
 	</p>
     <p>
     <label class="w3-text-red"><b>Ponto de recolha</b></label>
-    <select class="w3-select" name="option" required>
+    <select class="w3-select" name="option" id="recolha" required>
     <option value="" disabled selected>Escolher</option>
     <?php PontoRecolha(); ?>
 	</select>
 	</p>
     <p>
     <label class="w3-text-red"><b>Morada de destino</b></label>
-    <select class="w3-select" name="option2" required>
+    <select class="w3-select" name="option2" id="destino" required>
     <option value="" disabled selected>Escolher</option>
     <?php MoradaEntrega(); ?>
 	</select>
@@ -136,7 +141,7 @@ body {font-size:16px;}
     <label class="w3-text-red"><b>Preço previsto(€)</b></label></p>
     <p id="custo"> </p>
     <p>
-    <button type='submit' class="w3-btn w3-red" id="btnSubmit" onClick='Adicionado()' disabled>Adicionar ao Carrinho</button></p>
+    <button type='submit' class="w3-btn w3-red" id="btnSubmit" onClick='event.preventDefault(); Adicionado()' disabled>Adicionar ao Carrinho</button></p>
   </form>
 
   <!-- End page content -->

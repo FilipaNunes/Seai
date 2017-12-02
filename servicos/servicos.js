@@ -18,13 +18,13 @@ var avaliar_quant;
 
 function TransformaPeso(peso){
 	
-	var pattern = new RegExp("^([0-9]+[,.]+[0-9])$");
+	var pattern = new RegExp("^([0-9]+[.]+[0-9])$");
 	var pattern2 = new RegExp("^([0-9])$");
 	var teste = pattern.test(peso);
 	var teste2 = pattern2.test(peso);
 	
 	if( teste !== true && teste2 !== true){
-		displayNotification("O peso não está no formato correto. Por favor insira neste formato 2 ou 2,3 ou 2.3");
+		displayNotification("O peso não está no formato correto. Por favor insira neste formato 2 ou 2.3");
 		document.getElementById('btnSubmit').disabled = true;
 		return -1;
 	}
@@ -118,6 +118,9 @@ function VerificarDimensao(){
 		if(partes_dim[0] > comprimento_max)displayNotification("O comprimento inserido é maior do que a máximo(30 cm)!");
 		else if (partes_dim[1] > largura_max)displayNotification("A largura inserida é maior do que a máxima(30 cm)!");
 		else if (partes_dim[2] > altura_max)displayNotification("A altura inserida é maior do que a máxima(30 cm)!");
+		else if(partes_dim[0] == 0)displayNotification("O comprimento inserido tem de ser maior que 0 cm!");
+		else if (partes_dim[1] == 0)displayNotification("A largura inserida tem de ser maior que 0 cm!");
+		else if (partes_dim[2] == 0)displayNotification("A altura inserida tem de ser maior que 0 cm!");
 		else{
 			avaliar_dim = 1;
 			ActivateSubmit();
@@ -156,6 +159,10 @@ function Custo(){
 	var custo='...';
 	var quant = document.getElementById('quant').value;
 	var categorias = document.getElementById('limite_peso').value;
+	var preco01 = 19.99;
+	var preco12 = 29.99;
+	var preco23 = 39.99;
+	var preco34 = 49.99;
 
 	var xmlhttp = new XMLHttpRequest();
 	
@@ -163,13 +170,14 @@ function Custo(){
 	else{
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			if(categorias == 1) custo = quant*(19.99);
-			else if (categorias == 2) custo = quant*(29.99);
-			else if (categorias == 3) custo = quant*(39.99);
-			else custo = quant*(49.99);
+			if(categorias == 1) custo = quant*(preco01);
+			else if (categorias == 2) custo = quant*(preco12);
+			else if (categorias == 3) custo = quant*(preco23);
+			else custo = quant*(preco34);
 			
 			if(quant>3) custo = custo - custo*0.15;
-
+	
+			custo = custo.toFixed(2);
 		}
 		
 		document.getElementById("custo").innerHTML=custo;
@@ -181,15 +189,58 @@ function Custo(){
 }
 
 function Adicionado(){
-	swal({
-		title: 'Adicionado ao Carrinho Com Sucesso!',
-		text: 'Vai ser redirecionado para o carrinho para completar a compra!',
-		timer: 4500,
-		onOpen: function () {
-			swal.showLoading()
-		}
-	})
-	setTimeout(()=>{
-		document.getElementById("btnSubmit").submit();
-	},4500)
+	var servico = document.getElementById('limite_peso').value;
+	
+	var produto_value = document.getElementById('produto').value;
+	var produto = document.getElementById('produto');
+	produto = produto.options[produto_value].text;
+	
+	var dimensoes = document.getElementById('dim').value;
+	var peso = document.getElementById('peso').value;
+	var quantidade = document.getElementById('quant').value;
+	
+	var recolha_value = document.getElementById('recolha').value;
+	var recolha = document.getElementById('recolha')
+	recolha = recolha.options[recolha_value].text;
+	
+	var destino_value = document.getElementById('destino').value;
+	var destino = document.getElementById('destino')
+	destino = destino.options[destino_value].text;
+	
+	
+	var custo = document.getElementById("custo").innerHTML;
+		
+	var xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  //var response = JSON.parse(this.responseText);
+		  //console.log(this.responseText);
+			swal({
+				title: 'Encomenda adicionada ao carrinho com sucesso!',
+				text: "Escolha a página para onde quer ser redirecionada:",
+				type: 'success',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#f44336',
+				confirmButtonText: 'Carrinho',
+				cancelButtonText: 'Nova Encomenda',
+				confirmButtonClass: 'btn btn-success',
+				cancelButtonClass: 'btn btn-danger',
+				buttonsStyling: true
+			}).then(function (result) {
+			if (result.value)window.location.href = '../carrinho/index.php';
+			else if (result.dismiss === 'cancel') window.location.href = 'index.php';
+			})
+		};
+	}
+	
+	xmlhttp.open("POST", "../carrinho/adicionar.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+
+	var message = "servico=" + servico + "&" + "produto=" + produto + "&" +"dimensoes=" + dimensoes + "&"+
+				  "peso=" + peso + "&" + "quantidade=" + quantidade + "&" + "recolha=" + recolha + "&" +
+				  "destino=" + destino + "&" + "custo=" + custo;
+	xmlhttp.send(message);
+	return;
 }

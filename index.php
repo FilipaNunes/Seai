@@ -42,6 +42,11 @@ body {font-size:16px;}
 		</div>';
 		}
 	else {
+		
+		echo '<div class="w3-bar-block w3-center">
+		<a href="carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
+		</div>';
+		
 		echo '<div class="w3-bar-block w3-center">
 		<a href="login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
 		</div>';

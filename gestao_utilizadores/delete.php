@@ -7,6 +7,7 @@
       {
         $id=$_GET['id'];
 		$query="DELETE FROM faz WHERE id_c = :id";
+		$query1="DELETE FROM encomenda WHERE id_c = :id";
         $query2="DELETE FROM clientes WHERE id_c  = :id";
 		
 		
@@ -14,6 +15,7 @@
 		$insert = array(':id');
 		
 		$result = execQuery($query,$insert,$values);
+		$result1 = execQuery($query1,$insert,$values);
 		$result2 = execQuery($query2,$insert,$values);
 		
 

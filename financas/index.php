@@ -116,9 +116,9 @@ body {font-size:16px;}
             <thead>
               <tr class="w3-red">
                 <th>0 a 1Kg</th>
-                <th>1 a 2Kg</th>
-                <th>2 a 3Kg</th>
-                <th>3 a 4kg</th>
+                <th>>1 a 2Kg</th>
+                <th>>2 a 3Kg</th>
+                <th>>3 a 4kg</th>
                 <th>Outras</th>
                 <th>Total</th>
               </tr>
@@ -143,9 +143,9 @@ body {font-size:16px;}
             <thead>
               <tr class="w3-red">
                 <th>0 a 1Kg</th>
-                <th>1 a 2Kg</th>
-                <th>2 a 3Kg</th>
-                <th>3 a 4kg</th>
+                <th>>1 a 2Kg</th>
+                <th>>2 a 3Kg</th>
+                <th>>3 a 4kg</th>
                 <th>Outras</th>
                 <th>Total</th>
               </tr>

@@ -6,7 +6,7 @@
 
 	function Utilizadores(){
 		
-		$limite = 3;  
+		$limite = 8;  
 		if (isset($_GET["page"])) $page  = $_GET["page"];
 		else $page=1;  
 		$inicio = ($page-1) * $limite;  

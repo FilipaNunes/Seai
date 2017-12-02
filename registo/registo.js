@@ -11,7 +11,7 @@ function displayNotification(notification){
   //notificationElement = document.getElementById('note'+noteNumber);
   setTimeout(()=>{
     container.removeChild(notificationElement);
-  },2500)
+  },4500)
 }
 
 var evaluate_username;
