@@ -79,18 +79,18 @@ body {font-size:16px;}
 					</tr>
 					<tr>
 						<td>
-							<b>Peso: </b> &nbsp (máx. 4 Kg)
+							<b>Peso: </b> &nbsp (máx. 4.0 Kg)
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="peso" value="<?=$encomenda["peso"]?>" size = "46" required />
+							<input type="text" class="text-input w3-border" name="peso" value="<?=$encomenda["peso"]?>" size = "46" pattern="([0-3][.][0-9])|([4][.][0])" required />
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<b>Dimensão: </b>
+							<b>Dimensão: </b> &nbsp (máx. 30x30x30 cm)
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="dimensao" size="46" value="<?=$encomenda["dimensao"]?>" required />
+							<input type="text" class="text-input w3-border" name="dimensao" size="46" value="<?=$encomenda["dimensao"]?>" pattern="([0-2][0-9]|[0-3][0])[x]([0-2][0-9]|[0-3][0])[x]([0-2][0-9]|[0-3][0])" required />
 						</td>
 					</tr>
 					<tr>
