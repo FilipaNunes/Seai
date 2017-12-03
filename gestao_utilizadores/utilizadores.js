@@ -1,5 +1,4 @@
 function ConfirmarDelete(id){
-	console.log(id);
 	swal({
 	  title: 'Tem a certeza que quer apagar este registo?',
 	  text: "Esta ação não é reversível!",

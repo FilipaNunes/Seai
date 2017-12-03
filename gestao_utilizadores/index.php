@@ -67,7 +67,7 @@ body {font-size:16px;}
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> Email</th>
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> Contacto Telefónico </th>
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> Encomendas</th>
-	<th style='background-color:#f44336; text-align:center'> <font color='white'> Eliminar </th>
+	<th style='background-color:#f44336; text-align:center'> <font color='white'> </th>
 	</tr>
 	<?php Utilizadores(); ?>
 

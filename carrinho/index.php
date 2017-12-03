@@ -82,9 +82,10 @@ body {font-size:16px;}
 					<th style='background-color:#f44336; text-align:center'> <font color='white'> Morada de Destino</th>
 					<th style='background-color:#f44336; text-align:center'> <font color='white'> Preço Previsto</th>
 					<th style='background-color:#f44336; text-align:center'> <font color='white'> Quantidade</th>
+					<th style='background-color:#f44336; text-align:center'> <font color='white'> </th>
 					</tr>
-					<?php ListaCarrinho(); ?>
-				  <p></p>";
+					";ListaCarrinho();
+				  echo"<p></p>";
 
 				if($_SESSION["user_id"] == NULL){
 					echo"

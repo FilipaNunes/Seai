@@ -25,6 +25,11 @@ function ListaCarrinho(){
 			echo" </td>
 				  <td style='text-align:center'>"; print_r($_SESSION['carrinho']['quantidade'][$i]);
 			echo" </td>
+				  <td>
+					<a onclick='event.preventDefault(); return ConfirmarDelete($i)' href=#>
+							<img src='../img/delete.png' height='10%'>
+					</a>
+				  </td>
 				  </tr>";
 		}
 		echo" </tbody>

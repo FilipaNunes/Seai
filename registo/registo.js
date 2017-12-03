@@ -22,7 +22,6 @@ var evaluate_email;
 function CheckUsername(){
 	evaluate_username=0;
 	var usernameInput = document.getElementById('user').value;
-
 	var xmlhttp = new XMLHttpRequest();
 	
 	if(usernameInput==='' || usernameInput===null) return;
@@ -49,15 +48,16 @@ function CheckUsername(){
 
 function ValidatePassword(){
 	evaluate_pass=0;
-	
-    if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
-		document.getElementById('btnSubmit').disabled = true;
-		displayNotification("Password inseridas não correspondem! Tente outra vez");
-        return false;
-	}
-	else{
-		  evaluate_pass = 1;
-		  ActivateSubmit();
+	if(document.getElementById('pass').value != '' && document.getElementById('c_pass').value != '' ){
+		if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
+			document.getElementById('btnSubmit').disabled = true;
+			displayNotification("Password inseridas não correspondem! Tente outra vez");
+			return false;
+		}
+		else{
+			  evaluate_pass = 1;
+			  ActivateSubmit();
+		}
 	}
 }
 
@@ -107,6 +107,15 @@ function RegistoFeito(){
 	setTimeout(()=>{
 		document.getElementById("form").submit();
 	},2500)
+	
+	
+}
+
+
+function Disable(){
+	
+	document.getElementById('btnSubmit').disabled = true;
+
 	
 	
 }

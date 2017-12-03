@@ -118,7 +118,8 @@
 			
 			for($j=0;$j<$quantidade;$j++){
 				$hora_s = date("H:i:s");
-				InserirEncomenda($peso,$dimensao,$data_s,$destino,$produto,$recolha,$hora_s,$id_c);
+				$encomenda = InserirEncomenda($peso,$dimensao,$data_s,$destino,$produto,$recolha,$hora_s,$id_c);
+				$id_e = $encomenda['id_e'];
 				InserirFaz($id_e,$id_c,$custo);
 				Receitas($servico,$custo,$data_receita);
 			}
