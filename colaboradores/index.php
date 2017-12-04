@@ -43,7 +43,6 @@ body {font-size:16px;}
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
   <?php } 
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
-		<a href="../frotas/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Frota</a>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
 		<a href="../gestao_funcionarios/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Funcionários</a>
