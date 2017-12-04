@@ -1,5 +1,4 @@
 <?php 
-		session_start();
 		include_once('listar.php');
 ?>
 
@@ -25,22 +24,47 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
+<?php 
+	include_once("../database/database.php");
+	include_once("../login/session.php"); 
+	$user_data = user_data_db();
+    $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Fechar Menu</a>
   <div class="w3-container w3-center">
-    <img src="../img/icone.png" style="width:80%">
+    <img src="img/icone.png" style="width:80%">
   </div>
   <div class="w3-bar-block w3-center">
   </br>
-   <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
-    <a href="../servicos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
-    <a href="../colaboradores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
-	<a href="../contactos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
+		<a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
+		<a href="../servicos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
+		<a href="../contactos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
+		<a href="../colaboradores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
+  <?php if ($_SESSION["user_id"] == NULL) { ?>
+		<hr style="border-width: 2px; border-color: red">
+		<a href="../login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
+  <?php } 
+		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
+		<hr style="border-width: 2px; border-color: red">
+		<a href="../dados_pessoais/dados_pessoais.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red"><?=$user_data1["nome_completo"]?></a>
+		<a class="w3-bar-item w3-button w3-red">Carrinho</a>
+		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
+  <?php } 
+		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
+		<a href="../frotas/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Frota</a>
+		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
+		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
+		<a href="../gestao_funcionarios/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Funcionários</a>
+		<a href="../entregas/entregas.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Entregas</a>
+		<a href="../financas/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Finanças</a>
+		<a href="../kpis/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">KPIs</a>
+		<hr style="border-width: 2px; border-color: red">
+		<a href="../dados_pessoais/dados_pessoais.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red"><?=$user_data1["nome_completo"]?></a>
+		<a class="w3-bar-item w3-button w3-red">Carrinho</a>
+		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
+  <?php } ?>
   </div>
   </br>
-    <div class="w3-bar-block w3-center">
-      <a href="../login/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-    </div>
 </nav>
 
 <!-- Top menu on small screens -->
