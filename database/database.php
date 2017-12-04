@@ -39,18 +39,20 @@ error_log("\ndbg:SQL-Query: " . $query . " --end--");
 
 <?php
 function check_admin_db() {
-        global $conn;
         $user_id = $_SESSION["user_id"];
 
         $query = "SELECT admin
                   FROM clientes
-                  WHERE id_c = $user_id";
+                  WHERE id_c = :id";
 
-        $result = pg_exec($conn, $query);
+        $values = array($user_id);
+		$insert = array(':id');
+		
+		$result = execQuery($query, $insert, $values);
 
-        $admin = pg_fetch_assoc($result);
+        $admin = $result->fetch(PDO::FETCH_ASSOC);
 
-        if ($admin["admin"] == 't'){
+        if ($admin["admin"] == TRUE){
             return 1;
         }
         else {
