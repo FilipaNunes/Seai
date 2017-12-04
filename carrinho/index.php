@@ -32,7 +32,7 @@ body {font-size:16px;}
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Fechar Menu</a>
   <div class="w3-container w3-center">
-    <img src="img/icone.png" style="width:80%">
+    <img src="../img/icone.png" style="width:80%">
   </div>
   <div class="w3-bar-block w3-center">
   </br>
