@@ -95,7 +95,7 @@ body {font-size:16px;}
 							<b>Produto: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="produto" value="<?=$encomenda["tipo_encomenda"]?>" size="46" required />
+							<input type="text" class="text-input w3-border" name="produto" value="<?=$encomenda["tipo_encomenda"]?>" size="46" title="A descrição do produto apenas deve incluir letras, espaços e números." pattern="([A-z0-9À-ž\s]){2,}" required />
 						</td>
 					</tr>
 					<tr>
@@ -119,7 +119,7 @@ body {font-size:16px;}
                                 <b>Morada de Destino: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="destino" value="<?=$encomenda["morada_destino"]?>" size="46" required />
+                                <input type="text" class="text-input w3-border" name="destino" value="<?=$encomenda["morada_destino"]?>" size="46" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
                             </td>
                         </tr>
 						<tr>
@@ -127,7 +127,7 @@ body {font-size:16px;}
                                 <b>Características: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="caracteristicas" value="<?=$encomenda["caracteristicas"]?>" placeholder="Características da encomenda (opcional)" size="46" />
+                                <input type="text" class="text-input w3-border" name="caracteristicas" value="<?=$encomenda["caracteristicas"]?>" placeholder="Características da encomenda (opcional)" size="46" title="As características do produto apenas devem incluir letras e espaços." pattern="([A-zÀ-ž\s]){2,}" />
                             </td>
                         </tr>
 						
