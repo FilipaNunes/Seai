@@ -95,7 +95,7 @@ body {font-size:16px;}
           <div class="w3-container">
             <h3>Apoio ao cliente</h3>
             <p class="w3-opacity">Email</p>
-            <p>somos.os.maiores@gmail.com</p>
+            <p>seai.2017.equipa.c@gmail.com</p>
             <p class="w3-opacity">Telefone</p>
             <p>+351 912345678</p>
           </div>
