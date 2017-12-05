@@ -26,7 +26,7 @@
 		}
 
 		else {
-		header("Location: wronglogin.html");
+		header("Location: wronglogin.php");
 		}
     }
 
