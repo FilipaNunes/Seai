@@ -20,6 +20,7 @@ body {font-size:16px;}
 <?php 
 	include_once("../database/database.php");
 	include_once("../login/session.php"); 
+	if ($_SESSION["user_id"] == NULL) header("Location: ../index.php");
 	$user_data = user_data_db();
     $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -39,7 +40,7 @@ body {font-size:16px;}
   <?php } 
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
-		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["nome_completo"]?></a>
+		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
   <?php } 
@@ -51,7 +52,7 @@ body {font-size:16px;}
 		<a href="../financas/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Finanças</a>
 		<a href="../kpis/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">KPIs</a>
 		<hr style="border-width: 2px; border-color: red">
-		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["nome_completo"]?></a>
+		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
   <?php } ?>
@@ -102,7 +103,7 @@ body {font-size:16px;}
 							<b>Peso: </b> &nbsp (máx. 4.0 Kg)
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="peso" value="<?=$encomenda["peso"]?>" size = "46" pattern="([0-3][.][1-9])|([4][.][0])|([1-4])" required />
+							<input type="text" class="text-input w3-border" name="peso" value="<?=$encomenda["peso"]?>" size = "46" pattern="([0-3][.][1-9])|([1-4][.][0])|([1-4])|([1-3][.][0-9][0-9])|([0][.][0-9][1-9])|([0][.][1-9][0])" title="O peso deve ser superior a 0 e as casas decimais devem ser separadas por um ponto, podendo ter no máximo 2 casas decimais." required />
 						</td>
 					</tr>
 					<tr>
@@ -110,7 +111,7 @@ body {font-size:16px;}
 							<b>Dimensão: </b> &nbsp (máx. 30x30x30 cm)
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="dimensao" size="46" value="<?=$encomenda["dimensao"]?>" pattern="([0-2][0-9]|[0-3][0])[x]([0-2][0-9]|[0-3][0])[x]([0-2][0-9]|[0-3][0])" required />
+							<input type="text" class="text-input w3-border" name="dimensao" size="46" value="<?=$encomenda["dimensao"]?>" pattern="([1-2][0-9]|[3][0]|[1-9])[x]([1-2][0-9]|[3][0]|[1-9])[x]([1-2][0-9]|[3][0]|[1-9])" required />
 						</td>
 					</tr>
 					<tr>
