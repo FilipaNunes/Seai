@@ -5,10 +5,14 @@
 <?php
 
 	function addUser($login,$password,$email){
+		$options = ['cost' => 12];
 		$query = "INSERT INTO clientes(username,password,email)
 			      VALUES(:name, :pass, :email)";
+				  
+		$password_hashed = password_hash($password, PASSWORD_DEFAULT, $options));
 		
-		$values = array($login,(md5($password)),$email);
+		//$values = array($login,$password_hashed,$email);
+		$values = array($login,md5($password),$email);
 		$insert = array(':name',':pass', ':email');
 		
 		$result = execQuery($query,$insert,$values);

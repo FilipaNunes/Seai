@@ -114,7 +114,12 @@ body {font-size:16px;}
 					echo"
 						<a href='../login/index.html'><button class='w3-btn w3-red'>Tem de fazer login para finalizar a encomenda!</button></a>
 					";
-				}else{
+				} else if (!Campos($_SESSION["user_id"])){
+					echo"
+						<a href='../dados_pessoais/update_dados.php'> <button class='w3-btn w3-red'>Tem de preencher os seus dados pessoais!</button></a>
+					";
+				}
+				else{
 					echo"
 						<form action='finalizar.php' id='finalizar'>
 							<button type='submit' form='finalizar' class='w3-btn w3-red' id='btnSubmit' onClick='event.preventDefault(); Finalizar()'>Finalizar Compra</button>

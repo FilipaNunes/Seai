@@ -39,4 +39,21 @@ function ListaCarrinho(){
 	}
 }
 
+function Campos($id){
+	
+	$query = "SELECT nome_completo,morada,telemovel,nif FROM clientes WHERE id_c= :id";
+	
+	$values = array($id);
+	$insert = array(':id');
+	
+	$result = execQuery($query,$insert,$values);
+	
+	$dados = $result->fetch();
+	
+	if($dados['nome_completo'] == null || $dados['morada'] == null || $dados['telemovel'] == null || $dados['nif'] == null) return false;
+	else return true;
+	
+	
+}
+
 ?>
