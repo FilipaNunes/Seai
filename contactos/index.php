@@ -16,9 +16,9 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
-	include_once("../login/session.php"); 
+	include_once("../login/session.php");
 	$user_data = user_data_db();
     $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -35,13 +35,13 @@ body {font-size:16px;}
   <?php if ($_SESSION["user_id"] == NULL) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../dados_pessoais/dados_pessoais.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
@@ -105,18 +105,22 @@ body {font-size:16px;}
 
 </br>
     <p>Contacto directo por email:</p>
-    <form action="/action_page.php" target="_blank">
+    <form action="sendMail.php" method="post">
       <div class="w3-section">
         <label>Nome</label>
-        <input class="w3-input w3-border" type="text" name="Name" required>
+        <input class="w3-input w3-border" type="text" name="nome" required>
       </div>
       <div class="w3-section">
         <label>Email</label>
-        <input class="w3-input w3-border" type="text" name="Email" required>
+        <input class="w3-input w3-border" type="text" name="email" required>
+      </div>
+      <div class="w3-section">
+        <label>Assunto</label>
+        <input class="w3-input w3-border" type="text" name="assunto" required>
       </div>
       <div class="w3-section">
         <label>Mensagem</label>
-        <input class="w3-input w3-border" type="text" name="Message" required>
+        <textarea class="w3-input w3-border" type="text" name="mensagem" required></textarea>
       </div>
       <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Enviar</button>
     </form>
