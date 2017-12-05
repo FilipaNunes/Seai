@@ -19,7 +19,8 @@ body {font-size:16px;}
 <!-- Sidebar/menu -->
 <?php 
 	include_once("../database/database.php");
-	include_once("../login/session.php"); 
+	include_once("../login/session.php");
+	if ($_SESSION["user_id"] == NULL) header("Location: ../index.php");
 	$user_data = user_data_db();
     $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -39,7 +40,7 @@ body {font-size:16px;}
   <?php } 
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
-		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["nome_completo"]?></a>
+		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
   <?php } 
@@ -51,7 +52,7 @@ body {font-size:16px;}
 		<a href="../financas/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Finanças</a>
 		<a href="../kpis/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">KPIs</a>
 		<hr style="border-width: 2px; border-color: red">
-		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["nome_completo"]?></a>
+		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
   <?php } ?>
@@ -88,7 +89,7 @@ body {font-size:16px;}
 							<b>Nome: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="name" value="<?=$user_data1["nome_completo"]?>" placeholder="Nome" required />
+							<input type="text" class="text-input w3-border" name="name" value="<?=$user_data1["nome_completo"]?>" title="O nome apenas deve incluir letras e espaços." pattern="([A-zÀ-ž\s]){2,}" placeholder="Nome" required />
 						</td>
 					</tr>
 					<tr>
@@ -128,7 +129,7 @@ body {font-size:16px;}
                                 <b>Telemóvel: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" pattern="\d{9}" required />
+                                <input type="text" class="text-input w3-border" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" pattern="\d{9}" title="O nº de telemóvel deve ter 9 dígitos." required />
                             </td>
                         </tr>
 						</table>
@@ -140,7 +141,7 @@ body {font-size:16px;}
                                 <b>NIF: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" pattern="\d{9}" required />
+                                <input type="text" class="text-input w3-border" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" pattern="\d{9}" title="O NIF deve ter 9 dígitos." required />
                             </td>
                         </tr>
 						<tr>
@@ -148,7 +149,7 @@ body {font-size:16px;}
                                 <b>Morada: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="address" placeholder='Morada' value="<?=$user_data1["morada"]?>" style="width:93%" required />
+                                <input type="text" class="text-input w3-border" placeholder='Morada' name="address" value="<?=$user_data1["morada"]?>" style="width:93%" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
                             </td>
                         </tr>
 					</table>                  
