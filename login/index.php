@@ -17,6 +17,11 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
+<?php 
+	include_once("../database/database.php");
+	include_once("../login/session.php"); 
+	if ($_SESSION["user_id"] != NULL) header("Location: ../index.php");
+?>	
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Fechar Menu</a>
   <div class="w3-container w3-center">
