@@ -2,8 +2,7 @@
 
 <?php
 
-    function verifica_login ($username, $password){
-        $password_md5 = md5($password);
+    function verifica_login($username, $password){
         global $conn;
 
         include_once ("database/database.php");
@@ -12,13 +11,14 @@
             db();
         }
 
-        return check_login_db($username, $password_md5);
+        return check_login_db($username, $password);
     } 
 
     session_start();
 
     if (isset($_POST["login"])){
         $id = verifica_login($_POST["username"], $_POST["password"]);
+		print_r($id);
         $_SESSION["user_id"] = $id;
         
         if ($id != NULL) {

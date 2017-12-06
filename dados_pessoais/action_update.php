@@ -21,18 +21,21 @@
 		return $result;	
 }
 
+	$options = ['cost' => 12];
+
 	$user_data = user_data_db();
 	$user_data1 = $user_data->fetch(PDO::FETCH_ASSOC);
 	
-	$password_md5 = md5($_POST["password"]);
+	$pass_result = password_verify($_POST["password"] , $user_data1["password"]);
+	$password_hashed = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
 	
 	$query = "SELECT nif FROM clientes WHERE nif = :nif";
 	$values = array($_POST["nif"]);
 	$insert = array(':nif');
 	$result = execQuery($query, $insert, $values);
 	$result2 = $result->rowCount($result);
-	
-	if ($_POST["update"] AND ($password_md5 != $user_data1["password"])) {
+	print_r();
+	if ($_POST["update"] AND ($pass_result != true) ) {
 		header("Location: update_dados2.php");
 		exit();
 	}
@@ -40,7 +43,7 @@
 	elseif ($_POST["update"] AND $_POST["new_password"]==NULL) {
 		if ($result2 > 0) header("Location: update_dados3.php");
 		else {
-		update_user_db($_POST["name"], $_POST["email"], $_POST["username"], $password_md5, $_POST["telephone"], $_POST["nif"], $_POST["address"]);
+		update_user_db($_POST["name"], $_POST["email"], $_POST["username"], $password_hashed, $_POST["telephone"], $_POST["nif"], $_POST["address"]);
 		header("Location: dados_pessoais.php");
 		}
 	}
@@ -48,8 +51,8 @@
 	elseif ($_POST["update"] AND $_POST["new_password"]!=NULL) {
 		if ($result2 > 0) header("Location: update_dados3.php");
 		else {
-		$new_password_md5 = md5($_POST["new_password"]);
-		update_user_db($_POST["name"], $_POST["email"], $_POST["username"], $new_password_md5, $_POST["telephone"], $_POST["nif"], $_POST["address"]);
+		$new_password_hashed = password_hash($_POST["new_password"], PASSWORD_DEFAULT, $options);
+		update_user_db($_POST["name"], $_POST["email"], $_POST["username"], $new_password_hashed, $_POST["telephone"], $_POST["nif"], $_POST["address"]);
 		header("Location: dados_pessoais.php");
 		}
 	}

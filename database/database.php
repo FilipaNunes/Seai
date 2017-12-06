@@ -62,24 +62,25 @@ function check_admin_db() {
 ?>
 
 <?php
-function check_login_db ($username, $password){
-		$query = "SELECT id_c
+function check_login_db ($username,$password){
+		$query = "SELECT id_c, password
                   FROM clientes
-                  WHERE username = :username AND
-                        password = :password";
-		$values = array($username, $password);
-		$insert = array(':username', ':password');
+                  WHERE username = :username";
+		$values = array($username);
+		$insert = array(':username');
 
 		$result = execQuery($query, $insert, $values);
-
+		
         $numrows = $result->rowCount($result);
 
         if ($numrows > 0){
             $result_elem = $result->fetch();
-            return $result_elem["id_c"];
+			$pass_result = password_verify($password , $result_elem['password']);
+
+            if($pass_result != true) return NULL;
+			return $result_elem["id_c"];
         }
-        else
-            return NULL;
+        else return NULL;
     }
 ?>
 
@@ -90,6 +91,7 @@ function user_data_db (){
 		$query = "SELECT *
                   FROM clientes
                   WHERE id_c = :id";
+				  
 		$values = array($user_id);
 		$insert = array(':id');
 

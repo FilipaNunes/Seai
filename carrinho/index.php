@@ -86,13 +86,10 @@ body {font-size:16px;}
   </div>
 
   <?php
-		if($_SESSION["carrinho"] == NULL){
-			
+		if( (!isset($_SESSION["carrinho"])) || ($_SESSION["carrinho"]) == NULL ){
 			echo"
 				<p>O carrinho está vazio!</p>
 			";
-			
-			
 		}else{
 				echo"
 				  <table class='w3-table-all'>

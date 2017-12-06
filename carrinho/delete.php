@@ -33,6 +33,7 @@
 		array_pop($_SESSION['carrinho']['quantidade']);
 		
 		$limite = count($_SESSION["carrinho"]["servico"]);
+		print_r($limite);
 
 		if($limite === 0) $_SESSION['carrinho'] = array();
 		
