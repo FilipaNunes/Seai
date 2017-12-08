@@ -34,7 +34,6 @@
 	$insert = array(':nif');
 	$result = execQuery($query, $insert, $values);
 	$result2 = $result->rowCount($result);
-	print_r();
 	if ($_POST["update"] AND ($pass_result != true) ) {
 		header("Location: update_dados2.php");
 		exit();
