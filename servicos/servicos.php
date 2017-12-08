@@ -2,19 +2,19 @@
 
 <?php include_once("database/database.php"); ?>
 
-<?php 
-	
-	function PontoRecolha(){
+<?php
 
-		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao = :ocupacao';
-		
-		$values = array('Livre');
-		$insert = array(':ocupacao');
-		
-		$result = execQuery($query,$insert,$values);
-		
+	function PontoRecolha(){
+		echo'
+					<select class="w3-select" name="option" id="localrecolha" required>
+					<option value="" disabled selected>Escolher</option>';
+
+		$query = 'SELECT nome, morada_arm FROM ponto_entrega_recolha';
+
+		$result = execQuery($query,null,null);
+
 		$num_registos = $result->rowCount($result);
-		
+
 		for($i=0;$i<$num_registos;$i++){
 			$array = $result->fetch();
 			$nome = $array['nome'];
@@ -24,25 +24,62 @@
 					<option value=$value> $nome - $morada </option>
 				";
 		}
-	}
-	
-	function MoradaEntrega(){
-		
-		$query = 'SELECT localizacao FROM waypoint ';
+		echo"</select>";
 
-		$result = execQuery($query,null,null);
-		
+	}
+
+	function RecolhaArmazem(){
+
+		echo'
+					<select class="w3-select" name="option" id="localrecolha" required>
+					<option value="" disabled selected>Escolher</option>';
+
+		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao = :ocupacao';
+
+		$values = array('Livre');
+		$insert = array(':ocupacao');
+
+		$result = execQuery($query,$insert,$values);
+
 		$num_registos = $result->rowCount($result);
-		
+
 		for($i=0;$i<$num_registos;$i++){
 			$array = $result->fetch();
-			$nome = $array['localizacao'];
+			$nome = $array['nome'];
+			$morada = $array['morada_arm'];
 			$value = $i + 1;
-					
 			echo"
-					<option value=$value> $nome </option>
+					<option value=$value> $nome - $morada </option>
 				";
 		}
-		
+		echo"</select>";
 	}
+
+	function MoradaEntrega(){
+
+		$query = 'SELECT nome, morada_arm FROM ponto_entrega_recolha';
+
+		$result = execQuery($query,null,null);
+
+		$num_registos = $result->rowCount($result);
+
+		for($i=0;$i<$num_registos;$i++){
+			$array = $result->fetch();
+			$nome = $array['nome'];
+			$morada = $array['morada_arm'];
+			$value = $i + 1;
+
+			echo"
+					<option value=$value> $nome - $morada</option>
+				";
+		}
+
+	}
+
+	if(isset($_POST['recolha'])){
+		$recolha = $_POST['recolha'];
+		if($recolha == 1) RecolhaArmazem();
+		else if ($recolha == 2) PontoRecolha();
+	}
+
 ?>

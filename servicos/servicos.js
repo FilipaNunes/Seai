@@ -17,12 +17,12 @@ var avaliar_dim;
 var avaliar_quant;
 
 function TransformaPeso(peso){
-	
+
 	var pattern = new RegExp("^([0-9]+[.]+[0-9])$");
 	var pattern2 = new RegExp("^([0-9])$");
 	var teste = pattern.test(peso);
 	var teste2 = pattern2.test(peso);
-	
+
 	if( teste !== true && teste2 !== true){
 		displayNotification("O peso não está no formato correto. Por favor insira neste formato 2 ou 2.3");
 		document.getElementById('btnSubmit').disabled = true;
@@ -30,7 +30,7 @@ function TransformaPeso(peso){
 	}
 	else{
 		var  n = peso.search(',');
-	
+
 		if(n !== -1){
 		var partes_peso = peso.split(',');
 		peso = partes_peso[0].concat('.', partes_peso[1]);
@@ -53,7 +53,7 @@ function VerificaCategoria(){
 		}
 	}
 	Custo();
-	
+
 }
 
 function VerificaPeso(){
@@ -61,31 +61,31 @@ function VerificaPeso(){
 	var peso_limite_inf = peso_limite - 1;
 	var peso = document.getElementById('peso').value;
 	avaliar_peso = 0;
-	
+
 	if(peso !== ''){
 		document.getElementById('btnSubmit').disabled = true;
 		peso = TransformaPeso(peso);
-		
+
 		if(peso === -1)return;
 		else if(peso == 0)displayNotification("O peso não pode ser 0! Por favor insira um valor maior que 0!");
 		else if(peso > 4) displayNotification("O drone não tem capacidade de transportar encomendas com peso maior a 4 kg!");
 		else if( peso > peso_limite){
 			displayNotification("Peso inserido é maior que o permitido para a categoria selecionada! A categoria foi reajustada!");
-			
+
 			var peso_reaj = Math.ceil(peso);
 			document.getElementById('limite_peso').value = peso_reaj;
-			
+
 			avaliar_peso = 1;
 			ActivateSubmit();
 			Custo();
-		
+
 		}
 		else if( peso <= peso_limite_inf){
 			displayNotification("Peso inserido é inferior ao limite da categoria selecionada! A categoria foi reajustada!");
-			
+
 			var peso_reaj = Math.ceil(peso);
 			document.getElementById('limite_peso').value = peso_reaj;
-			
+
 			avaliar_peso = 1;
 			ActivateSubmit();
 			Custo();
@@ -107,7 +107,7 @@ function VerificarDimensao(){
 	var largura_max= 30;
 	var altura_max = 30;
 	avaliar_dim = 0;
-	
+
 	if( teste !== true ){
 		displayNotification("A dimensão não está no formato correto. Por favor insira neste formato 30x30x30!");
 		document.getElementById('btnSubmit').disabled = true;
@@ -133,7 +133,7 @@ function Quantidade(){
 	var quant = document.getElementById('quant').value;
 	var pattern = new RegExp("^([0-9]{1,2})$");
 	var teste = pattern.test(quant);
-	
+
 	if(quant != ''){
 		document.getElementById('btnSubmit').disabled = true;
 		if (quant >= 100) displayNotification("Para mais de 100 encomendas, por favor utiliza o formulário de contacto!");
@@ -143,14 +143,14 @@ function Quantidade(){
 			Custo();
 			avaliar_quant = 1;
 			ActivateSubmit();
-			
+
 		}
 	}
 }
 
 
 function ActivateSubmit(){
-	
+
 	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1)) document.getElementById('btnSubmit').disabled = false;
 	return;
 }
@@ -165,7 +165,7 @@ function Custo(){
 	var preco34 = 49.99;
 
 	var xmlhttp = new XMLHttpRequest();
-	
+
 	if(quant==='' || quant===null) return;
 	else{
 	xmlhttp.onreadystatechange = function() {
@@ -174,12 +174,12 @@ function Custo(){
 			else if (categorias == 2) custo = quant*(preco12);
 			else if (categorias == 3) custo = quant*(preco23);
 			else custo = quant*(preco34);
-			
+
 			if(quant>3) custo = custo - custo*0.15;
-	
+
 			custo = custo.toFixed(2);
 		}
-		
+
 		document.getElementById("custo").innerHTML=custo;
 
 	};}
@@ -190,28 +190,36 @@ function Custo(){
 
 function Adicionado(){
 	var servico = document.getElementById('limite_peso').value;
-	
+
 	var produto_value = document.getElementById('produto').value;
 	var produto = document.getElementById('produto');
 	produto = produto.options[produto_value].text;
-	
+
 	var dimensoes = document.getElementById('dim').value;
 	var peso = document.getElementById('peso').value;
 	var quantidade = document.getElementById('quant').value;
-	
-	var recolha_value = document.getElementById('recolha').value;
-	var recolha = document.getElementById('recolha')
+
+  let ponto = document.getElementById('recolha').checked;
+  let armazem =  document.getElementById('armazem').checked;
+
+  let ponto_recolha = 0;
+
+  if(armazem === true)   ponto_recolha = 1;
+  else if (ponto === true)   ponto_recolha = 2;
+
+	var recolha_value = document.getElementById('localrecolha').value;
+	var recolha = document.getElementById('localrecolha')
 	recolha = recolha.options[recolha_value].text;
-	
+
 	var destino_value = document.getElementById('destino').value;
 	var destino = document.getElementById('destino')
 	destino = destino.options[destino_value].text;
-	
-	
+
+
 	var custo = document.getElementById("custo").innerHTML;
-		
+
 	var xmlhttp = new XMLHttpRequest();
-	
+
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 		  //var response = JSON.parse(this.responseText);
@@ -234,13 +242,34 @@ function Adicionado(){
 			})
 		};
 	}
-	
+
 	xmlhttp.open("POST", "../carrinho/adicionar.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
 
 	var message = "servico=" + servico + "&" + "produto=" + produto + "&" +"dimensoes=" + dimensoes + "&"+
 				  "peso=" + peso + "&" + "quantidade=" + quantidade + "&" + "recolha=" + recolha + "&" +
-				  "destino=" + destino + "&" + "custo=" + custo;
+				  "destino=" + destino + "&" + "custo=" + custo + "&" + "ponto_recolha=" + ponto_recolha;
+	xmlhttp.send(message);
+	return;
+}
+
+function Recolha(){
+  let ponto = document.getElementById('recolha').checked;
+  let armazem =  document.getElementById('armazem').checked;
+	let xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("ponto_recolha").innerHTML=this.responseText;
+		};
+	}
+
+	xmlhttp.open("POST", "servicos.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+
+  if(armazem === true) message = "recolha=" + 1;
+  else if (ponto === true) message = "recolha=" + 2;
+
 	xmlhttp.send(message);
 	return;
 }
