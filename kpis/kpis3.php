@@ -4,7 +4,7 @@
 
 <?php		
 
-	function kpis(){
+	function kpis3(){
 		
 		$limite = 3;  
 		if (isset($_GET["page"])) $page  = $_GET["page"];
@@ -19,25 +19,23 @@
 		$paginas_totais = ceil($num_registos / $limite);
 		
 		
-		$query = "SELECT tmedio_ent_cat, n_enc_cat, entrega_sucesso, n_reclamacoes, entrega_dano FROM kpis ORDER BY tmedio_ent_cat OFFSET $inicio LIMIT $limite";
+		$query = "SELECT percen_ocupacao, tempo_exp_medio, danos_man_encomenda FROM kpis ORDER BY percen_ocupacao OFFSET $inicio LIMIT $limite";
 		$result = execQuery($query,null,null);
 		$num_registos = $result->rowCount($result);
 	
 		for($i=0;$i<$num_registos;$i++){
 			$array = $result->fetch();
-			$tmedio_ent_cat = $array['tmedio_ent_cat'];
-			$n_enc_cat = $array['n_enc_cat'];
-			$entrega_sucesso = $array['entrega_sucesso'];
-			$n_reclamacoes = $array['n_reclamacoes'];
-			$entrega_dano = $array['entrega_dano'];			
+			$percen_ocupacao = $array['percen_ocupacao'];
+			$tempo_exp_medio = $array['tempo_exp_medio'];
+			$danos_man_encomenda = $array['danos_man_encomenda'];
+		
 					
 			echo"
 				<tr style='text-align:center'>
-					<td style='text-align:center'> $tmedio_ent_cat </td>
-					<td style='text-align:center'> $n_enc_cat </td>
-					<td style='text-align:center'> $entrega_sucesso </td>
-					<td style='text-align:center'> $n_reclamacoes </td>
-					<td style='text-align:center'> $entrega_dano </td>					
+					<td style='text-align:center'> $percen_ocupacao </td>
+					<td style='text-align:center'> $tempo_exp_medio</td>
+					<td style='text-align:center'> $danos_man_encomenda </td>
+					
 						</a>
 					</td>
 				</tr>
