@@ -94,6 +94,7 @@ body {font-size:16px;}
 						  <th style='text-align:center'>Produto</th>
 						  <th style='text-align:center'>Custo</th>
 						  <th style='text-align:center'>Destino</th>
+						  <th style='text-align:center'>Recolha</th>
 						  <th style='text-align:center'>Envio</th>
 						  <th style='text-align:center'>Entrega</th>
 						  <th style='text-align:center'>Estado</th>
