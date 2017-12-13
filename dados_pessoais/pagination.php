@@ -22,8 +22,25 @@
 		$result = execQuery($query,$insert,$values);
 
 		$num_registos = $result->rowCount($result);
+		
+		if ($num_registos == 0) echo "<center>Não foi efetuada nenhuma encomenda.</center>";
+		else { ?>
+			<table class="w3-table-all">
+					  <thead>
+						<tr class="w3-red">
+						  <th style='text-align:center'>Serviço</th>
+						  <th style='text-align:center'>Produto</th>
+						  <th style='text-align:center'>Custo</th>
+						  <th style='text-align:center'>Destino</th>
+						  <th style='text-align:center'>Recolha</th>
+						  <th style='text-align:center'>Envio</th>
+						  <th style='text-align:center'>Entrega</th>
+						  <th style='text-align:center'>Estado</th>
+						  <th style='text-align:center'></th>
+						</tr>
+					  </thead>
 
-		$paginas_totais = ceil($num_registos / $limite);
+		<?php $paginas_totais = ceil($num_registos / $limite);
 
 		$query = "SELECT * FROM faz
 				  JOIN encomenda ON faz.id_e=encomenda.id_e
@@ -47,25 +64,36 @@
 
 			$destino_temp = execQuery($query,$insert,$values);
 			$destino = $destino_temp->fetch();
+			
+			$query = "SELECT morada_arm FROM ponto_entrega_recolha WHERE id_er = :id_recolha";
+
+			$values = array($encomenda["ponto_recolha"]);
+			$insert = array(':id_recolha');
+
+			$destino2_temp = execQuery($query,$insert,$values);
+			$destino2 = $destino2_temp->fetch();
 			?>
 
 						<tr style='text-align:center'>
 						<td style='text-align:center'><?php if(0 < $encomenda["peso"] AND 1 >= $encomenda["peso"]) echo "0 a 1 Kg";
-								  if(1 < $encomenda["peso"] AND 2 >= $encomenda["peso"]) echo "1 a 2 Kg";
-								  if(2 < $encomenda["peso"] AND 3 >= $encomenda["peso"]) echo "2 a 3 Kg";
-								  if(3 < $encomenda["peso"] AND 4 >= $encomenda["peso"]) echo "3 a 4 Kg";?></td>
+								  if(1 < $encomenda["peso"] AND 2 >= $encomenda["peso"]) echo ">1 a 2 Kg";
+								  if(2 < $encomenda["peso"] AND 3 >= $encomenda["peso"]) echo ">2 a 3 Kg";
+								  if(3 < $encomenda["peso"] AND 4 >= $encomenda["peso"]) echo ">3 a 4 Kg";?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["tipo_encomenda"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["custo"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$destino['morada_arm'].'';?></td>
+						<td style='text-align:center'><?php echo ''.$destino2['morada_arm'].'';?></td>
 						<td style='text-align:center'><?php if($encomenda["data_env"] != NULL AND $encomenda["hora_env"] != NULL) {$data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;}?></td>
 						<td style='text-align:center'><?php if($encomenda["data_entr"] != NULL AND $encomenda["hora_entr"] != NULL) {$data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;}?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["estado"].'';?></td>
 						<td style='text-align:center'><?php $id = $encomenda["id_e"];
-								  if ($encomenda["estado"] == "Pendente") echo"<a href='update_encomenda.php?id=$id'><img src='../img/edit.png' height='10%'></a><a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#><img src='../img/delete.png' height='10%'></a>";?></td>
+								  if ($encomenda["estado"] == "Pendente") echo"<a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#><img src='../img/delete.png' height='10%'></a>";?></td>
 					  </tr>
 					  <?php }
 		echo "
 			</table>";
+			
+		
 
 		if ($paginas_totais>1) {
 		$pagLink = "<div class='pagination'>";
@@ -73,7 +101,8 @@
 		echo $pagLink . "</div>";
 		}
 
-
+	  }
+		
 	}
 
 ?>
