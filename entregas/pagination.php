@@ -38,6 +38,14 @@
 
 			$destino_temp = execQuery($query,$insert,$values);
 			$destino = $destino_temp->fetch();
+			
+			$query = "SELECT morada_arm FROM ponto_entrega_recolha WHERE id_er = :id_recolha";
+
+			$values = array($encomenda["ponto_recolha"]);
+			$insert = array(':id_recolha');
+
+			$destino2_temp = execQuery($query,$insert,$values);
+			$destino2 = $destino2_temp->fetch();
 
 			?>
 
@@ -46,6 +54,7 @@
 						<td style='text-align:center'><?php echo ''.$encomenda["tipo_encomenda"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["custo"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$destino['morada_arm'].'';?></td>
+						<td style='text-align:center'><?php echo ''.$destino2['morada_arm'].'';?></td>
 						<td style='text-align:center'><?php if($encomenda["data_env"] != NULL AND $encomenda["hora_env"] != NULL) {$data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;}?></td>
 						<td style='text-align:center'><?php if($encomenda["data_entr"] != NULL AND $encomenda["hora_entr"] != NULL) {$data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;}?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["estado"].'';?></td>
