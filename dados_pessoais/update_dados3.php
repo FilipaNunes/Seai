@@ -126,6 +126,14 @@ body {font-size:16px;}
                         </tr>
 						<tr>
                             <td>
+                                <b>Confirmar Nova Password: </b>
+                            </td>
+                            <td>
+                                <input type="password" class="text-input w3-border" name="confirm_new_password" placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
+                            </td>
+                        </tr>
+						<tr>
+                            <td>
                                 <b>Telemóvel: </b>
                             </td>
                             <td>
