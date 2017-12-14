@@ -136,7 +136,9 @@ function Quantidade(){
 
 	if(quant != ''){
 		document.getElementById('btnSubmit').disabled = true;
-		if (quant >= 100) displayNotification("Para mais de 100 encomendas, por favor utiliza o formulário de contacto!");
+		if (quant >= 100)document.getElementById('quant').style.borderColor = "red";
+
+			//displayNotification("Para mais de 100 encomendas, por favor utiliza o formulário de contacto!");
 		else if(teste !== true) displayNotification("Formato incorreto! A quantidade apenas pode ter números inteiros!");
 		else if(quant == 0) displayNotification("A quantidade de encomendas tem de ser pelo menos 1!");
 		else{
@@ -151,8 +153,8 @@ function Quantidade(){
 
 function ActivateSubmit(){
 
-	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1)) document.getElementById('btnSubmit').disabled = false;
-	return;
+	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1)) return true;
+	else return false;
 }
 
 function Custo(){
@@ -199,13 +201,13 @@ function Adicionado(){
 	var peso = document.getElementById('peso').value;
 	var quantidade = document.getElementById('quant').value;
 
-  let ponto = document.getElementById('recolha').checked;
-  let armazem =  document.getElementById('armazem').checked;
+	let ponto = document.getElementById('recolha').checked;
+	let armazem =  document.getElementById('armazem').checked;
 
-  let ponto_recolha = 0;
+	let ponto_recolha = 0;
 
-  if(armazem === true)   ponto_recolha = 1;
-  else if (ponto === true)   ponto_recolha = 2;
+	if(armazem === true)   ponto_recolha = 1;
+	else if (ponto === true)   ponto_recolha = 2;
 
 	var recolha_value = document.getElementById('localrecolha').value;
 	var recolha = document.getElementById('localrecolha')
@@ -222,11 +224,9 @@ function Adicionado(){
 
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-		  //var response = JSON.parse(this.responseText);
-		  //console.log(this.responseText);
 			swal({
 				title: 'Encomenda adicionada ao carrinho com sucesso!',
-				text: "Escolha a página para onde quer ser redirecionada:",
+				text: "Escolha a página para onde quer ser redirecionado:",
 				type: 'success',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',

@@ -1,36 +1,63 @@
+function Delete(id){
+
+	var xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			if(response.status==='not_ok'){
+				swal({
+					title: 'Erro',
+					text: 'O armazém tem encomendas que não foram entregues!',
+					type: 'error',
+					showConfirmButton: false,
+					timer: 3500
+				})
+			} else if(response.status==='valid'){
+				swal({
+					title: 'Sucesso',
+					text: 'O armazém foi apagado com sucesso!',
+					type: 'confirm',
+					showConfirmButton: false,
+					timer: 3500
+				})
+			}
+		};
+	}
+
+	xmlhttp.open("POST", "delete.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+
+	var message = "id=" + id;
+	xmlhttp.send(message);
+	return;
+
+}
+
 function ConfirmarDelete(id){
-	console.log(id);
 	swal({
-	  title: 'Tem a certeza que quer apagar este armazém?',
-	  text: "Esta ação não é reversível!",
-	  type: 'warning',
-	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: '#f44336',
-	  confirmButtonText: 'Confirmar',
-	  cancelButtonText: 'Cancelar',
-	  confirmButtonClass: 'btn btn-success',
-	  cancelButtonClass: 'btn btn-danger',
-	  buttonsStyling: true
+		title: 'Tem a certeza que quer apagar este registo?',
+		text: "Esta ação não é reversível!",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#f44336',
+		confirmButtonText: 'Confirmar',
+		cancelButtonText: 'Cancelar',
+		confirmButtonClass: 'btn btn-success',
+		cancelButtonClass: 'btn btn-danger',
+		buttonsStyling: true
 	}).then(function (result) {
-  if (result.value) {
-	  setTimeout(function() {
-      window.location.href = 'delete.php?id=' + id;
-		}, 1500);
-	swal(
-      'Apagado',
-      'O armazém foi apagado!',
-      'success'
-    )
-  // result.dismiss can be 'cancel', 'overlay',
-  // 'close', and 'timer'
-  } else if (result.dismiss === 'cancel') {
-    swal(
-      'Cancelado',
-      'O armazém não foi apagado!',
-      'error'
-    )
-	return false;
-  }
-})
+		if (result.value) Delete(id)
+		else if (result.dismiss === 'cancel') {
+			swal({
+				title: 'Erro',
+				text: 'A operação foi cancelada!',
+				type: 'error',
+				showConfirmButton: false,
+				timer: 2500
+			})
+			return false;
+		}
+	})
 }

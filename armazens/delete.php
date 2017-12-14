@@ -1,22 +1,33 @@
-<?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2012/ee12276/public_html/SITEATUAL/Seai-master/" . PATH_SEPARATOR .                  "/usr/users2/mieec2012/ee12276/public_html/SITEATUAL/Seai-master/"); ?>
+<?php include_once("../database/database.php");?>
 
-<?php include_once("database/database.php");?>
+<?php
+        $id=$_POST['id'];
 
-<?php		
-	if(isset($_GET['id']))
-      {
-        $id=$_GET['id'];
-        $query="DELETE FROM armazem WHERE id_a  = :id";
-		
-		echo $id;
-		$values = array($id);
-		$insert = array(':id');
-		
-		$result = execQuery($query,$insert,$values);
+				$query = "SELECT  id_e FROM encomenda WHERE armazem_recolha = :id AND data_entr is null";
+				$values = array($id);
+				$insert = array(':id');
 
-		
+				$result = execQuery($query,$insert,$values);
 
-        header('location:index.php');
-      }
+				$n_encomendas = $result->fetch();
+
+				if($n_encomendas>0)$message = array('status' => 'not_ok');
+				else{
+					$query = "SELECT  id_e FROM encomenda WHERE armazem_recolha = :id AND data_entr is not null";
+					$values = array($id);
+					$insert = array(':id');
+
+
+					$query1="DELETE FROM encomenda WHERE armazem_recolha = :id";
+        	$query2="DELETE FROM armazem WHERE id_a  = :id";
+
+					$values = array($id);
+					$insert = array(':id');
+
+					$result = execQuery($query,$insert,$values);
+					$message = array('status' => 'valid');
+				}
+
+				echo json_encode($message);
 
 ?>

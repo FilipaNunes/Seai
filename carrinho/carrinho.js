@@ -49,11 +49,13 @@ function ConfirmarDelete(id){
 	  setTimeout(function() {
       window.location.href = 'delete.php?id=' + id;
 		}, 1500);
-	swal(
-      'Apagado',
-      'A encomenda foi apagada!',
-      'success'
-    )
+	swal({
+		title: 'Apagado',
+		text: "A encomenda foi apagado com sucesso!",
+		type: 'success',
+		showConfirmButton: false,
+		timer: 1500
+	})
   // result.dismiss can be 'cancel', 'overlay',
   // 'close', and 'timer'
   }

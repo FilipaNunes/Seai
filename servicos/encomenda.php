@@ -5,7 +5,10 @@
 
 <!DOCTYPE html>
 <html>
-<title>Drone2u</title>
+<head>
+	<title>Drone2u</title>
+	<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel='stylesheet' href="../css/notificacao.css">
@@ -85,7 +88,7 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <form class="w3-container w3-card-4" action="../carrinho/adicionar.php" id="encomenda">
+  <form class="w3-container w3-card-4" id="encomenda">
     <p>
     <label class="w3-text-red"><b>Serviço</b></label>
     <select class="w3-select" name="option" id="limite_peso" onChange='VerificaCategoria()' required>
@@ -139,11 +142,11 @@ body {font-size:16px;}
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
-    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='Insira com estes formatos 2 ou 2.45' title='O peso deve ser inserido em quilogramas!' onChange= 'VerificaPeso()' required></p>
+    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='O peso máximo é 4 quilos' title='O peso deve ser inserido em quilogramas com o seguinte formato 1.35!' onChange= 'VerificaPeso()' required></p>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Quantidade</b></label>
-    <input class="w3-input w3-border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas.' onChange='Quantidade()' required></p>
+    <input class="w3-input border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas.' onChange='Quantidade()'></p>
 	</p>
     <p>
     <label class="w3-text-red"><b>Escolha o ponto de recolha:</b></label><p></p>
@@ -158,7 +161,7 @@ body {font-size:16px;}
 						echo "checked";
 					}
 		?>
-		value = "recolha" onClick='Recolha()'/>Ponto de Recolha
+		value = "recolha" onClick='Recolha()' required/>Ponto de Recolha
 		<div id="ponto_recolha"> </div>
     <p>
     <label class="w3-text-red"><b>Morada de destino</b></label>
@@ -171,7 +174,8 @@ body {font-size:16px;}
     <label class="w3-text-red"><b>Preço previsto(€)</b></label></p>
     <p id="custo"> </p>
     <p>
-    <button type='submit' class="w3-btn w3-red" id="btnSubmit" onClick='event.preventDefault(); Adicionado()' disabled>Adicionar ao Carrinho</button></p>
+    <button class="w3-btn w3-red" name='btnSubmit' id="btnSubmit" type='submit' style='width:100%' onclick='event.preventDefault(); Adicionado()' disabled>Adicionar ao Carrinho</button>
+	</p>
   </form>
 
   <!-- End page content -->

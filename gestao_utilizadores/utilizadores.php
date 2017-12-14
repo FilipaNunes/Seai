@@ -2,30 +2,30 @@
 
 <?php include_once("database/database.php");?>
 
-<?php		
+<?php
 
 	function Utilizadores(){
-		
-		$limite = 8;  
+
+		$limite = 8;
 		if (isset($_GET["page"])) $page  = $_GET["page"];
-		else $page=1;  
-		$inicio = ($page-1) * $limite;  
-  	
+		else $page=1;
+		$inicio = ($page-1) * $limite;
+
 		$query = "SELECT id_c FROM clientes";
 		$query2 = "SELECT COUNT(id_e),id_c FROM faz GROUP BY id_c ";
-		
+
 		$result = execQuery($query,null,null);
 		$result2 = execQuery($query2,null,null);
-		
+
 		$num_registos = $result->rowCount($result);
 		$n_encomendas = $result2->fetchAll();
-		
+
 		$paginas_totais = ceil($num_registos / $limite);
-		
-		$query = "SELECT id_c,username, nome_completo, morada, email, telemovel FROM clientes ORDER BY nome_completo OFFSET $inicio LIMIT $limite";
+
+		$query = "SELECT id_c,username, nome_completo, morada, email, telemovel FROM clientes ORDER BY username OFFSET $inicio LIMIT $limite";
 		$result = execQuery($query,null,null);
 		$num_registos = $result->rowCount($result);
-	
+
 		for($i=0;$i<$num_registos;$i++){
 			$array = $result->fetch();
 			$id = $array['id_c'];
@@ -34,12 +34,12 @@
 			$morada = $array['morada'];
 			$email = $array['email'];
 			$telemovel = $array['telemovel'];
-				
+
 			$key = array_search($id,array_column($n_encomendas,'id_c'));
-				
+
 			if($key===false)$encomendas = 0;
 			else $encomendas = $n_encomendas[$key]['count'];
-					
+
 			echo"
 				<tr style='text-align:center'>
 					<td style='text-align:center'> $username </td>
@@ -59,12 +59,14 @@
 		echo "
 			</tbody>
 			</table>";
-		  
-		$pagLink = "<div class='pagination'>";  
-		for ($i=1; $i<=$paginas_totais; $i++) $pagLink .= "<a href='index.php?page=".$i."'>".$i."</a>";  
-		echo $pagLink . "</div>";  
-		
-	
+
+		$pagLink = "<div class='pagination'>";
+		if($paginas_totais>1) {
+			for ($i=1; $i<=$paginas_totais; $i++) $pagLink .= "<a href='index.php?page=".$i."'>".$i."</a>";
+			echo $pagLink . "</div>";
+		}
+
+
 	}
 
 ?>

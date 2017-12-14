@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Drone 2u</title>
+	<title>Drone2u</title>
 	<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/notificacao.css"> 
+<link rel="stylesheet" href="../css/notificacao.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="../css/style.css">
@@ -27,9 +27,9 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
-	include_once("../login/session.php"); 
+	include_once("../login/session.php");
 	if ($_SESSION["user_id"] == NULL) header("Location: ../index.php");
 	print_r($_SESSION["user_id"]);
 	$user_data = user_data_db();
@@ -49,13 +49,13 @@ body {font-size:16px;}
   <?php if ($_SESSION["user_id"] == NULL) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
@@ -78,7 +78,7 @@ body {font-size:16px;}
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="Fechar Menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
@@ -125,7 +125,7 @@ body {font-size:16px;}
 				<br>
 				<div style="text-align: right"><a class="button" href="update_dados.php">Alterar</a></div>
 				</div>
-				
+
 				<div id="historico" class="dados">
 				<div class="w3-container">
 					<table class="w3-table-all">
@@ -161,7 +161,7 @@ body {font-size:16px;}
   }
 
   </script>
-  
+
    <script>
   function openTab(evt, tabName) {
     var i, x, tablinks;

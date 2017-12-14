@@ -1,10 +1,6 @@
-<?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2012/ee12276/public_html/SITEATUAL/Seai-master/" . PATH_SEPARATOR .                  "/usr/users2/mieec2012/ee12276/public_html/SITEATUAL/Seai-master/"); ?>
-
-
 <?php 
-
 	include_once("add_arm.php");
-	include_once("database/database.php"); 
+	include_once("../database/database.php"); 
 ?>
 
 <?php 

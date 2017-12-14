@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<title>Drone2u</title>
+<head>
+  <title>Drone2u</title>
+  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -72,17 +75,18 @@ body {font-size:16px;}
     <h1 class="w3-xxxlarge w3-text-red"><b>Serviços</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p>Na seleção abaixo pode ver os serviços de entrega que temos disponíveis, para cada serviço pode ainda ver o tipo de encomenda que pode ser transportada e o preçario associado. </p>
+	<p>Para cada categoria é apresentado os intervalos de peso aceites na mesma.</p>
+	<p>Para mais informações clique <a target="_blank" href="informacoes.php">aqui</a>.</p>
   </div>
 
   <div class="w3-row-padding">
     <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">0 a 1 Kg</li>
-        <li class="w3-padding-16">Tempo médio, em minutos, gasto por km: 1.2</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
         <li class="w3-padding-16">
-          <h2>€ 19,99</h2>
+          <h2>€ 5</h2>
           <span class="w3-opacity">por encomenda</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
@@ -95,11 +99,10 @@ body {font-size:16px;}
     </br>
 	<ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">>2 a 3 Kg</li>
-        <li class="w3-padding-16">Tempo médio, em minutos, gasto por km: 1.2</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
         <li class="w3-padding-16">
-          <h2>€ 39,99</h2>
+          <h2>€ 10</h2>
           <span class="w3-opacity">por encomenda</span>
         </li>
       <li class="w3-light-grey w3-padding-24">
@@ -113,11 +116,10 @@ body {font-size:16px;}
     <div class="w3-half">
       <ul class="w3-ul w3-light-grey w3-center">
       <li class="w3-dark-grey w3-xlarge w3-padding-32">>1 a 2 Kg</li>
-      <li class="w3-padding-16">Tempo médio, em minutos, gasto por km: 1.2</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
       <li class="w3-padding-16">
-        <h2>€ 29,99</h2>
+        <h2>€ 8</h2>
         <span class="w3-opacity">por encomenda</span>
       </li>
         <li class="w3-light-grey w3-padding-24">
@@ -129,11 +131,10 @@ body {font-size:16px;}
     </br>
     <ul class="w3-ul w3-light-grey w3-center">
       <li class="w3-dark-grey w3-xlarge w3-padding-32">>3 a 4 Kg</li>
-      <li class="w3-padding-16">Tempo médio, em minutos, gasto por km: 1.2</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
       <li class="w3-padding-16">
-        <h2>€ 49,99</h2>
+        <h2>€ 12</h2>
         <span class="w3-opacity">por encomenda</span>
       </li>
       <li class="w3-light-grey w3-padding-24">
