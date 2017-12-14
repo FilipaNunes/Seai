@@ -55,7 +55,7 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../login/session.php");
 	if ($_SESSION["user_id"] == NULL OR check_admin_db() == 0) header("Location: ../index.php");
 	$user_data = user_data_db();
@@ -74,13 +74,13 @@ body {font-size:16px;}
   <?php if ($_SESSION["user_id"] == NULL) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../dados_pessoais/dados_pessoais.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
@@ -257,41 +257,44 @@ body {font-size:16px;}
         <hr style="width:50px;border:5px solid red" class="w3-round">
           <h2 class="w3-text-red"><b>Inserir despesa</b></h2>
     </br>
-              <form class="w3-container w3-card-4" action="insertDespesas.php" method="post">
-                <select class="w3-select" name="ano">
-                <option value="" disabled selected>Ano</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-              </select>
-              <select class="w3-select" name="mes">
-              <option value="" disabled selected>Mês</option>
-              <option value="01">Janeiro</option>
-              <option value="02">Fevereiro</option>
-              <option value="03">Março</option>
-              <option value="04">Abril</option>
-              <option value="05">Maio</option>
-              <option value="06">Junho</option>
-              <option value="07">Julho</option>
-              <option value="08">Agosto</option>
-              <option value="09">Setembro</option>
-              <option value="10">Outubro</option>
-              <option value="11">Novembro</option>
-              <option value="12">Dezembro</option>
-            </select>
-            <select class="w3-select" name="categoria">
-            <option value="" disabled selected>Categoria</option>
-            <option value="salarios">Salários</option>
-            <option value="aguagas">Água/Gás</option>
-            <option value="energia">Energia</option>
-            <option value="aluguer">Aluguer</option>
-            <option value="manutencao">Manutenção</option>
-            <option value="outras">Outras</option>
-            </select>
-            <p>
-              <label class="w3-text-red"><b>Valor (€)</b></label>
-              <input class="w3-input w3-border" name="valor" type="number"></p>
-              <button class="w3-btn w3-red" type="submit">Submeter</button></p>
-            </form>
+    <form class="w3-container w3-card-4" action="insertDespesas.php" method="post">
+    </br>
+      <select class="w3-select" name="ano">
+      <option value="" disabled selected>Ano</option>
+      <option value="2017">2017</option>
+      <option value="2018">2018</option>
+    </select>
+    <select class="w3-select" name="mes">
+    <option value="" disabled selected>Mês</option>
+    <option value="01">Janeiro</option>
+    <option value="02">Fevereiro</option>
+    <option value="03">Março</option>
+    <option value="04">Abril</option>
+    <option value="05">Maio</option>
+    <option value="06">Junho</option>
+    <option value="07">Julho</option>
+    <option value="08">Agosto</option>
+    <option value="09">Setembro</option>
+    <option value="10">Outubro</option>
+    <option value="11">Novembro</option>
+    <option value="12">Dezembro</option>
+  </select>
+  <select class="w3-select" name="categoria">
+  <option value="" disabled selected>Categoria</option>
+  <option value="salarios">Salários</option>
+  <option value="aguagas">Água/Gás</option>
+  <option value="energia">Energia</option>
+  <option value="aluguer">Aluguer</option>
+  <option value="manutencao">Manutenção</option>
+  <option value="outras">Outras</option>
+  </select>
+  <p>
+    <label class="w3-text-red"><b>Valor (€)</b></label>
+    <input class="w3-input w3-border" name="valor" type="number"></p>
+    <p class="w3-right"><a href="despesasMesCompleto.php" style="text-decoration: underline;">Inserir mês completo</a></p>
+    <button class="w3-btn w3-red" type="submit">Submeter</button></p>
+  </form>
+  </br>
         </div>
       </div>
 
