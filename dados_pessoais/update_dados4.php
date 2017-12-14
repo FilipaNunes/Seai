@@ -75,67 +75,96 @@ body {font-size:16px;}
   </div>	
 				<div class="w3-row w3-center">
 					<a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'dados1');">
-					  <div class="w3-col tablink w3-bottombar w3-hover-light-grey w3-padding">Atualização de Encomenda</div>
+					  <div class="w3-col tablink w3-bottombar w3-hover-light-grey w3-padding">Dados do Utilizador</div>
 					</a>
 				</div>
 				<br>
-				<?php
-					$id = $_GET["id"];
-					
-					$encomendas = get_encomendas2_db($id);
-					$encomenda = $encomendas->fetch(PDO::FETCH_ASSOC); 
-				?>
 				<div id="dados1" class="content dados">
-				<div style="font-size: 16pt">Dados da encomenda</div>
-				<form method="POST" action="action_update_encomenda.php" autocomplete="on">
+				<div class="w3-text-red"><center>A nova password e sua confirmação que introduziu não são iguais.<center></div>
+				<div style="font-size: 16pt">Dados Pessoais</div>
+				<form method="POST" action="action_update.php" autocomplete="on">
 				<table>
-					<input type="hidden" name="id" value="<?=$id?>" />
 					<tr>
 						<td>
-							<b>Produto: </b>
+							<b>Nome: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="produto" value="<?=$encomenda["tipo_encomenda"]?>" size="46" title="A descrição do produto apenas deve incluir letras, espaços e números." pattern="([A-z0-9À-ž\s]){2,}" required />
+							<input type="text" class="text-input w3-border" name="name" value="<?=$user_data1["nome_completo"]?>" title="O nome apenas deve incluir letras e espaços." pattern="([A-zÀ-ž\s]){2,}" placeholder="Nome" required />
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<b>Peso: </b> &nbsp (máx. 4.0 Kg)
+							<b>E-mail: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="peso" value="<?=$encomenda["peso"]?>" size = "46" pattern="([0-3][.][1-9])|([1-4][.][0])|([1-4])|([1-3][.][0-9][0-9])|([0][.][0-9][1-9])|([0][.][1-9][0])" title="O peso deve ser superior a 0 e as casas decimais devem ser separadas por um ponto, podendo ter no máximo 2 casas decimais." required />
+							<input type="email" class="text-input w3-border" name="email" value="<?=$user_data1["email"]?>" size = "46" required readonly/>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<b>Dimensão: </b> &nbsp (máx. 30x30x30 cm)
+							<b>Nome de Utilizador: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="dimensao" size="46" value="<?=$encomenda["dimensao"]?>" pattern="([1-2][0-9]|[3][0]|[1-9])[x]([1-2][0-9]|[3][0]|[1-9])[x]([1-2][0-9]|[3][0]|[1-9])" required />
+							<input type="text" class="text-input w3-border" name="username" size="46" value="<?=$user_data1["username"]?>" required readonly/>
 						</td>
 					</tr>
 					<tr>
                             <td>
-                                <b>Morada de Destino: </b>
+                                <b>Password: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="destino" value="<?=$encomenda["morada_destino"]?>" size="46" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
+                                <input type="password" class="text-input w3-border" name="password" placeholder='Insira a sua password atual' size="46" autocomplete="off" required />
                             </td>
                         </tr>
 						<tr>
                             <td>
-                                <b>Características: </b>
+                                <b>Nova Password: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="caracteristicas" value="<?=$encomenda["caracteristicas"]?>" placeholder="Características da encomenda (opcional)" size="46" title="As características do produto apenas devem incluir letras e espaços." pattern="([A-zÀ-ž\s]){2,}" />
+                                <input type="password" class="text-input w3-border" name="new_password" placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
                             </td>
                         </tr>
-						
+						<tr>
+                            <td>
+                                <b>Confirmar Nova Password: </b>
+                            </td>
+                            <td>
+                                <input type="password" class="text-input w3-border" name="confirm_new_password" placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
+                            </td>
+                        </tr>
+						<tr>
+                            <td>
+                                <b>Telemóvel: </b>
+                            </td>
+                            <td>
+                                <input type="text" class="text-input w3-border" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" pattern="\d{9}" title="O nº de telemóvel deve ter 9 dígitos." required />
+                            </td>
+                        </tr>
 						</table>
 						<br>
-						<div style="text-align: right"><input type="submit" class="button" name="update" value="Guardar"/></div>
-					</form>
-					</div>
+						<div style="font-size: 16pt">Dados de Faturação</div>
+						<table>
+						<tr>
+                            <td>
+                                <b>NIF: </b>
+                            </td>
+                            <td>
+                                <input type="text" class="text-input w3-border" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" pattern="\d{9}" title="O NIF deve ter 9 dígitos." required />
+                            </td>
+                        </tr>
+						<tr>
+                            <td>
+                                <b>Morada: </b>
+                            </td>
+                            <td>
+                                <input type="text" class="text-input w3-border" placeholder='Morada' name="address" value="<?=$user_data1["morada"]?>" style="width:93%" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
+                            </td>
+                        </tr>
+					</table>                  
+				<br>
+				<div style="text-align: right"><input type="submit" class="button" name="update" value="Guardar"/></div>
+				</form>
+				</div>
 
   <!-- End page content -->
   </div>

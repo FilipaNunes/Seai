@@ -128,19 +128,6 @@ body {font-size:16px;}
 
 				<div id="historico" class="dados">
 				<div class="w3-container">
-					<table class="w3-table-all">
-					  <thead>
-						<tr class="w3-red">
-						  <th style='text-align:center'>Serviço</th>
-						  <th style='text-align:center'>Produto</th>
-						  <th style='text-align:center'>Custo</th>
-						  <th style='text-align:center'>Destino</th>
-						  <th style='text-align:center'>Envio</th>
-						  <th style='text-align:center'>Entrega</th>
-						  <th style='text-align:center'>Estado</th>
-						  <th style='text-align:center'></th>
-						</tr>
-					  </thead>
 					  <?php Table(); ?>
 				  </div>
 				</div>
