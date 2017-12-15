@@ -9,7 +9,7 @@
 </head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/notificacao.css"> 
+<link rel="stylesheet" href="../css/notificacao.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
@@ -26,7 +26,7 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
 	include_once("../login/session.php");
 	if ($_SESSION["user_id"] == NULL OR check_admin_db() == 0) header("Location: ../index.php");
@@ -46,13 +46,13 @@ body {font-size:16px;}
   <?php if ($_SESSION["user_id"] == NULL) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../dados_pessoais/dados_pessoais.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a class="w3-bar-item w3-button w3-red">Gestão de Utilizadores</a>

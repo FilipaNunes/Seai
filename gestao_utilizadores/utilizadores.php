@@ -49,7 +49,7 @@
 					<td style='text-align:center'> $telemovel </td>
 					<td style='text-align:center'> $encomendas </td>
 					<td style='text-align:center'>
-						<a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#>
+						<a onclick='event.preventDefault(); ConfirmarDelete($id)' href=#>
 							<img src='../img/delete.png' height='10%'>
 						</a>
 					</td>

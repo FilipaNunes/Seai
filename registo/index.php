@@ -25,9 +25,9 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
-	include_once("../login/session.php"); 
+	include_once("../login/session.php");
 	if ($_SESSION["user_id"] != NULL) header("Location: ../index.php");
 ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -63,30 +63,36 @@ body {font-size:16px;}
     <h1 class="w3-xxxlarge w3-text-red"><b>Registo</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
 
-<form class="w3-container w3-card-4" action="registo.php" method="post" id="form">
+<form class="w3-container w3-card-4" onsubmit="event.preventDefault();return RegistoFeito();" id="form">
 
   <p>
   <label class="w3-text-red"><b>Username</b></label>
-  <input class="w3-input w3-border" id="user" name="user" type="text" placeholder='Nome pretendido para o utilizador' pattern='[a-z0-9_-]{3,20}' title='O username deve ter entre 3 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onfocus = 'Disable()' onblur = 'CheckUsername()' required></p>
+  <input class="w3-input border" id="user" name="user" type="text" placeholder='Nome pretendido para o utilizador' pattern='[a-z0-9_-]{3,20}' title='O username deve ter entre 3 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onfocus = 'Disable()' onblur = 'CheckUsername()' required>
+  <div id="username_indis" style="color:#f44336"></div>
+  </p>
   <p>
   <label class="w3-text-red"><b>Password</b></label>
-  <input class="w3-input w3-border" id="pass" name="pass" type="password" placeholder='Insira Password' pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onfocus = 'Disable()' onblur = 'ValidatePassword()' required></p>
+  <input class="w3-input border" id="pass" name="pass" type="password" placeholder='Insira Password' pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onfocus = 'Disable()' onblur = 'ValidatePassword()' required></p>
   <p>
   <label class="w3-text-red"><b>Confirmar Password</b></label>
-  <input class="w3-input w3-border" id="c_pass" name="c_pass" type="password" placeholder='Repita a Password' pattern='[a-zA-Z0-9_-]{6,20}' title='Repita a password inserida acima.' onfocus = 'Disable()' onblur = 'ValidatePassword()' required></p>
+  <input class="w3-input border" id="c_pass" name="c_pass" type="password" placeholder='Repita a Password' pattern='[a-zA-Z0-9_-]{6,20}' title='Repita a password inserida acima.' onfocus = 'Disable()' onblur = 'ValidatePassword()' required>
+  <div id="pass_match" style="color:#f44336"></div>
+  </p>
   <p>
   <label class="w3-text-red"><b>Email</b></label>
-  <input class="w3-input w3-border" id="email" name="email" type="email" placeholder='Insira o email para o registo' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Introduza o email com este formato email@email.com' onfocus = 'Disable()' onblur = 'CheckEmail()' required></p>
+  <input class="w3-input border" id="email" name="email" type="email" placeholder='Insira o email para o registo' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Introduza o email com este formato email@email.com' onfocus = 'Disable()' onblur = 'CheckEmail()' required>
+  <div id="email_indis" style="color:#f44336"></div>
+  </p>
   <p>
-  <button class="w3-red w3-btn" type='submit' name='btnSubmit' id='btnSubmit' onClick='event.preventDefault(); RegistoFeito()' disabled>Registo</button></p>
+  <input class="w3-red w3-input" type='submit' name='btnSubmit' id='btnSubmit' value="Registar" ></p>
 </form>
 
   <!-- End page content -->
   </div>
-  
+
 <div id='notification-container' class='notification-container'></div>
 
-  
+
   <script>
   // Script to open and close sidebar
   function w3_open() {
@@ -102,5 +108,5 @@ body {font-size:16px;}
   </script>
 
   </body>
-   
+
 </html>

@@ -2,24 +2,37 @@
 
 <?php include_once("database/database.php");?>
 
-<?php		
-	 if(isset($_GET['id']))
-      {
-        $id=$_GET['id'];
-		$query="DELETE FROM faz WHERE id_c = :id";
-		$query1="DELETE FROM encomenda WHERE id_c = :id";
-        $query2="DELETE FROM clientes WHERE id_c  = :id";
-		
-		
-		$values = array($id);
-		$insert = array(':id');
-		
-		$result = execQuery($query,$insert,$values);
-		$result1 = execQuery($query1,$insert,$values);
-		$result2 = execQuery($query2,$insert,$values);
-		
+<?php
+    $id=$_POST['id'];
 
-        header('location:index.php');
-      }
+		$query = "SELECT id_e FROM faz WHERE id_c=:id AND estado = :estado";
+
+		$values = array($id,'Enviado');
+		$insert = array(':id',':estado');
+
+		$result = execQuery($query,$insert,$values);
+
+		$num_encomendas = $result->rowCount($result);
+
+		if($num_encomendas>0) $message = array('status' => 'not_ok');
+		else{
+			$query="DELETE FROM faz WHERE id_c = :id";
+			$query1="DELETE FROM encomenda WHERE cliente = :id";
+	  	$query2="DELETE FROM clientes WHERE id_c  = :id";
+
+
+			$values = array($id);
+			$insert = array(':id');
+
+			$result = execQuery($query,$insert,$values);
+			$result1 = execQuery($query1,$insert,$values);
+			$result2 = execQuery($query2,$insert,$values);
+
+			$message = array('status' => 'ok');
+		}
+
+
+    echo json_encode($message);
+
 
 ?>

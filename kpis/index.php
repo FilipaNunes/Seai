@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Drone 2u</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>Drone2u</title>
+  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 <?php
     include_once('../database/database.php');
@@ -106,7 +106,7 @@ body {font-size:16px;}
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="Fechar Menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
@@ -122,7 +122,7 @@ body {font-size:16px;}
     <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Encomendas');">
       <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Encomendas</div>
     </a>
-    <a href="javascript:void(0)" onclick="openTab(event, 'Armazens');">
+    <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Armazens');">
       <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Armazéns</div>
     </a>
   </div>
@@ -639,7 +639,7 @@ body {font-size:16px;}
 <script>
   function openTab(evt, tabName) {
     var i, x, tablinks;
-    x = document.getElementsByClassName("financas");
+    x = document.getElementsByClassName("kpis");
     for (i = 0; i < x.length; i++) {
        x[i].style.display = "none";
     }

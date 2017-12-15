@@ -119,10 +119,11 @@ body {font-size:16px;}
 
   <div id="Inserir Armazém" class="w3-container armazens" style="display:none">
     <p></p>
-  	<form class="w3-container w3-card-4" action="regist_arm.php" method="POST" id="form">
+  	<form class="w3-container w3-card-4" >
       <p></p>
-      <label class="w3-text-red"><b>Nome </b></label>
-      <input class="w3-input w3-border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
+      <label class="w3-text-red"><b>Nome</b></label>
+      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
+      <div id="n_disponivel" style="color:#f44336"></div>
       <p>
       <label class="w3-text-red"><b>Morada</b></label>
       <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
@@ -130,7 +131,7 @@ body {font-size:16px;}
       <label class="w3-text-red"><b>Lotação Máxima</b></label>
       <input class="w3-input w3-border" id="lotacao_max" name="lotacao_max" type="text" placeholder=' Inserir lotação máxima do armazém' pattern='[0-9]{1,5}' required></p>
       <p>
-      <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar Novo Armazém' id='btnSubmit' onClick='Adicionar()'>
+      <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar Novo Armazém' id='btnSubmit' onClick='event.preventDefault(); AdicionarArmazem()'>
     </form>
   </div>
 

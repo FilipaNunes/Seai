@@ -1,27 +1,35 @@
-<?php 
-	include_once("add_arm.php");
-	include_once("../database/database.php"); 
+<?php
+	include_once("../database/database.php");
 ?>
 
-<?php 
+<?php
 	$nome = strip_tags($_POST['nome']);
 	$morada_arm = strip_tags($_POST['morada_arm']);
-	$ocupacao = "Livre";
+	$ocupacao = 0;
 	$lotacao_max = strip_tags($_POST['lotacao_max']);
-	
 
-	// Adicionar novo Armazém
-	try {
-    addArmazem($nome,$morada_arm,$ocupacao,$lotacao_max);
-	} catch (PDOException $e) {
+	$query = "SELECT id_a FROM armazem WHERE nome= :nome";
 
-		if (strpos($e->getMessage(), 'armazem_nome_key') !== false) {
+	$values = array($nome);
+	$insert = array(':nome');
 
-		echo "<p> Armazem ja existe </p>";
-		
-		}	
+	$result = execQuery($query,$insert,$values);
+
+	$n_registos= $result->rowCount($result);
+
+	if($n_registos>0)$message = array('status' => 'not_valid');
+	else{
+		$query = "INSERT INTO armazem(nome,morada_arm,ocupacao,lotacao_max)
+						VALUES(:nome, :morada_arm, :ocupacao, :lotacao_max)";
+
+
+		$values = array($nome,$morada_arm,$ocupacao,$lotacao_max);
+		$insert = array(':nome', ':morada_arm', ':ocupacao', ':lotacao_max');
+
+		$result = execQuery($query,$insert,$values);
+
+		$message = array('status' => 'valid');
 	}
-		
-	
-	header('location:index.php');
+
+	echo json_encode($message);
 ?>

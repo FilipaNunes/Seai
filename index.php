@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Drone 2u</title>
+  <title>Drone2u</title>
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <meta charset="UTF-8">
