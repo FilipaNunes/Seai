@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<title>Drone2u</title>
+<head>
+  <title>Drone2u</title>
+  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,9 +16,9 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
-	include_once("../login/session.php"); 
+	include_once("../login/session.php");
 	$user_data = user_data_db();
     $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -33,13 +36,13 @@ body {font-size:16px;}
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../dados_pessoais/dados_pessoais.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>

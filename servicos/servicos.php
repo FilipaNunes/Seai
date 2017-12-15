@@ -29,30 +29,31 @@
 	}
 
 	function RecolhaArmazem(){
+		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao<lotacao_max';
 
-		echo'
-					<select class="w3-select" name="option" id="localrecolha" required>
-					<option value="" disabled selected>Escolher</option>';
-
-		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao = :ocupacao';
-
-		$values = array('Livre');
-		$insert = array(':ocupacao');
-
-		$result = execQuery($query,$insert,$values);
+		$result = execQuery($query,null,null);
 
 		$num_registos = $result->rowCount($result);
 
-		for($i=0;$i<$num_registos;$i++){
-			$array = $result->fetch();
-			$nome = $array['nome'];
-			$morada = $array['morada_arm'];
-			$value = $i + 1;
-			echo"
-					<option value=$value> $nome - $morada </option>
-				";
+
+		if($num_registos==0)
+			echo'
+					<div style="color:#f44336"> Não há armazéns disponíveis! Escolha um ponto de recolha ou tente mais tarde</div>';
+		else{
+			echo'
+						<select class="w3-select" name="option" id="localrecolha" required>
+						<option value="" disabled selected>Escolher</option>';
+			for($i=0;$i<$num_registos;$i++){
+				$array = $result->fetch();
+				$nome = $array['nome'];
+				$morada = $array['morada_arm'];
+				$value = $i + 1;
+				echo"
+						<option value=$value> $nome - $morada </option>
+					";
+			}
+			echo"</select>";
 		}
-		echo"</select>";
 	}
 
 	function MoradaEntrega(){

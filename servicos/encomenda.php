@@ -88,7 +88,7 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <form class="w3-container w3-card-4" id="encomenda">
+  <form class="w3-container w3-card-4" id="encomenda" onsubmit="event.preventDefault(); return Adicionado()">
     <p>
     <label class="w3-text-red"><b>Serviço</b></label>
     <select class="w3-select" name="option" id="limite_peso" onChange='VerificaCategoria()' required>
@@ -120,6 +120,13 @@ body {font-size:16px;}
 				 <option value="2">>1 a 2 Kg</option>
 				 <option value="3">>2 a 3 kg</option>
 				 <option value="4" selected>>3 a 4 kg</option>';
+		}
+		else
+		{
+			echo'<option value="1">0 a 1 Kg</option>
+				 <option value="2">>1 a 2 Kg</option>
+				 <option value="3">>2 a 3 kg</option>
+				 <option value="4">>3 a 4 kg</option>';
 		}
 	?>
   </select></p>
@@ -174,7 +181,7 @@ body {font-size:16px;}
     <label class="w3-text-red"><b>Preço previsto(€)</b></label></p>
     <p id="custo"> </p>
     <p>
-    <button class="w3-btn w3-red" name='btnSubmit' id="btnSubmit" type='submit' style='width:100%' onclick='event.preventDefault(); Adicionado()' disabled>Adicionar ao Carrinho</button>
+    <input class="w3-input w3-red" name='btnSubmit' id="btnSubmit" type='submit' >Adicionar ao Carrinho
 	</p>
   </form>
 

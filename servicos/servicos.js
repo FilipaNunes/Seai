@@ -161,10 +161,10 @@ function Custo(){
 	var custo='...';
 	var quant = document.getElementById('quant').value;
 	var categorias = document.getElementById('limite_peso').value;
-	var preco01 = 19.99;
-	var preco12 = 29.99;
-	var preco23 = 39.99;
-	var preco34 = 49.99;
+	var preco01 = 5;
+	var preco12 = 8;
+	var preco23 = 10;
+	var preco34 = 12;
 
 	var xmlhttp = new XMLHttpRequest();
 
