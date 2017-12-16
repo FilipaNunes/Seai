@@ -1,22 +1,26 @@
-<?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2012/ee12276/public_html/SITEATUAL/Seai-master/" . PATH_SEPARATOR .                  "/usr/users2/mieec2012/ee12276/public_html/SITEATUAL/Seai-master/"); ?>
+<?php include_once("../database/database.php");?>
 
-<?php include_once("database/database.php");?>
+<?php
+	$id=$_POST['id'];
 
-<?php		
-	if(isset($_GET['id']))
-      {
-        $id=$_GET['id'];
-        $query="DELETE FROM armazem WHERE id_a  = :id";
-		
-		echo $id;
-		$values = array($id);
-		$insert = array(':id');
-		
-		$result = execQuery($query,$insert,$values);
+	$query="SELECT id_f FROM funcionario WHERE id_f = :id";
+	$values = array($id);
+	$insert = array(':id');
 
-		
+	$result = execQuery($query,$insert,$values);
+	$num_registos = $result->rowCount($result);
 
-        header('location:index.php');
-      }
+	$query = "DELETE FROM funcionario WHERE id_f = :id";
+
+	if($num_registos>0){
+		$query2 = "DELETE FROM infor_funcionario WHERE id_f = :id";
+		$result = execQuery($query2,$insert,$values);
+	}
+
+
+	$result = execQuery($query,$insert,$values);
+	$message = array('status' => 'valid');
+
+	echo json_encode($message);
 
 ?>

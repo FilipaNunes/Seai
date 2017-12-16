@@ -18,17 +18,6 @@ var avaliar_quant;
 
 function TransformaPeso(peso){
 
-	var pattern = new RegExp("^([0-9]+[.]+[0-9])$");
-	var pattern2 = new RegExp("^([0-9])$");
-	var teste = pattern.test(peso);
-	var teste2 = pattern2.test(peso);
-
-	if( teste !== true && teste2 !== true){
-		displayNotification("O peso não está no formato correto. Por favor insira neste formato 2 ou 2.3");
-		document.getElementById('btnSubmit').disabled = true;
-		return -1;
-	}
-	else{
 		var  n = peso.search(',');
 
 		if(n !== -1){
@@ -36,7 +25,7 @@ function TransformaPeso(peso){
 		peso = partes_peso[0].concat('.', partes_peso[1]);
 	}
 		return peso;
-	}
+	//}
 }
 
 function VerificaCategoria(){
@@ -45,7 +34,10 @@ function VerificaCategoria(){
 	if(peso !== ''){
 		peso = TransformaPeso(peso);
 		if(peso === -1)return;
-		else if(peso == 0) displayNotification("O peso não pode ser 0!Por favor insira um valor maior que 0!");
+		else if(peso == 0) {
+        document.getElementById("peso_errado").innerHTML="O peso tem de ser maior que 0!";
+        document.getElementById('peso').style.borderColor = "#f44336";
+    }
 		else{
 			displayNotification("Peso inserido não está no intervalo da categoria escolhida. Por favor reajuste o peso!");
 			var peso_reaj = Math.ceil(peso);
@@ -60,39 +52,43 @@ function VerificaPeso(){
 	var peso_limite = document.getElementById('limite_peso').value;
 	var peso_limite_inf = peso_limite - 1;
 	var peso = document.getElementById('peso').value;
-	avaliar_peso = 0;
 
 	if(peso !== ''){
-		document.getElementById('btnSubmit').disabled = true;
 		peso = TransformaPeso(peso);
-
-		if(peso === -1)return;
-		else if(peso == 0)displayNotification("O peso não pode ser 0! Por favor insira um valor maior que 0!");
-		else if(peso > 4) displayNotification("O drone não tem capacidade de transportar encomendas com peso maior a 4 kg!");
+		if(peso == 0){
+        document.getElementById("peso_errado").innerHTML="O peso tem de ser maior que 0!";
+        document.getElementById('peso').style.borderColor = "#f44336";
+    }
+		else if(peso > 4){
+        document.getElementById("peso_errado").innerHTML="O peso máximo aceite é de 4kg!";
+        document.getElementById('peso').style.borderColor = "#f44336";
+    }
 		else if( peso > peso_limite){
-			displayNotification("Peso inserido é maior que o permitido para a categoria selecionada! A categoria foi reajustada!");
+      document.getElementById("peso_errado").innerHTML=null;
+      document.getElementById('peso').style.borderColor = "#ccc";
+			displayNotification("Peso inserido é maior que o permitido para a categoria selecionada! O serviço foi reajustado automaticamente!");
 
 			var peso_reaj = Math.ceil(peso);
 			document.getElementById('limite_peso').value = peso_reaj;
 
 			avaliar_peso = 1;
-			ActivateSubmit();
 			Custo();
 
 		}
 		else if( peso <= peso_limite_inf){
-			displayNotification("Peso inserido é inferior ao limite da categoria selecionada! A categoria foi reajustada!");
+      document.getElementById("peso_errado").innerHTML=null;
+      document.getElementById('peso').style.borderColor = "#ccc";
+			displayNotification("Peso inserido é inferior ao limite da categoria selecionada! O serviço foi reajustado automaticamente!");
 
 			var peso_reaj = Math.ceil(peso);
 			document.getElementById('limite_peso').value = peso_reaj;
-
 			avaliar_peso = 1;
-			ActivateSubmit();
 			Custo();
 		}
 		else{
+      document.getElementById("peso_errado").innerHTML=null;
+      document.getElementById('peso').style.borderColor = "#ccc";
 			avaliar_peso = 1;
-			ActivateSubmit();
 			Custo();
 		}
 	}
@@ -101,31 +97,43 @@ function VerificaPeso(){
 
 function VerificarDimensao(){
 	var dim = document.getElementById('dim').value;
-	var pattern = new RegExp("^([0-9]{1,2})+[x]+([0-9]{1,2})+[x]+([0-9]{1,2})$");
-	var teste = pattern.test(dim);
+	//var pattern = new RegExp("^([0-9]{1,2})+[x]+([0-9]{1,2})+[x]+([0-9]{1,2})$");
+	//var teste = pattern.test(dim);
 	var comprimento_max = 30;
 	var largura_max= 30;
 	var altura_max = 30;
-	avaliar_dim = 0;
 
-	if( teste !== true ){
-		displayNotification("A dimensão não está no formato correto. Por favor insira neste formato 30x30x30!");
-		document.getElementById('btnSubmit').disabled = true;
-	}
-	else{
-		document.getElementById('btnSubmit').disabled = true;
 		var partes_dim = dim.split('x');
-		if(partes_dim[0] > comprimento_max)displayNotification("O comprimento inserido é maior do que a máximo(30 cm)!");
-		else if (partes_dim[1] > largura_max)displayNotification("A largura inserida é maior do que a máxima(30 cm)!");
-		else if (partes_dim[2] > altura_max)displayNotification("A altura inserida é maior do que a máxima(30 cm)!");
-		else if(partes_dim[0] == 0)displayNotification("O comprimento inserido tem de ser maior que 0 cm!");
-		else if (partes_dim[1] == 0)displayNotification("A largura inserida tem de ser maior que 0 cm!");
-		else if (partes_dim[2] == 0)displayNotification("A altura inserida tem de ser maior que 0 cm!");
+		if(partes_dim[0] > comprimento_max){
+      document.getElementById("dim_errada").innerHTML="O comprimento inserido é maior do que a máximo(30 cm)!";
+      document.getElementById('dim').style.borderColor = "#f44336";
+    }
+		else if (partes_dim[1] > largura_max){
+      document.getElementById("dim_errada").innerHTML="A largura inserida é maior do que a máximo(30 cm)!";
+      document.getElementById('dim').style.borderColor = "#f44336";
+    }
+		else if (partes_dim[2] > altura_max){
+      document.getElementById("dim_errada").innerHTML="A altura inserida é maior do que a máximo(30 cm)!";
+      document.getElementById('dim').style.borderColor = "#f44336";
+    }
+		else if(partes_dim[0] == 0){
+      document.getElementById("dim_errada").innerHTML="O comprimento inserido tem de ser maior que 0 cm!";
+      document.getElementById('dim').style.borderColor = "#f44336";
+    }
+		else if (partes_dim[1] == 0){
+      document.getElementById("dim_errada").innerHTML="A largura inserida tem de ser maior que 0 cm!";
+      document.getElementById('dim').style.borderColor = "#f44336";
+    }
+		else if (partes_dim[2] == 0){
+      document.getElementById("dim_errada").innerHTML="A altura inserida tem de ser maior que 0 cm!";
+      document.getElementById('dim').style.borderColor = "#f44336";
+    }
 		else{
+        document.getElementById("dim_errada").innerHTML=null;
+        document.getElementById('dim').style.borderColor = "#ccc";
 			avaliar_dim = 1;
-			ActivateSubmit();
 		}
-	}
+	//}
 }
 
 function Quantidade(){
@@ -135,17 +143,21 @@ function Quantidade(){
 	var teste = pattern.test(quant);
 
 	if(quant != ''){
-		document.getElementById('btnSubmit').disabled = true;
-		if (quant >= 100)document.getElementById('quant').style.borderColor = "red";
-
-			//displayNotification("Para mais de 100 encomendas, por favor utiliza o formulário de contacto!");
-		else if(teste !== true) displayNotification("Formato incorreto! A quantidade apenas pode ter números inteiros!");
-		else if(quant == 0) displayNotification("A quantidade de encomendas tem de ser pelo menos 1!");
+		if (quant >= 100){
+      document.getElementById("quant_errada").innerHTML="Não são permitidas quantidades maiores que 100 por categoria!";
+      document.getElementById('quant').style.borderColor = "#f44336";
+      avaliar_quant = 0;
+    }
+		else if(quant == 0){
+      document.getElementById("quant_errada").innerHTML="A quantidade de encomendas tem de ser pelo menos 1!";
+      document.getElementById('quant').style.borderColor = "#f44336";
+      avaliar_quant = 0;
+    }
 		else{
+      document.getElementById("quant_errada").innerHTML=null;
+      document.getElementById('quant').style.borderColor = "#ccc";
 			Custo();
 			avaliar_quant = 1;
-			ActivateSubmit();
-
 		}
 	}
 }
@@ -210,11 +222,11 @@ function Adicionado(){
 	else if (ponto === true)   ponto_recolha = 2;
 
 	var recolha_value = document.getElementById('localrecolha').value;
-	var recolha = document.getElementById('localrecolha')
+	var recolha = document.getElementById('localrecolha');
 	recolha = recolha.options[recolha_value].text;
 
 	var destino_value = document.getElementById('destino').value;
-	var destino = document.getElementById('destino')
+	var destino = document.getElementById('destino');
 	destino = destino.options[destino_value].text;
 
 

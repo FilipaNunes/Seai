@@ -133,6 +133,10 @@
 
 		$id_c = $_SESSION['user_id'];
 		$limite = count($_SESSION["carrinho"]["servico"]);
+		$hora_s = date("H:i:s");
+		$data_s = date("Y-m-d");
+		$data_receita = date("Y-m-01");
+		
 		for($i=0;$i<$limite;$i++){
 
 			$servico = ($_SESSION['carrinho']['servico'][$i]);
@@ -146,8 +150,6 @@
 			$produto = ($_SESSION['carrinho']['produto'][$i]);
 			$peso = ($_SESSION['carrinho']['peso'][$i]);
 			$dimensao = ($_SESSION['carrinho']['dimensoes'][$i]);
-			$data_s = date("Y-m-d");
-			$data_receita = date("Y-m-01");
 			$destino = ($_SESSION['carrinho']['destino'][$i]);
 			$recolha = ($_SESSION['carrinho']['recolha'][$i]);
 			$quantidade = ($_SESSION['carrinho']['quantidade'][$i]);
@@ -155,7 +157,6 @@
 			$ponto_recolha = ($_SESSION['carrinho']['ponto_recolha'][$i]);
 
 			for($j=0;$j<$quantidade;$j++){
-				$hora_s = date("H:i:s");
 				$encomenda = InserirEncomenda($peso,$dimensao,$data_s,$destino,$produto,$recolha,$hora_s,$id_c,$ponto_recolha);
 				$id_e_temp= $encomenda['id_e'];
 				$id_e = $id_e_temp + $j;

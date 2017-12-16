@@ -145,15 +145,18 @@ body {font-size:16px;}
   </select> Para mais informações sobre os produtos clique <a target="_blank" href="informacoes.php">aqui</a> </p>
 	<p>
     <label class="w3-text-red"><b>Dimensões</b></label>
-    <input class="w3-input w3-border" name="dim" id="dim" type="text" placeholder="Dimensões máximas 30x30x30 cm" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura' onChange='VerificarDimensao()' required></p>
+    <input class="w3-input border" name="dim" id="dim" type="text" placeholder="Dimensões máximas 30x30x30 cm" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura' onChange='VerificarDimensao()' pattern='([0-9]{1,2})+[x]+([0-9]{1,2})+[x]+([0-9]{1,2})' required></p>
+		<div id='dim_errada' style='color:#f44336'></div>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
-    <input class="w3-input w3-border" name="peso" id="peso" type="text" placeholder='O peso máximo é 4 quilos' title='O peso deve ser inserido em quilogramas com o seguinte formato 1.35!' onChange= 'VerificaPeso()' required></p>
+    <input class="w3-input border" name="peso" id="peso" type="text" placeholder='O peso máximo é 4 quilos' title='Deve ser inserido em quilogramas com o seguinte formato 1.35 ou 1!' onChange= 'VerificaPeso()' pattern='([0-9]+[.]+[0-90-9])|([0-9])' required></p>
+		<div id='peso_errado' style='color:#f44336'></div>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Quantidade</b></label>
-    <input class="w3-input border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas.' onChange='Quantidade()'></p>
+    <input class="w3-input border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas.' onChange='Quantidade()' pattern='([0-9]{1,2})' required></p>
+		<div id='quant_errada' style='color:#f44336'></div>
 	</p>
     <p>
     <label class="w3-text-red"><b>Escolha o ponto de recolha:</b></label><p></p>
@@ -181,7 +184,7 @@ body {font-size:16px;}
     <label class="w3-text-red"><b>Preço previsto(€)</b></label></p>
     <p id="custo"> </p>
     <p>
-    <input class="w3-input w3-red" name='btnSubmit' id="btnSubmit" type='submit' >Adicionar ao Carrinho
+    <input class="w3-input w3-red" name='btnSubmit' id="btnSubmit" type='submit' value='Adicionar ao Carrinho'>
 	</p>
   </form>
 
