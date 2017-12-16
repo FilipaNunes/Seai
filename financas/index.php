@@ -259,12 +259,12 @@ body {font-size:16px;}
     </br>
     <form class="w3-container w3-card-4" action="insertDespesas.php" method="post">
     </br>
-      <select class="w3-select" name="ano">
+      <select class="w3-select" name="ano" required>
       <option value="" disabled selected>Ano</option>
       <option value="2017">2017</option>
       <option value="2018">2018</option>
     </select>
-    <select class="w3-select" name="mes">
+    <select class="w3-select" name="mes" required>
     <option value="" disabled selected>Mês</option>
     <option value="01">Janeiro</option>
     <option value="02">Fevereiro</option>
@@ -279,7 +279,7 @@ body {font-size:16px;}
     <option value="11">Novembro</option>
     <option value="12">Dezembro</option>
   </select>
-  <select class="w3-select" name="categoria">
+  <select class="w3-select" name="categoria" required>
   <option value="" disabled selected>Categoria</option>
   <option value="salarios">Salários</option>
   <option value="aguagas">Água/Gás</option>
@@ -290,7 +290,7 @@ body {font-size:16px;}
   </select>
   <p>
     <label class="w3-text-red"><b>Valor (€)</b></label>
-    <input class="w3-input w3-border" name="valor" type="number"></p>
+    <input class="w3-input w3-border" name="valor" type="number" required></p>
     <p class="w3-right"><a href="despesasMesCompleto.php" style="text-decoration: underline;">Inserir mês completo</a></p>
     <button class="w3-btn w3-red" type="submit">Submeter</button></p>
   </form>

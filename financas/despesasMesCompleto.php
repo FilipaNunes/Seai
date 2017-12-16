@@ -88,12 +88,12 @@ body {font-size:16px;}
   </br>
     <form class="w3-container w3-card-4" action="insertDespesasTotais.php" method="post">
     </br>
-      <select class="w3-select" name="ano">
+      <select class="w3-select" name="ano" required>
       <option value="" disabled selected>Ano</option>
       <option value="2017">2017</option>
       <option value="2018">2018</option>
     </select>
-    <select class="w3-select" name="mes">
+    <select class="w3-select" name="mes" required>
     <option value="" disabled selected>Mês</option>
     <option value="01">Janeiro</option>
     <option value="02">Fevereiro</option>
@@ -110,22 +110,22 @@ body {font-size:16px;}
     </select>
     <p>
     <label class="w3-text-red"><b>Salários (€)</b></label>
-    <input class="w3-input w3-border" name="salarios" type="number"></p>
+    <input class="w3-input w3-border" name="salarios" type="number" required></p>
     <p>
     <label class="w3-text-red"><b>Água/Gás (€)</b></label>
-    <input class="w3-input w3-border" name="aguagas" type="number"></p>
+    <input class="w3-input w3-border" name="aguagas" type="number" required></p>
     <p>
     <label class="w3-text-red"><b>Energia (€)</b></label>
-    <input class="w3-input w3-border" name="energia" type="number"></p>
+    <input class="w3-input w3-border" name="energia" type="number" required></p>
     <p>
     <label class="w3-text-red"><b>Aluguer (€)</b></label>
-    <input class="w3-input w3-border" name="aluguer" type="number"></p>
+    <input class="w3-input w3-border" name="aluguer" type="number" required></p>
     <p>
     <label class="w3-text-red"><b>Manutenção (€)</b></label>
-    <input class="w3-input w3-border" name="manutencao" type="number"></p>
+    <input class="w3-input w3-border" name="manutencao" type="number" required></p>
     <p>
     <label class="w3-text-red"><b>Outras (€)</b></label>
-    <input class="w3-input w3-border" name="outras" type="number"></p>
+    <input class="w3-input w3-border" name="outras" type="number" required></p>
     <button class="w3-btn w3-red" type="submit">Submeter</button></p>
     </form>
   </br>
