@@ -5,7 +5,10 @@
 	function armazens(){
 
 		$limite = 6;
-		if (isset($_GET["page"])) $page  = $_GET["page"];
+		if (isset($_GET["page"])){
+			$page  = $_GET["page"];
+			if(!(is_numeric($page) == 1)) $page = 1;
+		}
 		else $page=1;
 		$inicio = ($page-1) * $limite;
 

@@ -7,7 +7,10 @@
 	function Table(){
 
 		$limite = 6;
-		if (isset($_GET["page"])) $page  = $_GET["page"];
+		if (isset($_GET["page"])){
+			$page  = $_GET["page"];
+			if(!(is_numeric($page) == 1)) $page = 1;
+		}
 		else $page=1;
 		$inicio = ($page-1) * $limite;
 
@@ -22,7 +25,7 @@
 		$result = execQuery($query,$insert,$values);
 
 		$num_registos = $result->rowCount($result);
-		
+
 		if ($num_registos == 0) echo "<center>Não foi efetuada nenhuma encomenda.</center>";
 		else { ?>
 			<table class="w3-table-all">
@@ -64,7 +67,7 @@
 
 			$destino_temp = execQuery($query,$insert,$values);
 			$destino = $destino_temp->fetch();
-			
+
 			$query = "SELECT morada_arm FROM ponto_entrega_recolha WHERE id_er = :id_recolha";
 
 			$values = array($encomenda["ponto_recolha"]);
@@ -72,7 +75,7 @@
 
 			$destino2_temp = execQuery($query,$insert,$values);
 			$destino2 = $destino2_temp->fetch();
-			
+
 			$query = "SELECT morada_arm FROM armazem WHERE id_a = :id_recolha";
 
 			$values = array($encomenda["armazem_recolha"]);
@@ -102,8 +105,8 @@
 					  <?php }
 		echo "
 			</table>";
-			
-		
+
+
 
 		if ($paginas_totais>1) {
 		$pagLink = "<div class='pagination'>";
@@ -112,7 +115,7 @@
 		}
 
 	  }
-		
+
 	}
 
 ?>

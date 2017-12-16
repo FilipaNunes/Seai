@@ -6,7 +6,7 @@
 
 	function funcionario(){
 
-		$limite = 8;
+		$limite = 6;
 		if (isset($_GET["page"])){
 			$page  = $_GET["page"];
 			if(!(is_numeric($page) == 1)) $page = 1;
