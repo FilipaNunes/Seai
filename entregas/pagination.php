@@ -56,7 +56,7 @@
 			$insert = array(':id_recolha');
 
 			$destino3_temp = execQuery($query,$insert,$values);
-			$destino3 = $destino2_temp->fetch();
+			$destino3 = $destino3_temp->fetch();
 
 			?>
 
