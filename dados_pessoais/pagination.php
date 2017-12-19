@@ -33,7 +33,7 @@
 						<tr class="w3-red">
 						  <th style='text-align:center'>Serviço</th>
 						  <th style='text-align:center'>Produto</th>
-						  <th style='text-align:center'>Custo</th>
+						  <th style='text-align:center'>Custo (€)</th>
 						  <th style='text-align:center'>Destino</th>
 						  <th style='text-align:center'>Recolha</th>
 						  <th style='text-align:center'>Envio</th>
