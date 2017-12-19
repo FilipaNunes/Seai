@@ -95,38 +95,38 @@ body {font-size:16px;}
 	<?php
 		if(isset($_GET['first']))
 		{
-			echo'<option value="1" selected>0 a 1 Kg</option>
-				 <option value="2">>1 a 2 Kg</option>
-				 <option value="3">>2 a 3 kg</option>
-				 <option value="4">>3 a 4 kg</option>';
+			echo'<option value="0.5" selected>0 a 0,5 Kg</option>
+				 <option value="1">>0,5 a 1 Kg</option>
+				 <option value="1.5">>1 a 1,5 kg</option>
+				 <option value="2">>1,5 a 2 kg</option>';
 		}
 		elseif(isset($_GET['second']))
 		{
-			echo'<option value="1">0 a 1 Kg</option>
-				 <option value="2" selected>>1 a 2 Kg</option>
-				 <option value="3">>2 a 3 kg</option>
-				 <option value="4">>3 a 4 kg</option>';
+			echo'<option value="0.5">0 a 0,5 Kg</option>
+				 <option value="1" selected>>0,5 a 1 Kg</option>
+				 <option value="1.5">>1 a 1,5 kg</option>
+				 <option value="2">>1,5 a 2 kg</option>';
 		}
 		elseif(isset($_GET['third']))
 		{
-			echo'<option value="1">0 a 1 Kg</option>
-				 <option value="2">>1 a 2 Kg</option>
-				 <option value="3" selected>>2 a 3 kg</option>
-				 <option value="4">>3 a 4 kg</option>';
+			echo'<option value="0.5">0 a 0,5 Kg</option>
+				 <option value="1">>0,5 a 1 Kg</option>
+				 <option value="1.5" selected>>1 a 1,5 kg</option>
+				 <option value="2">>1,5 a 2 kg</option>';
 		}
 		elseif(isset($_GET['fourth']))
 		{
-			echo'<option value="1">0 a 1 Kg</option>
-				 <option value="2">>1 a 2 Kg</option>
-				 <option value="3">>2 a 3 kg</option>
-				 <option value="4" selected>>3 a 4 kg</option>';
+			echo'<option value="0.5">0 a 0,5 Kg</option>
+				 <option value="1">>0,5 a 1 Kg</option>
+				 <option value="1.5">>1 a 1,5 kg</option>
+				 <option value="2" selected>>1,5 a 2 kg</option>';
 		}
 		else
 		{
-			echo'<option value="1">0 a 1 Kg</option>
-				 <option value="2">>1 a 2 Kg</option>
-				 <option value="3">>2 a 3 kg</option>
-				 <option value="4">>3 a 4 kg</option>';
+			echo'<option value="0.5">0 a 0,5 Kg</option>
+				 <option value="1">>0,5 a 1 Kg</option>
+				 <option value="1.5">>1 a 1,5 kg</option>
+				 <option value="2">>1,5 a 2 kg</option>';
 		}
 	?>
   </select></p>
@@ -145,12 +145,12 @@ body {font-size:16px;}
   </select> Para mais informações sobre os produtos clique <a target="_blank" href="informacoes.php">aqui</a> </p>
 	<p>
     <label class="w3-text-red"><b>Dimensões</b></label>
-    <input class="w3-input border" name="dim" id="dim" type="text" placeholder="Dimensões máximas 30x30x30 cm" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura' onChange='VerificarDimensao()' pattern='([0-9]{1,2})+[x]+([0-9]{1,2})+[x]+([0-9]{1,2})' required></p>
+    <input class="w3-input border" name="dim" id="dim" type="text" placeholder="Dimensões máximas 22x14x4 cm" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura' onChange='VerificarDimensao()' pattern='([0-9]{1,2})+[x]+([0-9]{1,2})+[x]+([0-9]{1,2})' required></p>
 		<div id='dim_errada' style='color:#f44336'></div>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
-    <input class="w3-input border" name="peso" id="peso" type="text" placeholder='O peso máximo é 4 quilos' title='Deve ser inserido em quilogramas com o seguinte formato 1.35 ou 1!' onChange= 'VerificaPeso()' pattern='([0-9]+[.]+[0-90-9])|([0-9])' required></p>
+    <input class="w3-input border" name="peso" id="peso" type="text" placeholder='O peso máximo é 4 quilos' title='Deve ser inserido em quilogramas com o seguinte formato 1.3 ou 1!' onChange= 'VerificaPeso()' pattern='([0-9]+[.]+[0-9])|([0-9])' required></p>
 		<div id='peso_errado' style='color:#f44336'></div>
 	</p>
 	<p>

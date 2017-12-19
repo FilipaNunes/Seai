@@ -11,7 +11,7 @@
 			$recolha = explode(' -',$recolha);
 			$recolha = $recolha[0];
 			$query = "SELECT id_a FROM armazem WHERE nome = :nome";
-
+			print_r($recolha);
 			$values = array($recolha);
 			$insert = array(':nome');
 
@@ -19,13 +19,12 @@
 
 			$id_recolha_temp = $result->fetch();
 			$id_recolha = $id_recolha_temp['id_a'];
-		}
-		else if($ponto_recolha == 2){
+		}else if($ponto_recolha == 2){
 			$local_recolha = 'ponto_recolha';
-			$recolha = explode(' - ',$recolha);
-			$recolha = $recolha[1];
-			$query = "SELECT id_er FROM ponto_entrega_recolha WHERE morada_arm = :morada";
-
+			$recolha = explode(' -',$recolha);
+			$recolha = $recolha[0];
+			$query = "SELECT id_er FROM ponto_entrega_recolha WHERE nome = :morada";
+			print_r($recolha);
 			$values = array($recolha);
 			$insert = array(':morada');
 
@@ -35,9 +34,9 @@
 			$id_recolha = $id_recolha_temp['id_er'];
 		}
 
-		$destino = explode(' - ',$destino);
-		$destino = $destino[1];
-		$query = "SELECT id_er FROM ponto_entrega_recolha WHERE morada_arm = :morada";
+		$destino = explode(' -',$destino);
+		$destino = $destino[0];
+		$query = "SELECT id_er FROM ponto_entrega_recolha WHERE nome = :morada";
 
 		$values = array($destino);
 		$insert = array(':morada');
@@ -136,15 +135,15 @@
 		$hora_s = date("H:i:s");
 		$data_s = date("Y-m-d");
 		$data_receita = date("Y-m-01");
-		
+
 		for($i=0;$i<$limite;$i++){
 
 			$servico = ($_SESSION['carrinho']['servico'][$i]);
 
-			if ( strcmp($servico,'>0 a 1kg') == 0) $servico = '0a1';
-			else if ( strcmp($servico,'>1 a 2kg') == 0) $servico = '1a2';
-			else if ( strcmp($servico,'>2 a 3kg') == 0) $servico = '2a3';
-			else if ( strcmp($servico,'>3 a 4kg') == 0) $servico = '3a4';
+			if ( strcmp($servico,'>0 a 0,5kg') == 0) $servico = '0a1';
+			else if ( strcmp($servico,'>0,5 a 1kg') == 0) $servico = '1a2';
+			else if ( strcmp($servico,'>1 a 1,5kg') == 0) $servico = '2a3';
+			else if ( strcmp($servico,'>1,5 a 2kg') == 0) $servico = '3a4';
 			else $servico = 'outras';
 
 			$produto = ($_SESSION['carrinho']['produto'][$i]);

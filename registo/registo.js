@@ -110,8 +110,10 @@ function ActivateSubmit(){
   CheckEmail();
   ValidatePassword();
 
-  if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)) return true;
-  else return false;
+  setTimeout(function(){
+    if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)){evaluate_submit = 1; return true;}
+    else return false;
+  },300);
 
 }
 
@@ -120,26 +122,27 @@ function LoginAutomatico(){
   var passInput = document.getElementById('pass').value;
   var xmlhttp = new XMLHttpRequest();
 
-  swal({
-  title: 'Registo Efetuado com Sucesso!',
-  text: 'Vai ser redirecionado para a página para completar os seus dados pessoais',
-  type: 'success',
-  showConfirmButton: false
-});
-
-  setTimeout(function(){xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-
-      var response = JSON.parse(this.responseText);
-      if(response.status==="ok")window.location.href= '../dados_pessoais/update_dados.php';
-      }};
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+        if(response.status==="ok")window.location.href = '../dados_pessoais/update_dados.php';
+        else if(response.status==="not_ok"){
+        swal({
+          title: 'ERRO!',
+          text: 'Tente outra vez!',
+          type: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+      }
+    };
 
   xmlhttp.open("POST", "login.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var message = "user=" + usernameInput + "&" + "pass=" + passInput;
   xmlhttp.send(message);
   return;
-},1500);
 }
 
 
@@ -147,7 +150,7 @@ function RegistoFeito(){
   let submit = null;
   ActivateSubmit();
 
-  setTimeout(function(){ submit = ActivateSubmit();},300);
+  setTimeout(function(){ submit = ActivateSubmit();},250);
 
   if(   (document.getElementById("email").value.length > 0) && (document.getElementById("user").value.length > 0)
       && (document.getElementById("pass").value.length > 0) && (document.getElementById("c_pass").value.length > 0)){
@@ -163,9 +166,27 @@ function RegistoFeito(){
       		if (this.readyState == 4 && this.status == 200) {
       		  var response = JSON.parse(this.responseText);
       		  if(response.status==="ok"){
+              swal({
+                title: 'Registo Efetuado com Sucesso!',
+                text: 'Vai ser redirecionado para a página para completar os seus dados pessoais',
+                type: 'success',
+                showConfirmButton: false,
+                timer: 2500
+              });
               evaluate_submit = 1;
-              LoginAutomatico();
-      			}}};
+              setTimeout(()=>{LoginAutomatico();},2300);
+      			}else if (response.status==="not_ok") {
+              setTimeout(()=>{window.location.reload(true);},1000)
+              swal({
+                title: 'ERRO!',
+                text: 'Tente outra vez!',
+                type: 'error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+            }
+          }
+        };
         xmlhttp.open("POST", "registo.php", true);
        	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
        	var message = "user=" + usernameInput + "&" + "email=" + emailInput + "&" + "pass=" + passInput;

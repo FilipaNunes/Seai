@@ -16,9 +16,9 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
-	include_once("../login/session.php"); 
+	include_once("../login/session.php");
 	$user_data = user_data_db();
     $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -36,13 +36,13 @@ body {font-size:16px;}
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../dados_pessoais/dados_pessoais.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
@@ -82,7 +82,7 @@ body {font-size:16px;}
   <div class="w3-row-padding">
     <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-dark-grey w3-xlarge w3-padding-32">0 a 1 Kg</li>
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">0 a 0,5 Kg</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
         <li class="w3-padding-16">
@@ -93,12 +93,12 @@ body {font-size:16px;}
           <form action="encomenda.php" method='get' >
               <button class="w3-button w3-white w3-padding-large w3-hover-black" name='first' type='submit'>Escolher</button>
           </form>
-		  
+
         </li>
       </ul>
     </br>
 	<ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-dark-grey w3-xlarge w3-padding-32">>2 a 3 Kg</li>
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">>1 a 1,5 Kg</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
         <li class="w3-padding-16">
@@ -115,7 +115,7 @@ body {font-size:16px;}
 
     <div class="w3-half">
       <ul class="w3-ul w3-light-grey w3-center">
-      <li class="w3-dark-grey w3-xlarge w3-padding-32">>1 a 2 Kg</li>
+      <li class="w3-dark-grey w3-xlarge w3-padding-32">>0,5 a 1 Kg</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
       <li class="w3-padding-16">
@@ -130,7 +130,7 @@ body {font-size:16px;}
       </ul>
     </br>
     <ul class="w3-ul w3-light-grey w3-center">
-      <li class="w3-dark-grey w3-xlarge w3-padding-32">>3 a 4 Kg</li>
+      <li class="w3-dark-grey w3-xlarge w3-padding-32">>1,5 a 2 Kg</li>
         <li class="w3-padding-16">Se fizer mais que 3 encomendas, tem um desconto de 15% sobre o valor total</li>
         <li class="w3-padding-16">Não pode levar substâncias tóxicas e infeciosas, substâncias radioativas, materiais corrosivos, gases comprimidos, explosivos e materiais inflamáveis.</li>
       <li class="w3-padding-16">
@@ -148,7 +148,7 @@ body {font-size:16px;}
 
   <!-- End page content -->
   </div>
-  
+
   <script>
   // Script to open and close sidebar
   function w3_open() {

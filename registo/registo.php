@@ -4,13 +4,15 @@
 <?php include_once("registo/check.php") ?>
 
 <?php
-	$login = strip_tags($_POST['user']);
-	$password = strip_tags($_POST['pass']);
-	$email = strip_tags($_POST['email']);
+	  if(isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['email']) ){
+			$login = htmlentities($_POST['user']);
+			$password = htmlentities($_POST['pass']);
+			$email = htmlentities($_POST['email']);
 
-	addUser($login,$password,$email);
+			addUser($login,$password,$email);
 
-	$message = array('status' => 'ok');
+			$message = array('status' => 'ok');
+		} else $message = array('status' => 'not_ok');
 
 	echo json_encode($message);
 

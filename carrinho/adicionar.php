@@ -12,7 +12,7 @@
 	$custo = $_POST['custo'];
 	$ponto_recolha = $_POST['ponto_recolha'];
 
-	$limite_inf = $servico - 1;
+	$limite_inf = $servico - 0.5;
 
 	$servico = '>'.$limite_inf.' a '.$servico.'kg';
 

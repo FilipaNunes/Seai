@@ -2,16 +2,22 @@
 <?php include_once("login/action_login.php") ?>
 
 <?php
-  session_start();
 
-  $login = strip_tags($_POST['user']);
-	$password = strip_tags($_POST['pass']);
+  if(isset($_POST['user']) && isset($_POST['pass'])) {
+
+    if (session_status() == PHP_SESSION_NONE)session_start();
+
+  $login = htmlentities($_POST['user']);
+	$password = htmlentities($_POST['pass']);
 
   $id = verifica_login($login, $password);
   $_SESSION["user_id"] = $id;
 
   $message = array('status' => 'ok');
 
-	echo json_encode($message);
+} else $message = array('status' => 'not_ok');
+
+	   echo json_encode($message);
+
 
 ?>
