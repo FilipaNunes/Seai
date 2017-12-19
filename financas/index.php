@@ -290,7 +290,7 @@ body {font-size:16px;}
   </select>
   <p>
     <label class="w3-text-red"><b>Valor (€)</b></label>
-    <input class="w3-input w3-border" name="valor" type="number" required></p>
+    <input class="w3-input w3-border" name="valor" type="number" placeholder='Inserir valor da despesa' required></p>
     <p class="w3-right"><a href="despesasMesCompleto.php" style="text-decoration: underline;">Inserir mês completo</a></p>
     <button class="w3-btn w3-red" type="submit">Submeter</button></p>
   </form>

@@ -110,22 +110,22 @@ body {font-size:16px;}
     </select>
     <p>
     <label class="w3-text-red"><b>Salários (€)</b></label>
-    <input class="w3-input w3-border" name="salarios" type="number" required></p>
+    <input class="w3-input w3-border" name="salarios" type="number" placeholder='Colocar "0" caso a despesa não exista' required></p>
     <p>
     <label class="w3-text-red"><b>Água/Gás (€)</b></label>
-    <input class="w3-input w3-border" name="aguagas" type="number" required></p>
+    <input class="w3-input w3-border" name="aguagas" type="number" placeholder='Colocar "0" caso a despesa não exista' required></p>
     <p>
     <label class="w3-text-red"><b>Energia (€)</b></label>
-    <input class="w3-input w3-border" name="energia" type="number" required></p>
+    <input class="w3-input w3-border" name="energia" type="number" placeholder='Colocar "0" caso a despesa não exista' required></p>
     <p>
     <label class="w3-text-red"><b>Aluguer (€)</b></label>
-    <input class="w3-input w3-border" name="aluguer" type="number" required></p>
+    <input class="w3-input w3-border" name="aluguer" type="number" placeholder='Colocar "0" caso a despesa não exista' required></p>
     <p>
     <label class="w3-text-red"><b>Manutenção (€)</b></label>
-    <input class="w3-input w3-border" name="manutencao" type="number" required></p>
+    <input class="w3-input w3-border" name="manutencao" type="number" placeholder='Colocar "0" caso a despesa não exista' required></p>
     <p>
     <label class="w3-text-red"><b>Outras (€)</b></label>
-    <input class="w3-input w3-border" name="outras" type="number" required></p>
+    <input class="w3-input w3-border" name="outras" type="number" placeholder='Colocar "0" caso a despesa não exista' required></p>
     <button class="w3-btn w3-red" type="submit">Submeter</button></p>
     </form>
   </br>
