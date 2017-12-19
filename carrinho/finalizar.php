@@ -11,7 +11,6 @@
 			$recolha = explode(' -',$recolha);
 			$recolha = $recolha[0];
 			$query = "SELECT id_a FROM armazem WHERE nome = :nome";
-			print_r($recolha);
 			$values = array($recolha);
 			$insert = array(':nome');
 
@@ -19,12 +18,12 @@
 
 			$id_recolha_temp = $result->fetch();
 			$id_recolha = $id_recolha_temp['id_a'];
+
 		}else if($ponto_recolha == 2){
 			$local_recolha = 'ponto_recolha';
 			$recolha = explode(' -',$recolha);
 			$recolha = $recolha[0];
 			$query = "SELECT id_er FROM ponto_entrega_recolha WHERE nome = :morada";
-			print_r($recolha);
 			$values = array($recolha);
 			$insert = array(':morada');
 
@@ -46,7 +45,10 @@
 		$id_entrega_temp = $result->fetch();
 		$id_entrega = $id_entrega_temp['id_er'];
 
-		$query = 'INSERT INTO encomenda(peso,dimensoes,data_submissao,"'.$local_recolha.'",
+		print_r($recolha);
+		print_r($id_entrega);
+
+		$query = 'INSERT INTO encomenda(peso,dimensoes,data_submissao,'.$local_recolha.',
 													tipo_encomenda,hora_submissao,cliente,ponto_entrega)
 				  		VALUES(:peso, :dimensao, :data_s,:recolha,:produto,:hora_s,:id,:entrega)';
 
@@ -59,14 +61,17 @@
 												   										 data_submissao = :data_s AND
 																						   ponto_entrega = :destino AND
 																						   tipo_encomenda = :produto AND
-																						   "'.$local_recolha.'" = :recolha AND
-																						   hora_submissao = :hora_s AND cliente = :id';
+																						   '.$local_recolha.' = :recolha AND
+																						   hora_submissao = :hora_s AND cliente = :id
+																			   ORDER BY id_e';
 
 		$values = array($peso,$dimensao,$data_s,$id_entrega,$produto,$id_recolha,$hora_s,$id_c);
 		$insert = array(':peso', ':dimensao', ':data_s',':destino',':produto',':recolha',':hora_s',':id');
 
 		$result = execQuery($query,$insert,$values);
 		$id_e = $result->fetch();
+
+		print_r($id_e);
 
 		return $id_e;
 	}
@@ -159,6 +164,7 @@
 				$encomenda = InserirEncomenda($peso,$dimensao,$data_s,$destino,$produto,$recolha,$hora_s,$id_c,$ponto_recolha);
 				$id_e_temp= $encomenda['id_e'];
 				$id_e = $id_e_temp + $j;
+				print_r($id_e);
 				InserirFaz($id_e,$id_c,$custo);
 				Receitas($servico,$custo,$data_receita);
 			}
@@ -167,6 +173,7 @@
 	}
 
 	$_SESSION['carrinho'] = array();
+
 
 	header('location: ../index.php');
 

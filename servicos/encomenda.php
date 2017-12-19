@@ -150,7 +150,7 @@ body {font-size:16px;}
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
-    <input class="w3-input border" name="peso" id="peso" type="text" placeholder='O peso máximo é 4 quilos' title='Deve ser inserido em quilogramas com o seguinte formato 1.3 ou 1!' onChange= 'VerificaPeso()' pattern='([0-9]+[.]+[0-9])|([0-9])' required></p>
+    <input class="w3-input border" name="peso" id="peso" type="text" placeholder='Insira um peso compreendido no serviço que escolheu' title='Deve ser inserido em quilogramas com o seguinte formato 1.3 ou 1!' onChange= 'VerificaPeso()' pattern='([0-9]+[.]+[0-9])|([0-9])' required></p>
 		<div id='peso_errado' style='color:#f44336'></div>
 	</p>
 	<p>

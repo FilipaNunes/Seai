@@ -25,10 +25,21 @@ function Finalizar(){
 			cancelButtonClass: 'btn btn-danger',
 			buttonsStyling: true
 	}).then(function (result) {
-		if (result.value)document.getElementById("finalizar").submit();
+		if (result.value){
+      swal({
+    		title: 'Submetido',
+    		text: "A encomenda foi submetida com sucesso!",
+    		type: 'success',
+    		showConfirmButton: false,
+    		timer: 1500
+    	})
+      setTimeout(function(){
+        document.getElementById("finalizar").submit();
+      }, 2500);
+    }
 		else if (result.dismiss === 'cancel') return false;
 	})
-	
+
 }
 
 function ConfirmarDelete(id){
