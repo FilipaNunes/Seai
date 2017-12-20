@@ -28,7 +28,7 @@
 		$result3 = execQuery($query3,NULL,NULL);
 		$receitas = $result3->fetch();
 		
-		if (($peso > 0) AND ($peso <= 1)) {
+		if (($peso > 0) AND ($peso <= 0.5)) {
 			$correcao = $receitas["0a1"] - $custo;
 			$id_r = $receitas["id"];
 			$query4 = "UPDATE receitas
@@ -39,7 +39,7 @@
 			execQuery($query4, $insert2, $values2);
 		}
 		
-		elseif (($peso > 1) AND ($peso <= 2)) {
+		elseif (($peso > 0.5) AND ($peso <= 1)) {
 			$correcao = $receitas["1a2"] - $custo;
 			$id_r = $receitas["id"];
 			$query4 = "UPDATE receitas
@@ -50,7 +50,7 @@
 			execQuery($query4, $insert2, $values2);
 		}
 		
-		elseif (($peso > 2) AND ($peso <= 3)) {
+		elseif (($peso > 1) AND ($peso <= 1.5)) {
 			$correcao = $receitas["2a3"] - $custo;
 			$id_r = $receitas["id"];
 			$query4 = "UPDATE receitas
@@ -61,7 +61,7 @@
 			execQuery($query4, $insert2, $values2);
 		}
 		
-		elseif (($peso > 3) AND ($peso <= 4)) {
+		elseif (($peso > 1.5) AND ($peso <= 2)) {
 			$correcao = $receitas["3a4"] - $custo;
 			$id_r = $receitas["id"];
 			$query4 = "UPDATE receitas
