@@ -35,7 +35,7 @@ body {font-size:16px;}
 		<a href="../contactos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
 		<a href="../colaboradores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Colaboradores</a>
   <?php if ($_SESSION["user_id"] == NULL) { ?>
-		<hr style="border-width: 2px; border-color: red">
+		<hr style="border-width: 2px; border-color: red"> 
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
   <?php } 
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
