@@ -134,10 +134,10 @@ body {font-size:16px;}
           <table class="w3-table-all w3-centered">
             <thead>
               <tr class="w3-red">
-                <th>0 a 1Kg</th>
-                <th>>1 a 2Kg</th>
-                <th>>2 a 3Kg</th>
-                <th>>3 a 4kg</th>
+                <th>0 a 0,5Kg</th>
+                <th>>0,5 a 1Kg</th>
+                <th>>1 a 1,5Kg</th>
+                <th>>1,5 a 2kg</th>
                 <th>Outras</th>
                 <th>Total</th>
               </tr>
@@ -161,10 +161,10 @@ body {font-size:16px;}
           <table class="w3-table-all w3-centered">
             <thead>
               <tr class="w3-red">
-                <th>0 a 1Kg</th>
-                <th>>1 a 2Kg</th>
-                <th>>2 a 3Kg</th>
-                <th>>3 a 4kg</th>
+                <th>0 a 0,5Kg</th>
+                <th>>0,5 a 1Kg</th>
+                <th>>1 a 1,5Kg</th>
+                <th>>1,5 a 2kg</th>
                 <th>Outras</th>
                 <th>Total</th>
               </tr>
@@ -358,25 +358,25 @@ var chart = AmCharts.makeChart("chartdiv2", {
         "balloonText": "<b>[[title]]</b><br><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
         "fillAlphas": 0.6,
         "lineAlpha": 0.4,
-        "title": "0 a 1Kg",
+        "title": "0 a 0,5Kg",
         "valueField": "0a1"
     }, {
         "balloonText": "<b>[[title]]</b><br><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
         "fillAlphas": 0.6,
         "lineAlpha": 0.4,
-        "title": "1 a 2Kg",
+        "title": "0,5 a 1Kg",
         "valueField": "1a2"
     }, {
         "balloonText": "<b>[[title]]</b><br><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
         "fillAlphas": 0.6,
         "lineAlpha": 0.4,
-        "title": "2 a 3Kg",
+        "title": "1 a 1,5Kg",
         "valueField": "2a3"
     }, {
         "balloonText": "<b>[[title]]</b><br><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
         "fillAlphas": 0.6,
         "lineAlpha": 0.4,
-        "title": "3 a 4Kg",
+        "title": "1,5 a 2Kg",
         "valueField": "3a4"
     }, {
         "balloonText": "<b>[[title]]</b><br><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
