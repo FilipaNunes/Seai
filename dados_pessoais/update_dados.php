@@ -120,7 +120,7 @@ body {font-size:16px;}
                                 <b>Nova Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input w3-border" name="new_password" placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
+                                <input type="password" class="text-input w3-border" name="new_password" pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
                             </td>
                         </tr>
 						<tr>
@@ -128,7 +128,7 @@ body {font-size:16px;}
                                 <b>Confirmar Nova Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input w3-border" name="confirm_new_password" placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
+                                <input type="password" class="text-input w3-border" name="confirm_new_password" pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
                             </td>
                         </tr>
 						<tr>
