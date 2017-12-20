@@ -86,10 +86,10 @@
 			?>
 
 						<tr style='text-align:center'>
-						<td style='text-align:center'><?php if(0 < $encomenda["peso"] AND 0.5 >= $encomenda["peso"]) echo "0 a 0.5 Kg";
-								  if(0.5 < $encomenda["peso"] AND 1 >= $encomenda["peso"]) echo ">0.5 a 1 Kg";
-								  if(1 < $encomenda["peso"] AND 1.5 >= $encomenda["peso"]) echo ">1 a 1.5 Kg";
-								  if(1.5 < $encomenda["peso"] AND 2 >= $encomenda["peso"]) echo ">1.5 a 2 Kg";?></td>
+						<td style='text-align:center'><?php if(0 < $encomenda["peso"] AND 0.5 >= $encomenda["peso"]) echo "0 a 0,5 Kg";
+								  if(0.5 < $encomenda["peso"] AND 1 >= $encomenda["peso"]) echo ">0,5 a 1 Kg";
+								  if(1 < $encomenda["peso"] AND 1.5 >= $encomenda["peso"]) echo ">1 a 1,5 Kg";
+								  if(1.5 < $encomenda["peso"] AND 2 >= $encomenda["peso"]) echo ">1,5 a 2 Kg";?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["tipo_encomenda"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["custo"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$destino['morada_arm'].'';?></td>
