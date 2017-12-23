@@ -35,7 +35,7 @@ WHERE estado='entregue' and flag=false;";
 	$num_registos = $result->rowCount($result);
 
 
-		if($num_registos > 0 && $flag==FALSE)
+		/*if($num_registos > 0 && $flag==FALSE)
 		{
 
 			// Use the client to do fun stuff like send text messages!
@@ -55,7 +55,7 @@ WHERE estado='entregue' and flag=false;";
 
 
 
-		}
+		}*/
 
 
 ?>

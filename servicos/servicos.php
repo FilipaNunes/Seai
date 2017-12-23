@@ -6,7 +6,7 @@
 
 	function PontoRecolha(){
 		echo'
-					<select class="w3-select" name="option" id="localrecolha" required>
+					<select class="select" name="option" id="localrecolha" onclick="MoradaEntrega()" required>
 					<option value="" disabled selected>Escolher</option>';
 
 		$query = 'SELECT nome, morada_arm FROM ponto_entrega_recolha';
@@ -25,7 +25,6 @@
 				";
 		}
 		echo"</select>";
-
 	}
 
 	function RecolhaArmazem(){
@@ -41,7 +40,7 @@
 					<div style="color:#f44336"> Não há armazéns disponíveis! Escolha um ponto de recolha ou tente mais tarde</div>';
 		else{
 			echo'
-						<select class="w3-select" name="option" id="localrecolha" required>
+						<select class="select" name="option" id="localrecolha" required>
 						<option value="" disabled selected>Escolher</option>';
 			for($i=0;$i<$num_registos;$i++){
 				$array = $result->fetch();

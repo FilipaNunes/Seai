@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/notificacao.css">
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -17,10 +18,12 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
-	include_once("../login/session.php"); 
+	include_once("../login/session.php");
 	if ($_SESSION["user_id"] != NULL) header("Location: ../index.php");
+	if(isset($_SESSION['wrong_login'])) $_SESSION['wrong_login'] = $_SESSION['wrong_login'] + 1;
+	else $_SESSION['wrong_login'] = 0;
 ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Fechar Menu</a>
@@ -54,7 +57,7 @@ body {font-size:16px;}
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Login</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
-	
+
 <form class="w3-container w3-card-4" method="POST" action="action_login.php">
 <br><div class="w3-text-red"><center>Os dados que introduziu não estão corretos.<center></div>
 
@@ -64,6 +67,16 @@ body {font-size:16px;}
   <p>
   <label class="w3-text-red"><b>Password</b></label>
   <input class="w3-input w3-border" name="password" type="password" required></p>
+	<?php
+		if(isset($_SESSION['wrong_login']) && $_SESSION['wrong_login']>2)
+			echo'
+				<label class="login">Selecione para fazer login
+					<input  type="checkbox" name="wrong"  id="wrong"';
+						if (isset($wrong))echo "checked";
+					echo 'required>
+							 <span class="checkmark"></span>
+				</label>';
+	?>
   <p><input type="submit" name="login" value="Entrar"></p>
   <p class="w3-right">Ainda não tem conta? Siga para <a href="../registo/index.php" style="color: red; text-decoration: underline;">Registar</a></p>
 </form>

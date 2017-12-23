@@ -145,10 +145,10 @@
 
 			$servico = ($_SESSION['carrinho']['servico'][$i]);
 
-			if ( strcmp($servico,'>0 a 0,5kg') == 0) $servico = '0a1';
-			else if ( strcmp($servico,'>0,5 a 1kg') == 0) $servico = '1a2';
-			else if ( strcmp($servico,'>1 a 1,5kg') == 0) $servico = '2a3';
-			else if ( strcmp($servico,'>1,5 a 2kg') == 0) $servico = '3a4';
+			if ( strcmp($servico,'>0 a 0.5kg') == 0) $servico = '0a1';
+			else if ( strcmp($servico,'>0.5 a 1kg') == 0) $servico = '1a2';
+			else if ( strcmp($servico,'>1 a 1.5kg') == 0) $servico = '2a3';
+			else if ( strcmp($servico,'>1.5 a 2kg') == 0) $servico = '3a4';
 			else $servico = 'outras';
 
 			$produto = ($_SESSION['carrinho']['produto'][$i]);

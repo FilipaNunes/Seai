@@ -8,7 +8,7 @@ function Delete(id){
 			if(response.status==='not_ok'){
 				swal({
 					title: 'Erro',
-					text: 'O cliente tem encomendas em processamento!',
+					text: 'O cliente tem encomendas em processamento ou a serem enviadas no momento!',
 					type: 'error',
 					showConfirmButton: false,
 					timer: 2500

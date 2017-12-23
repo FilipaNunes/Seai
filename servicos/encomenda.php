@@ -160,25 +160,26 @@ body {font-size:16px;}
 	</p>
     <p>
     <label class="w3-text-red"><b>Escolha o ponto de recolha:</b></label><p></p>
-		<input type="radio" name="ponto_recolha" id="armazem"
+		<input  type="radio" name="ponto_recolha" id="armazem"
 		<?php if (isset($ponto_recolha) && $ponto_recolha=="armazem"){
 			echo "checked";
 		}
 		?>
-		value = "armazem" onClick='Recolha()'/>Armazém
-		<input type="radio" name="ponto_recolha" id="recolha"
+		value = "armazem" onclick='Recolha()'/>Armazém
+		<input  type="radio" name="ponto_recolha" id="recolha"
 		<?php if (isset($ponto_recolha) && $ponto_recolha=="recolha"){
 						echo "checked";
 					}
 		?>
-		value = "recolha" onClick='Recolha()' required/>Ponto de Recolha
+		value = "recolha" onclick='Recolha()' required/>Ponto de Recolha
 		<div id="ponto_recolha"> </div>
     <p>
     <label class="w3-text-red"><b>Morada de destino</b></label>
-    <select class="w3-select" name="option2" id="destino" required>
+    <select class="select" name="option2" id="destino" onclick='MoradaEntrega()' required>
     <option value="" disabled selected>Escolher</option>
     <?php MoradaEntrega(); ?>
-	</select>
+		</select>
+		<div id='morada_errada' style='color:#f44336'></div>
 	</p>
     <p>
     <label class="w3-text-red"><b>Preço previsto(€)</b></label></p>

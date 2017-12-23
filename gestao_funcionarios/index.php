@@ -59,8 +59,8 @@ body {font-size:16px;}
   <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
-		<a class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
-		<a href="../gestao_funcionarios/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-red">Gestão de Funcionários</a>
+		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
+		<a class="w3-bar-item w3-button w3-red">Gestão de Funcionários</a>
 		<a href="../entregas/entregas.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Entregas</a>
 		<a href="../financas/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Finanças</a>
 		<a href="../kpis/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">KPIs</a>

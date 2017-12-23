@@ -17,7 +17,7 @@ body {font-size:16px;}
 <body>
 
 <!-- Sidebar/menu -->
-<?php 
+<?php
 	include_once("../database/database.php");
 	include_once("../login/session.php");
 	if ($_SESSION["user_id"] == NULL) header("Location: ../index.php");
@@ -37,13 +37,13 @@ body {font-size:16px;}
   <?php if ($_SESSION["user_id"] == NULL) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a href="../login/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Login</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 0) { ?>
 		<hr style="border-width: 2px; border-color: red">
 		<a class="w3-bar-item w3-button w3-red"><?=$user_data1["username"]?></a>
 		<a href="../carrinho/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Carrinho</a>
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
-  <?php } 
+  <?php }
 		elseif ($_SESSION["user_id"] != NULL AND check_admin_db() == 1) { ?>
 		<a href="../armazens/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Armazéns</a>
 		<a href="../gestao_utilizadores/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Gestão de Utilizadores</a>
@@ -72,7 +72,7 @@ body {font-size:16px;}
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <div class="w3-container" id="packages" style="margin-top:75px">
-  </div>	
+  </div>
 				<div class="w3-row w3-center">
 					<a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'dados1');">
 					  <div class="w3-col tablink w3-bottombar w3-hover-light-grey w3-padding">Dados do Utilizador</div>
@@ -120,7 +120,7 @@ body {font-size:16px;}
                                 <b>Nova Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input w3-border" name="new_password" pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
+                                <input type="password" class="text-input w3-border" name="new_password" pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
                             </td>
                         </tr>
 						<tr>
@@ -128,7 +128,7 @@ body {font-size:16px;}
                                 <b>Confirmar Nova Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input w3-border" name="confirm_new_password" pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
+                                <input type="password" class="text-input w3-border" name="confirm_new_password" pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
                             </td>
                         </tr>
 						<tr>
@@ -159,7 +159,7 @@ body {font-size:16px;}
                                 <input type="text" class="text-input w3-border" placeholder='Morada' name="address" value="<?=$user_data1["morada"]?>" style="width:93%" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
                             </td>
                         </tr>
-					</table>                  
+					</table>
 				<br>
 				<div style="text-align: right"><input type="submit" class="button" name="update" value="Guardar"/></div>
 				</form>
@@ -181,7 +181,7 @@ body {font-size:16px;}
   }
 
   </script>
-  
+
   <script>
   function openTab(evt, tabName) {
     var i, x, tablinks;

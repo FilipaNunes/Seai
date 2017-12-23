@@ -16,6 +16,7 @@ var avaliar_peso;
 var avaliar_dim;
 var avaliar_quant;
 var custo_certo = 0;
+var avaliar_entrega;
 
 
 function TransformaPeso(peso){
@@ -54,6 +55,7 @@ function VerificaPeso(){
 	var peso_limite = document.getElementById('limite_peso').value;
 	var peso_limite_inf = peso_limite - 0.5;
 	var peso = document.getElementById('peso').value;
+  avaliar_peso = 0;
 
 	if(peso !== ''){
 		peso = TransformaPeso(peso);
@@ -106,6 +108,7 @@ function VerificarDimensao(){
 	var comprimento_max = 22;
 	var largura_max= 14;
 	var altura_max = 4;
+  avaliar_dim = 0;
 
 		var partes_dim = dim.split('x');
 		if(partes_dim[0] > comprimento_max){
@@ -167,10 +170,54 @@ function Quantidade(){
 }
 
 
+function MoradaEntrega(){
+    avaliar_entrega = 0;
+
+    var recolha_value = document.getElementById('localrecolha');
+    var destino = document.getElementById('destino');
+
+    if(recolha_value === null || destino === null) return ;
+    else{
+      let ponto = document.getElementById('recolha').checked;
+    	let armazem =  document.getElementById('armazem').checked;
+
+    	let ponto_recolha = 0;
+
+    	if(armazem === true)   ponto_recolha = 1;
+    	else if (ponto === true)   ponto_recolha = 2;
+
+      var recolha_value = document.getElementById('localrecolha').value;
+      var destino_value = document.getElementById('destino').value;
+
+      if(recolha_value === '' || destino_value === '' )return;
+      else{
+      	var recolha = document.getElementById('localrecolha');
+      	recolha = recolha.options[recolha_value].text;
+
+
+      	var destino = document.getElementById('destino');
+      	destino = destino.options[destino_value].text;
+
+        if(destino == recolha && ponto_recolha == 2) {
+            document.getElementById("morada_errada").innerHTML="O local de destino não pode ser igual ao de recolha!";
+            document.getElementById('destino').style.borderColor = "#f44336";
+            document.getElementById('localrecolha').style.borderColor = "#f44336";
+            return false;
+        } else{
+            document.getElementById("morada_errada").innerHTML=null;
+            document.getElementById('destino').style.borderColor = "#ccc";
+            document.getElementById('localrecolha').style.borderColor = "#ccc";
+            avaliar_entrega = 1;
+            return true;
+        }
+      }
+    }
+
+}
 
 function ActivateSubmit(){
 
-	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1) && (custo_certo === 1 )) return true;
+	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1) && (custo_certo === 1 ) && (avaliar_entrega === 1)) return true;
 	else return false;
 }
 
@@ -209,6 +256,7 @@ function Custo(){
 	return;
 }
 
+
 function Adicionado(){
 	var servico = document.getElementById('limite_peso').value;
 
@@ -237,45 +285,45 @@ function Adicionado(){
 	destino = destino.options[destino_value].text;
 
 
-	var xmlhttp = new XMLHttpRequest();
+      var xmlhttp = new XMLHttpRequest();
 
-    if(ActivateSubmit() === true){
+      if(ActivateSubmit() === true){
+        setTimeout(function(){
+          var custo = document.getElementById("custo").innerHTML;
+        	xmlhttp.onreadystatechange = function() {
+        		if (this.readyState == 4 && this.status == 200) {
+        			swal({
+        				title: 'Encomenda adicionada ao carrinho com sucesso!',
+        				text: "Escolha a página para onde quer ser redirecionado:",
+        				type: 'success',
+        				showCancelButton: true,
+        				confirmButtonColor: '#3085d6',
+        				cancelButtonColor: '#f44336',
+        				confirmButtonText: 'Carrinho',
+        				cancelButtonText: 'Nova Encomenda',
+        				confirmButtonClass: 'btn btn-success',
+        				cancelButtonClass: 'btn btn-danger',
+        				buttonsStyling: true
+        			}).then(function (result) {
+        			if (result.value)window.location.href = '../carrinho/index.php';
+        			else if (result.dismiss === 'cancel') window.location.href = 'index.php';
+        			})
+        		};
+        	}
 
-      setTimeout(function(){
-        var custo = document.getElementById("custo").innerHTML;
-      	xmlhttp.onreadystatechange = function() {
-      		if (this.readyState == 4 && this.status == 200) {
-      			swal({
-      				title: 'Encomenda adicionada ao carrinho com sucesso!',
-      				text: "Escolha a página para onde quer ser redirecionado:",
-      				type: 'success',
-      				showCancelButton: true,
-      				confirmButtonColor: '#3085d6',
-      				cancelButtonColor: '#f44336',
-      				confirmButtonText: 'Carrinho',
-      				cancelButtonText: 'Nova Encomenda',
-      				confirmButtonClass: 'btn btn-success',
-      				cancelButtonClass: 'btn btn-danger',
-      				buttonsStyling: true
-      			}).then(function (result) {
-      			if (result.value)window.location.href = '../carrinho/index.php';
-      			else if (result.dismiss === 'cancel') window.location.href = 'index.php';
-      			})
-      		};
-      	}
+        	xmlhttp.open("POST", "../carrinho/adicionar.php", true);
+        	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
 
-      	xmlhttp.open("POST", "../carrinho/adicionar.php", true);
-      	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+        	var message = "servico=" + servico + "&" + "produto=" + produto + "&" +"dimensoes=" + dimensoes + "&"+
+        				  "peso=" + peso + "&" + "quantidade=" + quantidade + "&" + "recolha=" + recolha + "&" +
+        				  "destino=" + destino + "&" + "custo=" + custo + "&" + "ponto_recolha=" + ponto_recolha;
+        	xmlhttp.send(message);
+        	return;},500);
+    } else {
+        displayNotification("Por favor corrija os campos assinalados a vermelho!");
+        return false;
+      }
 
-      	var message = "servico=" + servico + "&" + "produto=" + produto + "&" +"dimensoes=" + dimensoes + "&"+
-      				  "peso=" + peso + "&" + "quantidade=" + quantidade + "&" + "recolha=" + recolha + "&" +
-      				  "destino=" + destino + "&" + "custo=" + custo + "&" + "ponto_recolha=" + ponto_recolha;
-      	xmlhttp.send(message);
-      	return;},500);
-  } else {
-      displayNotification("Por favor corrija os campos assinalados a vermelho!");
-      return false;
-  }
 }
 
 function Recolha(){

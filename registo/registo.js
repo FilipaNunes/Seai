@@ -23,6 +23,7 @@ var evaluate_submit = 0;
 function CheckUsername(){
 	var usernameInput = document.getElementById('user').value;
 	var xmlhttp = new XMLHttpRequest();
+  evaluate_username = 0;
 
 	if(usernameInput==='' || usernameInput===null) return;
   else if(evaluate_submit === 1)return;
@@ -51,6 +52,7 @@ function CheckUsername(){
 }
 
 function ValidatePassword(){
+  evaluate_pass = 0;
 
   if(evaluate_submit === 1)return;
 	else if(document.getElementById('pass').value != '' && document.getElementById('c_pass').value != '' ){
@@ -73,6 +75,7 @@ function ValidatePassword(){
 
 function CheckEmail(){
 	var emailInput = document.getElementById('email').value;
+  evaluate_email=0;
 
 	var xmlhttp = new XMLHttpRequest();
 
@@ -147,7 +150,7 @@ function LoginAutomatico(){
 
 
 function RegistoFeito(){
-  let submit = null;
+  let submit = false;
   ActivateSubmit();
 
   setTimeout(function(){ submit = ActivateSubmit();},250);
@@ -155,7 +158,7 @@ function RegistoFeito(){
   if(   (document.getElementById("email").value.length > 0) && (document.getElementById("user").value.length > 0)
       && (document.getElementById("pass").value.length > 0) && (document.getElementById("c_pass").value.length > 0)){
   setTimeout(function(){
-    if(submit === false)displayNotification('Por favor corrija os campos do formulário!');
+    if(submit !== true)displayNotification('Por favor corrija os campos do formulário!');
     else {
         var usernameInput = document.getElementById('user').value;
         var emailInput = document.getElementById('email').value;

@@ -67,20 +67,20 @@ body {font-size:16px;}
 
   <p>
   <label class="w3-text-red"><b>Username</b></label>
-  <input class="w3-input border" id="user" name="user" type="text" placeholder='Nome pretendido para o utilizador' pattern='[a-z0-9_-]{3,20}' title='O username deve ter entre 3 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onfocus = 'Disable()' onblur = 'CheckUsername()' required>
+  <input class="w3-input border" id="user" name="user" type="text" placeholder='Nome pretendido para o utilizador' pattern='[a-z0-9_-]{3,20}' title='O username deve ter entre 3 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onblur = 'CheckUsername()' required>
   <div id="username_indis" style="color:#f44336"></div>
   </p>
   <p>
   <label class="w3-text-red"><b>Password</b></label>
-  <input class="w3-input border" id="pass" name="pass" type="password" placeholder='Insira Password' pattern='[a-zA-Z0-9_-]{6,20}' title='A password deve ter entre 6 e 20 caracteres, incluindo letras, números, hífen ou underscore!' onfocus = 'Disable()' onblur = 'ValidatePassword()' required></p>
+  <input class="w3-input border" id="pass" name="pass" type="password" placeholder='Insira Password' pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' onblur = 'ValidatePassword()' required></p>
   <p>
   <label class="w3-text-red"><b>Confirmar Password</b></label>
-  <input class="w3-input border" id="c_pass" name="c_pass" type="password" placeholder='Repita a Password' pattern='[a-zA-Z0-9_-]{6,20}' title='Repita a password inserida acima.' onfocus = 'Disable()' onblur = 'ValidatePassword()' required>
+  <input class="w3-input border" id="c_pass" name="c_pass" type="password" placeholder='Repita a Password' pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' title='Repita a password inserida acima.'  onblur = 'ValidatePassword()' required>
   <div id="pass_match" style="color:#f44336"></div>
   </p>
   <p>
   <label class="w3-text-red"><b>Email</b></label>
-  <input class="w3-input border" id="email" name="email" type="email" placeholder='Insira o email para o registo' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Introduza o email com este formato email@email.com' onfocus = 'Disable()' onblur = 'CheckEmail()' required>
+  <input class="w3-input border" id="email" name="email" type="email" placeholder='Insira o email para o registo' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Introduza o email com este formato email@email.com'  onblur = 'CheckEmail()' required>
   <div id="email_indis" style="color:#f44336"></div>
   </p>
   <p>
