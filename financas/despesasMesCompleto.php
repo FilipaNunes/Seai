@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Drone 2u</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>Drone2u</title>
+  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 <?php
     include_once('../database/database.php');

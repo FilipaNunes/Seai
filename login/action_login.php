@@ -12,22 +12,18 @@
         }
 
         return check_login_db($username, $password);
-    } 
+    }
 
     session_start();
 
-    if (isset($_POST["login"])){
-        $id = verifica_login($_POST["username"], $_POST["password"]);
-		print_r($id);
-        $_SESSION["user_id"] = $id;
-        
-        if ($id != NULL) {
-        header("Location: ../index.php");
-		}
+    if (isset($_POST["user"]) && isset($_POST["pass"]) ){
+        $id = verifica_login($_POST["user"], $_POST["pass"]);
 
-		else {
-		header("Location: wronglogin.php");
-		}
-    }
+        $_SESSION["user_id"] = $id;
+
+        if ($id != NULL) $message = array('status' => 'ok');
+	else $message = array('status' => 'not_ok');
+	}
+    echo json_encode($message);
 
 ?>

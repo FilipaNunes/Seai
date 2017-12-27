@@ -17,6 +17,7 @@ var avaliar_dim;
 var avaliar_quant;
 var custo_certo = 0;
 var avaliar_entrega;
+var evaluate_submit = 0;
 
 
 function TransformaPeso(peso){
@@ -216,8 +217,12 @@ function MoradaEntrega(){
 }
 
 function ActivateSubmit(){
+  VerificaPeso();
+  VerificarDimensao();
+  Quantidade();
+  MoradaEntrega();
 
-	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1) && (custo_certo === 1 ) && (avaliar_entrega === 1)) return true;
+	if((avaliar_peso === 1) && (avaliar_dim === 1) && (avaliar_quant === 1) && (custo_certo === 1 ) && (avaliar_entrega === 1)){ evaluate_submit = 1; return true;}
 	else return false;
 }
 
@@ -258,6 +263,7 @@ function Custo(){
 
 
 function Adicionado(){
+  ActivateSubmit();
 	var servico = document.getElementById('limite_peso').value;
 
 	var produto_value = document.getElementById('produto').value;
@@ -283,11 +289,9 @@ function Adicionado(){
 	var destino_value = document.getElementById('destino').value;
 	var destino = document.getElementById('destino');
 	destino = destino.options[destino_value].text;
+  var xmlhttp = new XMLHttpRequest();
 
-
-      var xmlhttp = new XMLHttpRequest();
-
-      if(ActivateSubmit() === true){
+      if(evaluate_submit === 1){
         setTimeout(function(){
           var custo = document.getElementById("custo").innerHTML;
         	xmlhttp.onreadystatechange = function() {
@@ -318,7 +322,7 @@ function Adicionado(){
         				  "peso=" + peso + "&" + "quantidade=" + quantidade + "&" + "recolha=" + recolha + "&" +
         				  "destino=" + destino + "&" + "custo=" + custo + "&" + "ponto_recolha=" + ponto_recolha;
         	xmlhttp.send(message);
-        	return;},500);
+        	return;},600);
     } else {
         displayNotification("Por favor corrija os campos assinalados a vermelho!");
         return false;

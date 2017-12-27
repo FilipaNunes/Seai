@@ -84,7 +84,7 @@ body {font-size:16px;}
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
-  <!-- Packages / Pricing Tables -->
+
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Armazéns</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
@@ -119,21 +119,30 @@ body {font-size:16px;}
 
   <div id="Inserir Armazém" class="w3-container armazens" style="display:none">
     <p></p>
-  	<form class="w3-container w3-card-4" >
+  	<form class="w3-container w3-card-4" onSubmit='event.preventDefault(); AdicionarArmazem()'>
       <p></p>
       <label class="w3-text-red"><b>Nome</b></label>
-      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
+      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9_\s]{3,40}' required></p>
       <div id="n_disponivel" style="color:#f44336"></div>
       <p>
       <label class="w3-text-red"><b>Morada</b></label>
-      <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
+      <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-Z0-9º\s]{3,40}' required></p>
       <p>
       <label class="w3-text-red"><b>Lotação Máxima</b></label>
       <input class="w3-input w3-border" id="lotacao_max" name="lotacao_max" type="text" placeholder=' Inserir lotação máxima do armazém' pattern='[0-9]{1,5}' required></p>
       <p>
-      <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar Novo Armazém' id='btnSubmit' onClick='event.preventDefault(); AdicionarArmazem()'>
+      <label class="w3-text-red"><b>Latitude</b></label>
+      <input class="w3-input w3-border" id="latitude" name="latitude" type="text" placeholder=' Inserir latitude do armazém' pattern='[0-9.]{1,30}' required></p>
+      <p>
+      <label class="w3-text-red"><b>Longitude</b></label>
+      <input class="w3-input w3-border" id="longitude" name="longitude" type="text" placeholder=' Inserir longitude do armazém' pattern='[0-9.]{1,30}' required></p>
+      <p>
+      <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar Novo Armazém' id='btnSubmit'>
     </form>
   </div>
+
+  </div>
+</div>
 
 <script>
   function openTab(evt, tabName) {

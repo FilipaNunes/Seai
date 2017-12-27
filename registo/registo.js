@@ -86,7 +86,6 @@ function CheckEmail(){
 		if (this.readyState == 4 && this.status == 200) {
 		  var response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
-        console.log("aqui2");
         document.getElementById("email_indis").innerHTML="Email já está registado! Escolha outro!";
         document.getElementById('email').style.borderColor = "#f44336";
         evaluate_email=0;
@@ -153,12 +152,10 @@ function RegistoFeito(){
   let submit = false;
   ActivateSubmit();
 
-  setTimeout(function(){ submit = ActivateSubmit();},250);
-
   if(   (document.getElementById("email").value.length > 0) && (document.getElementById("user").value.length > 0)
       && (document.getElementById("pass").value.length > 0) && (document.getElementById("c_pass").value.length > 0)){
   setTimeout(function(){
-    if(submit !== true)displayNotification('Por favor corrija os campos do formulário!');
+    if(evaluate_submit !== 1)displayNotification('Por favor corrija os campos do formulário!');
     else {
         var usernameInput = document.getElementById('user').value;
         var emailInput = document.getElementById('email').value;
@@ -196,7 +193,7 @@ function RegistoFeito(){
        	xmlhttp.send(message);
        	return;
   }
-  return false;},500);}
+  return false;},700);}
 }
 
 

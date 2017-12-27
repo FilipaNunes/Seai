@@ -34,7 +34,7 @@
 
 		for($i=0;$i<$num_registos;$i++){
 			$encomenda = $result->fetch();
-			$query = "SELECT morada_arm FROM ponto_entrega_recolha WHERE id_er = :id_entrega";
+			$query = "SELECT nome, morada_arm FROM ponto_entrega_recolha WHERE id_er = :id_entrega";
 
 			$values = array($encomenda["ponto_entrega"]);
 			$insert = array(':id_entrega');
@@ -42,7 +42,7 @@
 			$destino_temp = execQuery($query,$insert,$values);
 			$destino = $destino_temp->fetch();
 
-			$query = "SELECT morada_arm FROM ponto_entrega_recolha WHERE id_er = :id_recolha";
+			$query = "SELECT nome, morada_arm FROM ponto_entrega_recolha WHERE id_er = :id_recolha";
 
 			$values = array($encomenda["ponto_recolha"]);
 			$insert = array(':id_recolha');
@@ -50,7 +50,7 @@
 			$destino2_temp = execQuery($query,$insert,$values);
 			$destino2 = $destino2_temp->fetch();
 
-			$query = "SELECT morada_arm FROM armazem WHERE id_a = :id_recolha";
+			$query = "SELECT nome, morada_arm FROM armazem WHERE id_a = :id_recolha";
 
 			$values = array($encomenda["armazem_recolha"]);
 			$insert = array(':id_recolha');
@@ -64,10 +64,20 @@
 						<td style='text-align:center'><?=$encomenda["nome_completo"]?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["tipo_encomenda"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["custo"].'';?></td>
-						<td style='text-align:center'><?php echo ''.$destino['morada_arm'].'';?></td>
-						<td style='text-align:center'><?php if ($destino2 != NULL AND $destino3 == NULL) echo ''.$destino2['morada_arm'].'';
-								  if ($destino2 == NULL AND $destino3 != NULL) echo ''.$destino3['morada_arm'].'';
-								  if ($destino2 == NULL AND $destino3 == NULL) echo 'Indefinido';?></td>
+						<td style='text-align:center' class="morada"><?php echo ''.$destino['nome'].'';?>
+								<span class="moradatexto"><?php echo ''.$destino['morada_arm'].'';?></span>
+						</td>
+						<td style='text-align:center' class="morada"><?php
+									if ($destino2 != NULL AND $destino3 == NULL){
+										echo ''.$destino2['nome'].'';?>
+										<span class="moradatexto"><?php echo ''.$destino2['morada_arm'].'';?></span>
+									<?php }
+								  if ($destino2 == NULL AND $destino3 != NULL){
+										echo ''.$destino3['nome'].'';?>
+										<span class="moradatexto"><?php echo ''.$destino3['morada_arm'].'';?></span>
+									<?php }
+								  if ($destino2 == NULL AND $destino3 == NULL) echo 'Indefinido';?>
+							</td>						<td style='text-align:center'><?php $data_sub = date('d-m-Y H:i', strtotime(''.$encomenda["data_submissao"].' '.$encomenda["hora_submissao"].'')); echo $data_sub;?>
 						<td style='text-align:center'><?php if($encomenda["data_env"] != NULL AND $encomenda["hora_env"] != NULL) {$data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;}?></td>
 						<td style='text-align:center'><?php if($encomenda["data_entr"] != NULL AND $encomenda["hora_entr"] != NULL) {$data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;}?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["estado"].'';?></td>

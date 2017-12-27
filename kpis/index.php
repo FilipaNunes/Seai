@@ -118,37 +118,6 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <div class="w3-container">
-    <div>
-      <h2>Escolher mês:</h2>
-      </br>
-        <form class="w3-container w3-card-4" action="index.php" method="post">
-        </br>
-          <select class="w3-select" name="ano2" required>
-          <option value="" disabled selected>Ano</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-        </select>
-        <select class="w3-select" name="mes2" required>
-        <option value="" disabled selected>Mês</option>
-        <option value="01">Janeiro</option>
-        <option value="02">Fevereiro</option>
-        <option value="03">Março</option>
-        <option value="04">Abril</option>
-        <option value="05">Maio</option>
-        <option value="06">Junho</option>
-        <option value="07">Julho</option>
-        <option value="08">Agosto</option>
-        <option value="09">Setembro</option>
-        <option value="10">Outubro</option>
-        <option value="11">Novembro</option>
-        <option value="12">Dezembro</option>
-        </select>
-      <p></p>
-        <button class="w3-btn w3-red" type="submit">Submeter</button></p>
-        </form>
-      </br>
-    </div>
 
   <div class="w3-row w3-center">
     <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Encomendas');">
@@ -160,6 +129,39 @@ body {font-size:16px;}
   </div>
 
       <?php graficos(); ?>
+
+      <p> <hr style="width:50px;border:5px solid red" class="w3-round"> </p>
+      <div class="w3-container">
+        <div>
+          <h2><font color ='#f44336'> Escolher mês:</h2>
+          </br>
+            <form class="w3-container w3-card-4" action="index.php" method="post">
+            </br>
+              <select class="w3-select" name="ano2" required>
+              <option value="" disabled selected>Ano</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+            </select>
+            <select class="w3-select" name="mes2" required>
+            <option value="" disabled selected>Mês</option>
+            <option value="01">Janeiro</option>
+            <option value="02">Fevereiro</option>
+            <option value="03">Março</option>
+            <option value="04">Abril</option>
+            <option value="05">Maio</option>
+            <option value="06">Junho</option>
+            <option value="07">Julho</option>
+            <option value="08">Agosto</option>
+            <option value="09">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+            </select>
+          <p></p>
+            <button class="w3-btn w3-red" type="submit">Submeter</button></p>
+            </form>
+          </br>
+        </div>
 
   </div>
 

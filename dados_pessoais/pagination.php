@@ -36,6 +36,7 @@
 						  <th style='text-align:center'>Custo (€)</th>
 						  <th style='text-align:center'>Destino</th>
 						  <th style='text-align:center'>Recolha</th>
+							<th style='text-align:center'>Submissão</th>
 						  <th style='text-align:center'>Envio</th>
 						  <th style='text-align:center'>Entrega</th>
 						  <th style='text-align:center'>Estado</th>
@@ -106,6 +107,7 @@
 									<?php }
 								  if ($destino2 == NULL AND $destino3 == NULL) echo 'Indefinido';?>
 							</td>
+						<td style='text-align:center'><?php $data_sub = date('d-m-Y H:i', strtotime(''.$encomenda["data_submissao"].' '.$encomenda["hora_submissao"].'')); echo $data_sub;?>
 						<td style='text-align:center'><?php if($encomenda["data_env"] != NULL AND $encomenda["hora_env"] != NULL) {$data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;}?></td>
 						<td style='text-align:center'><?php if($encomenda["data_entr"] != NULL AND $encomenda["hora_entr"] != NULL) {$data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;}?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["estado"].'';?></td>

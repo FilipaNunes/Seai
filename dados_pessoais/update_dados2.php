@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="../css/style.css">
+
+<script src='dados_pessoais.js' charset='utf-8'></script>
+
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -82,14 +85,14 @@ body {font-size:16px;}
 				<div id="dados1" class="content dados">
 				<div class="w3-text-red"><center>A password que introduziu não está correta.<center></div>
 				<div style="font-size: 16pt">Dados Pessoais</div>
-				<form method="POST" action="action_update.php" autocomplete="on">
+				<form method="POST" onsubmit="event.preventDefault(); UpdateDados()" autocomplete="on">
 				<table>
 					<tr>
 						<td>
 							<b>Nome: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="name" value="<?=$user_data1["nome_completo"]?>" title="O nome apenas deve incluir letras e espaços." pattern="([A-zÀ-ž\s]){2,}" placeholder="Nome" required />
+							<input type="text" class="text-input w3-border" id="name" name="name" value="<?=$user_data1["nome_completo"]?>" title="O nome apenas deve incluir letras e espaços." pattern="([A-zÀ-ž\s]){2,}" placeholder="Nome" required />
 						</td>
 					</tr>
 					<tr>
@@ -97,7 +100,7 @@ body {font-size:16px;}
 							<b>E-mail: </b>
 						</td>
 						<td>
-							<input type="email" class="text-input w3-border" name="email" value="<?=$user_data1["email"]?>" size = "46" required readonly/>
+							<input type="email" class="text-input w3-border" id="email" name="email" value="<?=$user_data1["email"]?>" size = "46" required readonly/>
 						</td>
 					</tr>
 					<tr>
@@ -105,7 +108,7 @@ body {font-size:16px;}
 							<b>Nome de Utilizador: </b>
 						</td>
 						<td>
-							<input type="text" class="text-input w3-border" name="username" size="46" value="<?=$user_data1["username"]?>" required readonly/>
+							<input type="text" class="text-input w3-border" id="user" name="username" size="46" value="<?=$user_data1["username"]?>" required readonly/>
 						</td>
 					</tr>
 					<tr>
@@ -113,7 +116,7 @@ body {font-size:16px;}
                                 <b>Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input w3-border" name="password" placeholder='Insira a sua password atual' size="46" autocomplete="off" required />
+                                <input type="password" class="text-input w3-border" id="pass" name="password" placeholder='Insira a sua password atual' size="46" autocomplete="off" required />
                             </td>
                         </tr>
 						<tr>
@@ -121,7 +124,7 @@ body {font-size:16px;}
                                 <b>Nova Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input w3-border" name="new_password" pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
+                                <input type="password" class="text-input w3-border" id="n_pass" name="new_password" pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' placeholder='Insira a sua nova password (opcional)' size="46" autocomplete="off" />
                             </td>
                         </tr>
 						<tr>
@@ -129,7 +132,7 @@ body {font-size:16px;}
                                 <b>Confirmar Nova Password: </b>
                             </td>
                             <td>
-                                <input type="password" class="text-input w3-border" name="confirm_new_password" pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
+                                <input type="password" class="text-input w3-border" id="cn_pass" name="confirm_new_password" pattern='^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$' title='A password deve ter pelo menos 8 caracteres, incluindo obrigatoriamente uma letra maiúscula, uma letra minúscula e um número!' placeholder='Confirme a sua nova password' size="46" autocomplete="off" />
                             </td>
                         </tr>
 						<tr>
@@ -137,7 +140,7 @@ body {font-size:16px;}
                                 <b>Telemóvel: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" pattern="\d{9}" title="O nº de telemóvel deve ter 9 dígitos." required />
+                                <input type="text" class="text-input w3-border" id="telephone" name="telephone" placeholder='Nº telemóvel' value="<?=$user_data1["telemovel"]?>" size="9" maxlength="9" pattern="\d{9}" title="O nº de telemóvel deve ter 9 dígitos." required />
                             </td>
                         </tr>
 						</table>
@@ -149,7 +152,7 @@ body {font-size:16px;}
                                 <b>NIF: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" pattern="\d{9}" title="O NIF deve ter 9 dígitos." required />
+                                <input type="text" class="text-input w3-border" id="nif" name="nif" placeholder='NIF' value="<?=$user_data1["nif"]?>" size="9" maxlength="9" pattern="\d{9}" title="O NIF deve ter 9 dígitos." required />
                             </td>
                         </tr>
 						<tr>
@@ -157,7 +160,7 @@ body {font-size:16px;}
                                 <b>Morada: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" placeholder='Morada' name="address" value="<?=$user_data1["morada"]?>" style="width:93%" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
+                                <input type="text" class="text-input w3-border" id="morada" placeholder='Morada' name="address" value="<?=$user_data1["morada"]?>" style="width:93%" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
                             </td>
                         </tr>
 					</table>

@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/notificacao.css">
+
+<script src='login.js' charset='utf-8'></script>
+
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -58,17 +61,17 @@ body {font-size:16px;}
     <h1 class="w3-xxxlarge w3-text-red"><b>Login</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
 
-<form class="w3-container w3-card-4" method="POST" action="action_login.php">
+<form class="w3-container w3-card-4" method="POST" onsubmit="event.preventDefault(); Login()">
 <br><div class="w3-text-red"><center>Os dados que introduziu não estão corretos.<center></div>
 
   <p>
   <label class="w3-text-red"><b>Username</b></label>
-  <input class="w3-input w3-border" name="username" type="text" required></p>
+  <input class="w3-input w3-border" id="user" name="username" type="text" required></p>
   <p>
   <label class="w3-text-red"><b>Password</b></label>
-  <input class="w3-input w3-border" name="password" type="password" required></p>
+  <input class="w3-input w3-border" id="pass" name="password" type="password" required></p>
 	<?php
-		if(isset($_SESSION['wrong_login']) && $_SESSION['wrong_login']>2)
+		if(isset($_SESSION['wrong_login']) && $_SESSION['wrong_login']>2){
 			echo'
 				<label class="login">Selecione para fazer login
 					<input  type="checkbox" name="wrong"  id="wrong"';
@@ -76,6 +79,7 @@ body {font-size:16px;}
 					echo 'required>
 							 <span class="checkmark"></span>
 				</label>';
+			}
 	?>
   <p><input type="submit" name="login" value="Entrar"></p>
   <p class="w3-right">Ainda não tem conta? Siga para <a href="../registo/index.php" style="color: red; text-decoration: underline;">Registar</a></p>
