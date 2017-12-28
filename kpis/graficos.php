@@ -53,6 +53,9 @@
           <h3>Tempo médio de entregas:</h3>
           <div class=\"w3-container\" id=\"chartdiv4\"></div>
       </div>
+      <h3>Legenda:</h3>
+      <p>Barra cinza - Valor atual do KPI</p>
+      <p>Risca preta - Objetivo / limite do KPI</p>
       </div>
 
       <div id=\"Armazens\" class=\"w3-container kpis\" style=\"display:none\">
@@ -64,6 +67,9 @@
           <h3>Danos por manuseamento das encomendas:</h3>
           <div class=\"w3-container\" id=\"chartdiv8\"></div>
         </div>
+        <h3>Legenda:</h3>
+        <p>Barra cinza - Valor atual do KPI</p>
+        <p>Risca preta - Objetivo / limite do KPI</p>
       </div>
 
       <script>
