@@ -6,24 +6,25 @@
 <head>
   <title>Drone2u</title>
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/notificacao.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+  <script src='armazens.js' charset='utf-8'></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+  <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {font-size:16px;}
+    .w3-half img{margin-bottom:-6px;margin-top:16px;}
+  </style>
+
 </head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/notificacao.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-
-<script src='armazens.js' charset='utf-8'></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;}
-</style>
 <body>
 
 <!-- Sidebar/menu -->
@@ -31,7 +32,7 @@ body {font-size:16px;}
 	include_once("../database/database.php");
 	include_once("../login/session.php");
 	if ($_SESSION["user_id"] == NULL) header("Location: ../index.php");
-	print_r($_SESSION["user_id"]);
+	//print_r($_SESSION["user_id"]);
 	$user_data = user_data_db();
     $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -41,7 +42,6 @@ body {font-size:16px;}
     <img src="../img/icone.png" style="width:80%">
   </div>
   <div class="w3-bar-block w3-center">
-  </br>
 		<a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Home</a>
 		<a href="../servicos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Serviços</a>
 		<a href="../contactos/index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Contactos</a>
@@ -69,7 +69,6 @@ body {font-size:16px;}
 		<a href="../logout.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-red">Logout</a>
   <?php } ?>
   </div>
-  </br>
 </nav>
 
 <!-- Top menu on small screens -->
@@ -87,7 +86,7 @@ body {font-size:16px;}
 
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Armazéns</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red;" class="w3-round w3-left">
   </div>
 
   <div class="w3-container">
@@ -122,20 +121,21 @@ body {font-size:16px;}
   	<form class="w3-container w3-card-4" onSubmit='event.preventDefault(); AdicionarArmazem()'>
       <p></p>
       <label class="w3-text-red"><b>Nome</b></label>
-      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9_\s]{3,40}' required></p>
+      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9_\s]{3,40}' onblur='NomeArmazem(function(){})' required></p>
       <div id="n_disponivel" style="color:#f44336"></div>
       <p>
       <label class="w3-text-red"><b>Morada</b></label>
-      <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-Z0-9º\s]{3,40}' required></p>
+      <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-Z0-9º.\s]{3,40}' required></p>
       <p>
       <label class="w3-text-red"><b>Lotação Máxima</b></label>
       <input class="w3-input w3-border" id="lotacao_max" name="lotacao_max" type="text" placeholder=' Inserir lotação máxima do armazém' pattern='[0-9]{1,5}' required></p>
       <p>
       <label class="w3-text-red"><b>Latitude</b></label>
-      <input class="w3-input w3-border" id="latitude" name="latitude" type="text" placeholder=' Inserir latitude do armazém' pattern='[0-9.]{1,30}' required></p>
+      <input class="w3-input border" id="latitude" name="latitude" type="text" placeholder=' Inserir latitude do armazém' pattern='[0-9.-]{1,30}' onblur='Coordenadas(function(){})' required></p>
       <p>
       <label class="w3-text-red"><b>Longitude</b></label>
-      <input class="w3-input w3-border" id="longitude" name="longitude" type="text" placeholder=' Inserir longitude do armazém' pattern='[0-9.]{1,30}' required></p>
+      <input class="w3-input border" id="longitude" name="longitude" type="text" placeholder=' Inserir longitude do armazém' pattern='[0-9.-]{1,30}' onblur='Coordenadas(function(){})' required></p>
+      <div id="coordenadas" style="color:#f44336"></div>
       <p>
       <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar Novo Armazém' id='btnSubmit'>
     </form>
@@ -143,6 +143,9 @@ body {font-size:16px;}
 
   </div>
 </div>
+
+<div id='notification-container' class='notification-container'></div>
+
 
 <script>
   function openTab(evt, tabName) {

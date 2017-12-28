@@ -7,26 +7,25 @@
 <head>
   <title>Drone2u</title>
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/notificacao.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+  <script src='funcionarios.js' charset='utf-8'></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+  <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {font-size:16px;}
+    .w3-half img{margin-bottom:-6px;margin-top:16px;}
+  </style>
 </head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/notificacao.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
-<script src='funcionarios.js' charset='utf-8'></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-
-
-
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;}
-</style>
 <body>
 
 <!-- Sidebar/menu -->
@@ -89,7 +88,7 @@ body {font-size:16px;}
   <!-- Packages / Pricing Tables -->
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Gestão de Funcionários</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
   </div>
 
   <div class="w3-container">
@@ -112,7 +111,8 @@ body {font-size:16px;}
       </div>
 
       <p></p>
-      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
+	<br><br>
       <h2 class="w3-text-red"><b>Pesquisar Informações</b></h2>
         <form method='post' action='index.php'>
             <select class="w3-select" id="ano2" name="ano2" required>
@@ -137,6 +137,7 @@ body {font-size:16px;}
             </select>
             <p></p>
     	      <input class="w3-btn w3-red" type='submit' value='Pesquisar'></input>
+		<p></p>
       </form>
     </div>
 
@@ -152,14 +153,14 @@ body {font-size:16px;}
         <input class="w3-input w3-border" id="morada" name="morada" type="text" placeholder='Inserir morada do funcionário' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
         <p>
         <label class="w3-text-red"><b>Email</b></label>
-        <input class="w3-input border" id="email" name="email" type="email" placeholder=' Inserir email do funcionário' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}' onblur='CheckEmail()' required></p>
+        <input class="w3-input border" id="email" name="email" type="email" placeholder=' Inserir email do funcionário' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}' onblur='CheckEmail(function(){})' required></p>
         <div id="email_indis" style="color:#f44336"></div>
         <p>
         <label class="w3-text-red"><b>Contacto telefónico</b></label>
         <input class="w3-input w3-border" id="telemovel" name="telemovel" type="text" placeholder=' Inserir telemóvel do funcionário' pattern='[0-9]{9}'maxlength="9" required></p>
         <p>
          <label class="w3-text-red"><b>NIF</b></label>
-        <input class="w3-input border" id="nif" name="nif" type="text" placeholder=' Inserir NIF do funcionário' pattern='[0-9]{9}' maxlength="9" onblur='CheckNif()' required></p>
+        <input class="w3-input border" id="nif" name="nif" type="text" placeholder=' Inserir NIF do funcionário' pattern='[0-9]{9}' maxlength="9" onblur='CheckNif(function(){})' required></p>
         <div id="nif_indis" style="color:#f44336"></div>
         <p>
         <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar' id='btnSubmit'>
@@ -193,25 +194,26 @@ body {font-size:16px;}
         </select>
         <p></p>
         <label class="w3-text-red"><b>Número do Funcionário</b></label>
-        <input class="w3-input border" id="func" name="func" type="text" placeholder='Inserir o número do funcionário' pattern='[0-9]{1,5}' maxlength="5" onBlur='NumFuncionario()' required></p>
+        <input class="w3-input border" id="func" name="func" type="text" placeholder='Inserir o número do funcionário' pattern='[0-9]{1,5}' maxlength="5" onBlur='NumFuncionario(function(){})' required></p>
         <div id="num_indis" style="color:#f44336"></div>
         <p>
         <label class="w3-text-red"><b>Número Faltas Justificadas</b></label>
-        <input class="w3-input border" id="falta_jus" name="falta_jus" type="text" placeholder='Inserir o número de faltas justificadas' pattern='[0-9]{1,2}' maxlength="2" onBlur='FaltasJustificadas()' required></p>
+        <input class="w3-input border" id="falta_jus" name="falta_jus" type="text" placeholder='Inserir o número de faltas justificadas' pattern='[0-9]{1,2}' maxlength="2" onBlur='FaltasJustificadas(function(){})' required></p>
         <div id="falta_jus_in" style="color:#f44336"></div>
         <p>
         <label class="w3-text-red"><b>Número Faltas Injustificadas</b></label>
-        <input class="w3-input border" id="falta_injus" name="falta_injus" type="text" placeholder='Inserir o número de faltas injustificadas' pattern='[0-9]{1,2}' maxlength="2" onBlur='FaltasInjustificadas()' required></p>
+        <input class="w3-input border" id="falta_injus" name="falta_injus" type="text" placeholder='Inserir o número de faltas injustificadas' pattern='[0-9]{1,2}' maxlength="2" onBlur='FaltasInjustificadas(function(){})' required></p>
         <div id="falta_injus_in" style="color:#f44336"></div>
         <p>
         <label class="w3-text-red"><b>Número Atrasos</b></label>
-        <input class="w3-input border" id="atrasos" name="atrasos" type="text" placeholder='Inserir o número de atrasos' pattern='[0-9]{1,2}' maxlength="2" onBlur='Atrasos()' required></p>
+        <input class="w3-input border" id="atrasos" name="atrasos" type="text" placeholder='Inserir o número de atrasos' pattern='[0-9]{1,2}' maxlength="2" onBlur='Atrasos(function(){})' required></p>
         <div id="atrasos_in" style="color:#f44336"></div>
         <p>
         <label class="w3-text-red"><b>Salário(€)</b></label>
         <input class="w3-input w3-border" id="salario" name="salario" type="text" placeholder=' Inserir o salário' pattern='[0-9]{1,10}' required></p>
         <p>
         <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar' id='btnSubmit'>
+        <p>OBS: Este formulário também pode ser usado para atualizar os dados já existentes</p>
       </form>
     </div>
   </div>

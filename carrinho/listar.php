@@ -27,7 +27,7 @@ function ListaCarrinho(){
 			echo" </td>
 				  <td>
 					<a onclick='event.preventDefault(); return ConfirmarDelete($i)' href=#>
-							<img src='../img/delete.png' height='10%'>
+							<img src='../img/delete.png' height='22em'>
 					</a>
 				  </td>
 				  </tr>";

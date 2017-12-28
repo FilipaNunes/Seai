@@ -3,33 +3,26 @@
 ?>
 
 <?php
-	$nome = strip_tags($_POST['nome']);
-	$morada_arm = strip_tags($_POST['morada_arm']);
-	$ocupacao = 0;
-	$lotacao_max = strip_tags($_POST['lotacao_max']);
 
-	$query = "SELECT id_a FROM armazem WHERE nome= :nome";
+	if($_POST['nome'] && $_POST['morada_arm'] && $_POST['lotacao_max'] && $_POST['latitude'] && $_POST['longitude'] ){
+		$nome = htmlentities($_POST['nome']);
+		$morada_arm = htmlentities($_POST['morada_arm']);
+		$ocupacao = 0;
+		$lotacao_max = htmlentities($_POST['lotacao_max']);
+		$latitude = htmlentities($_POST['latitude']);
+		$longitude = htmlentities($_POST['longitude']);
 
-	$values = array($nome);
-	$insert = array(':nome');
-
-	$result = execQuery($query,$insert,$values);
-
-	$n_registos= $result->rowCount($result);
-
-	if($n_registos>0)$message = array('status' => 'not_valid');
-	else{
-		$query = "INSERT INTO armazem(nome,morada_arm,ocupacao,lotacao_max)
-						VALUES(:nome, :morada_arm, :ocupacao, :lotacao_max)";
+		$query = "INSERT INTO armazem(nome,morada_arm,ocupacao,lotacao_max,latitude,longitude)
+							VALUES(:nome, :morada_arm, :ocupacao, :lotacao_max, :latitude, :longitude)";
 
 
-		$values = array($nome,$morada_arm,$ocupacao,$lotacao_max);
-		$insert = array(':nome', ':morada_arm', ':ocupacao', ':lotacao_max');
+		$values = array($nome,$morada_arm,$ocupacao,$lotacao_max,$latitude,$longitude);
+		$insert = array(':nome', ':morada_arm', ':ocupacao', ':lotacao_max', ':latitude', ':longitude');
 
 		$result = execQuery($query,$insert,$values);
 
-		$message = array('status' => 'valid');
-	}
+		$message = array('status' => 'ok');
+	} else $message = array('status' => 'not_ok');
 
 	echo json_encode($message);
 ?>

@@ -31,7 +31,7 @@
 
 		for($i=0;$i<$num_registos;$i++){
 			$array = $result->fetch();
-			$id = $array['id_c'];
+			$id_u = $array['id_c'];
 			$username = $array['username'];
 			$nome = $array['nome_completo'];
 			$morada = $array['morada'];
@@ -51,9 +51,14 @@
 					<td style='text-align:center'> $email </td>
 					<td style='text-align:center'> $telemovel </td>
 					<td style='text-align:center'> $encomendas </td>
-					<td style='text-align:center'>
-						<a onclick='event.preventDefault(); ConfirmarDelete($id)' href=#>
-							<img src='../img/delete.png' height='10%'>
+					<td style='text-align:center'>";
+					if($id_u != $_SESSION["user_id"])
+					echo"
+						<a onclick='event.preventDefault(); ConfirmarDelete($id_u)' href=#>
+							<img src='../img/delete.png' height='22em'>
+						</a>
+						<a onclick='event.preventDefault(); Privilegios($id_u)' href=#>
+							<img src='../img/admin.png' height='22em'>
 						</a>
 					</td>
 				</tr>
@@ -61,12 +66,13 @@
 		}
 		echo "
 			</tbody>
-			</table>";
+			</table>
+			";
 
 		$pagLink = "<div class='pagination'>";
 		if($paginas_totais>1) {
 			for ($i=1; $i<=$paginas_totais; $i++) $pagLink .= "<a href='index.php?page=".$i."'>".$i."</a>";
-			echo $pagLink . "</div>";
+			echo $pagLink . "</div><p></p>";
 		}
 
 

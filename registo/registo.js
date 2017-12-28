@@ -20,7 +20,7 @@ var evaluate_pass = 0;
 var evaluate_submit = 0;
 
 
-function CheckUsername(){
+function CheckUsername(callback){
 	var usernameInput = document.getElementById('user').value;
 	var xmlhttp = new XMLHttpRequest();
   evaluate_username = 0;
@@ -35,12 +35,13 @@ function CheckUsername(){
         document.getElementById("username_indis").innerHTML="O username não está disponível! Escolha outro!";
         document.getElementById('user').style.borderColor = "#f44336";
         evaluate_username = 0;
-  			return false;
+  			callback(false);
 			}
 		  else {
         document.getElementById("username_indis").innerHTML=null;
         document.getElementById('user').style.borderColor = "#ccc";
 			  evaluate_username = 1;
+        callback(true);
 		  }
 		}
 	};}
@@ -51,7 +52,7 @@ function CheckUsername(){
 	return;
 }
 
-function ValidatePassword(){
+function ValidatePassword(callback){
   evaluate_pass = 0;
 
   if(evaluate_submit === 1)return;
@@ -61,19 +62,19 @@ function ValidatePassword(){
       document.getElementById('pass').style.borderColor = "#f44336";
       document.getElementById('c_pass').style.borderColor = "#f44336";
       evaluate_pass = 0;
-			return false;
+			callback(false);
 		}
 		else{
       document.getElementById("pass_match").innerHTML=null;
       document.getElementById('pass').style.borderColor = "#ccc";
       document.getElementById('c_pass').style.borderColor = "#ccc";
       evaluate_pass = 1;
-      return true;
+      callback(true);
 		}
 	}
 }
 
-function CheckEmail(){
+function CheckEmail(callback){
 	var emailInput = document.getElementById('email').value;
   evaluate_email=0;
 
@@ -89,13 +90,13 @@ function CheckEmail(){
         document.getElementById("email_indis").innerHTML="Email já está registado! Escolha outro!";
         document.getElementById('email').style.borderColor = "#f44336";
         evaluate_email=0;
-        return false;
+        callback(false);
 			}
 		  else{
         document.getElementById("email_indis").innerHTML=null;
         document.getElementById('email').style.borderColor = "#ccc";
 		    evaluate_email = 1;
-        return true;
+        callback(true);
 	     }
 	    }
 	 };}
@@ -105,18 +106,6 @@ function CheckEmail(){
 	var message = "email=" + emailInput;
 	xmlhttp.send(message);
 	return;
-}
-
-function ActivateSubmit(){
-  CheckUsername();
-  CheckEmail();
-  ValidatePassword();
-
-  setTimeout(function(){
-    if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)){evaluate_submit = 1; return true;}
-    else return false;
-  },300);
-
 }
 
 function LoginAutomatico(){
@@ -148,57 +137,69 @@ function LoginAutomatico(){
 }
 
 
-function RegistoFeito(){
-  let submit = false;
-  ActivateSubmit();
+function ActivateSubmit(){
+  CheckUsername();
+  CheckEmail();
+  ValidatePassword();
 
-  if(   (document.getElementById("email").value.length > 0) && (document.getElementById("user").value.length > 0)
-      && (document.getElementById("pass").value.length > 0) && (document.getElementById("c_pass").value.length > 0)){
   setTimeout(function(){
-    if(evaluate_submit !== 1)displayNotification('Por favor corrija os campos do formulário!');
-    else {
-        var usernameInput = document.getElementById('user').value;
-        var emailInput = document.getElementById('email').value;
-        var passInput = document.getElementById('pass').value;
-        var xmlhttp = new XMLHttpRequest();
+    if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)){evaluate_submit = 1; return true;}
+    else return false;
+  },300);
 
-        xmlhttp.onreadystatechange = function() {
-      		if (this.readyState == 4 && this.status == 200) {
-      		  var response = JSON.parse(this.responseText);
-      		  if(response.status==="ok"){
-              swal({
-                title: 'Registo Efetuado com Sucesso!',
-                text: 'Vai ser redirecionado para a página para completar os seus dados pessoais',
-                type: 'success',
-                showConfirmButton: false,
-                timer: 2500
-              });
-              evaluate_submit = 1;
-              setTimeout(()=>{LoginAutomatico();},2300);
-      			}else if (response.status==="not_ok") {
-              setTimeout(()=>{window.location.reload(true);},1000)
-              swal({
-                title: 'ERRO!',
-                text: 'Tente outra vez!',
-                type: 'error',
-                showConfirmButton: false,
-                timer: 2000
-              })
-            }
-          }
-        };
-        xmlhttp.open("POST", "registo.php", true);
-       	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-       	var message = "user=" + usernameInput + "&" + "email=" + emailInput + "&" + "pass=" + passInput;
-       	xmlhttp.send(message);
-       	return;
-  }
-  return false;},700);}
 }
 
 
-function Disable(){
+function RegistoFeito(){
 
-	//document.getElementById('btnSubmit').disabled = true;
+  CheckUsername(function(result){
+    if(result===true) {
+      CheckEmail(function(result){
+        if(result===true){
+          ValidatePassword(function(result){
+            if(result===true){
+              var usernameInput = document.getElementById('user').value;
+              var emailInput = document.getElementById('email').value;
+              var passInput = document.getElementById('pass').value;
+              var xmlhttp = new XMLHttpRequest();
 
+              xmlhttp.onreadystatechange = function() {
+            		if (this.readyState == 4 && this.status == 200) {
+            		  var response = JSON.parse(this.responseText);
+            		  if(response.status==="ok"){
+                    swal({
+                      title: 'Registo Efetuado com Sucesso!',
+                      text: 'Vai ser redirecionado para a página para completar os seus dados pessoais',
+                      type: 'success',
+                      showConfirmButton: false,
+                      timer: 2500
+                    });
+                    evaluate_submit = 1;
+                    setTimeout(()=>{LoginAutomatico();},2300);
+            			}else if (response.status==="not_ok") {
+                    setTimeout(()=>{window.location.reload(true);},1000)
+                    swal({
+                      title: 'ERRO!',
+                      text: 'Tente outra vez!',
+                      type: 'error',
+                      showConfirmButton: false,
+                      timer: 2000
+                    })
+                  }
+                }
+              };
+              xmlhttp.open("POST", "registo.php", true);
+             	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+             	var message = "user=" + usernameInput + "&" + "email=" + emailInput + "&" + "pass=" + passInput;
+             	xmlhttp.send(message);
+             	return;
+            }
+            else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
+          })
+        }
+        else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
+      })
+    }
+    else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
+  });
 }

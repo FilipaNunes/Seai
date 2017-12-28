@@ -3,7 +3,6 @@
 <head>
   <title>Drone2u</title>
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,6 +12,7 @@ body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;}
 </style>
+</head>
 <body>
 
 <!-- Sidebar/menu -->
@@ -73,7 +73,7 @@ body {font-size:16px;}
   <!-- Packages / Pricing Tables -->
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Serviços</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left"><br><br>
     <p>Na seleção abaixo pode ver os serviços de entrega que temos disponíveis, para cada serviço pode ainda ver o tipo de encomenda que pode ser transportada e o preçario associado. </p>
 	<p>Para cada categoria é apresentado os intervalos de peso aceites na mesma.</p>
 	<p>Para mais informações clique <a target="_blank" href="informacoes.php">aqui</a>.</p>

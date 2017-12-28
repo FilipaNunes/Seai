@@ -17,10 +17,10 @@ echo "<meta HTTP-EQUIV='refresh' CONTENT='5';URL='0'>";
 
 
        	$query = "SELECT faz.id_c,faz.id_e,clientes.nome_completo,clientes.telemovel,encomenda.tipo_encomenda,ponto_entrega_recolha.morada_arm,faz.flag FROM faz
-JOIN clientes ON faz.id_c=clientes.id_c
-JOIN encomenda ON faz.id_e=encomenda.id_e
-JOIN ponto_entrega_recolha ON encomenda.ponto_entrega=ponto_entrega_recolha.id_er
-WHERE estado='entregue' and flag=false;";
+                  JOIN clientes ON faz.id_c=clientes.id_c
+                  JOIN encomenda ON faz.id_e=encomenda.id_e
+                  JOIN ponto_entrega_recolha ON encomenda.ponto_entrega=ponto_entrega_recolha.id_er
+                  WHERE estado='entregue' and flag=false;";
 
 	$result = execQuery($query,null,null);
  	$array = $result->fetch();
@@ -34,8 +34,8 @@ WHERE estado='entregue' and flag=false;";
 
 	$num_registos = $result->rowCount($result);
 
-
-		/*if($num_registos > 0 && $flag==FALSE)
+/*
+		if($num_registos > 0 && $flag==FALSE)
 		{
 
 			// Use the client to do fun stuff like send text messages!
@@ -50,12 +50,13 @@ WHERE estado='entregue' and flag=false;";
     			      ));
 
 
-			$query2 ="UPDATE faz SET flag=true WHERE id_e='$id_e';";
+			$query2 ="UPDATE faz SET flag=true WHERE id_e='$id_e'";
 			$result2 = execQuery($query2,null,null);
 
 
 
-		}*/
+		}
+*/
 
 
 ?>

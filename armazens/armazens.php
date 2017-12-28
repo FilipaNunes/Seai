@@ -20,7 +20,8 @@
 		$paginas_totais = ceil($num_registos / $limite);
 
 
-		$query = "SELECT id_a, nome, morada_arm, ocupacao, lotacao_max FROM armazem ORDER BY nome OFFSET $inicio LIMIT $limite";
+		//$query = "SELECT id_a, nome, morada_arm, ocupacao, lotacao_max FROM armazem ORDER BY nome OFFSET $inicio LIMIT $limite";
+		$query = "SELECT * FROM armazem ORDER BY nome OFFSET $inicio LIMIT $limite";
 		$result = execQuery($query,null,null);
 		$num_registos = $result->rowCount($result);
 
@@ -41,7 +42,7 @@
 					<td style='text-align:center'> $lotacao_max</td>
 					<td style='text-align:center'>
 						<a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#>
-							<img src='../img/delete.png' height='10%'>
+							<img src='../img/delete.png' height='22em' />
 						</a>
 					</td>
 				</tr>

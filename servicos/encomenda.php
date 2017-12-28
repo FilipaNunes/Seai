@@ -8,25 +8,25 @@
 <head>
 	<title>Drone2u</title>
 	<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' href="../css/notificacao.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+	<script src='servicos.js' charset='utf-8'></script>
+	<style>
+		body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+		body {font-size:16px;}
+		.w3-half img{margin-bottom:-6px;margin-top:16px;}
+	</style>
 </head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel='stylesheet' href="../css/notificacao.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-
-<script src='servicos.js' charset='utf-8'></script>
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;}
-</style>
 <body>
-
 <!-- Sidebar/menu -->
 <?php
 	include_once("../database/database.php");
@@ -85,7 +85,7 @@ body {font-size:16px;}
   <!-- Packages / Pricing Tables -->
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Encomenda</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
   </div>
 
   <form class="w3-container w3-card-4" id="encomenda" onsubmit="event.preventDefault(); return Adicionado()">
@@ -145,17 +145,17 @@ body {font-size:16px;}
   </select> Para mais informações sobre os produtos clique <a target="_blank" href="informacoes.php">aqui</a> </p>
 	<p>
     <label class="w3-text-red"><b>Dimensões</b></label>
-    <input class="w3-input border" name="dim" id="dim" type="text" placeholder="Dimensões máximas 22x14x4 cm" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura' onChange='VerificarDimensao()' pattern='([0-9]{1,2})+[x]+([0-9]{1,2})+[x]+([0-9]{1,2})' required></p>
+    <input class="w3-input border" name="dim" id="dim" type="text" placeholder="Dimensões máximas 22x14x4 cm" title='As dimensões devem ser inseridas em centímetros com o seguinte formato comprimentoxlarguraxaltura' onChange='VerificarDimensao(function(){})' pattern='([0-9]{1,2})+[x]+([0-9]{1,2})+[x]+([0-9]{1,2})' required></p>
 		<div id='dim_errada' style='color:#f44336'></div>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Peso</b></label>
-    <input class="w3-input border" name="peso" id="peso" type="text" placeholder='Insira um peso compreendido no serviço que escolheu' title='Deve ser inserido em quilogramas com o seguinte formato 1.3 ou 1!' onChange= 'VerificaPeso()' pattern='([0-9]+[.]+[0-9])|([0-9])' required></p>
+    <input class="w3-input border" name="peso" id="peso" type="text" placeholder='Insira um peso compreendido no serviço que escolheu' title='Deve ser inserido em quilogramas com o seguinte formato 1.3 ou 1!' onChange= 'VerificaPeso(function(){})' pattern='([0-9]+[.]+[0-9])|([0-9])' required></p>
 		<div id='peso_errado' style='color:#f44336'></div>
 	</p>
 	<p>
     <label class="w3-text-red"><b>Quantidade</b></label>
-    <input class="w3-input border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas.' onChange='Quantidade()' pattern='([0-9]{1,2})' required></p>
+    <input class="w3-input border" name="quant" id="quant" type="text" title='Quantidade de produtos com as características inseridas.' onChange='Quantidade(function(){})' pattern='([0-9]{1,2})' required></p>
 		<div id='quant_errada' style='color:#f44336'></div>
 	</p>
     <p>
@@ -175,7 +175,7 @@ body {font-size:16px;}
 		<div id="ponto_recolha"> </div>
     <p>
     <label class="w3-text-red"><b>Morada de destino</b></label>
-    <select class="select" name="option2" id="destino" onclick='MoradaEntrega()' required>
+    <select class="select" name="option2" id="destino" onclick='MoradaEntrega(function(){})' required>
     <option value="" disabled selected>Escolher</option>
     <?php MoradaEntrega(); ?>
 		</select>

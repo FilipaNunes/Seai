@@ -1,13 +1,13 @@
+<?php
+    include_once('../database/database.php');
+    include_once('../kpis/graficos.php');
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Drone2u</title>
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-</head>
-<?php
-    include_once('../database/database.php');
-    include_once('../kpis/graficos.php');
- ?>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -56,6 +56,7 @@ body {font-size:16px;}
   height: 130px;
 }
 </style>
+</head>
 <body>
 
 <!-- Sidebar/menu -->
@@ -115,22 +116,22 @@ body {font-size:16px;}
 
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>KPI's</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
   </div>
 
-
-  <div class="w3-row w3-center">
-    <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Encomendas');">
-      <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Encomendas</div>
-    </a>
-    <a href="javascript:void(0)" onclick="openTab(event, 'Armazens');">
-      <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Armazéns</div>
-    </a>
-  </div>
+  <div class="w3-container">
+    <div class="w3-row w3-center">
+      <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Encomendas');">
+        <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Encomendas</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openTab(event, 'Armazens');">
+        <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Armazéns</div>
+      </a>
+    </div>
 
       <?php graficos(); ?>
 
-      <p> <hr style="width:50px;border:5px solid red" class="w3-round"> </p>
+      <p> <hr style="width:50px;border:5px solid red" class="w3-round w3-left"> </p>
       <div class="w3-container">
         <div>
           <h2><font color ='#f44336'> Escolher mês:</h2>
@@ -162,13 +163,10 @@ body {font-size:16px;}
             </form>
           </br>
         </div>
-
-  </div>
-
-
-
+      </div>
+    </div>
   <!-- End page content -->
-  </div>
+</div>
 
 
 

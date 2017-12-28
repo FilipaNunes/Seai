@@ -1,12 +1,13 @@
+<?php
+    include_once('../database/database.php');
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Drone2u</title>
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-</head>
-<?php
-    include_once('../database/database.php');
- ?>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -52,6 +53,9 @@ body {font-size:16px;}
   margin:auto;
 }
 </style>
+
+</head>
+
 <body>
 
 <!-- Sidebar/menu -->
@@ -111,7 +115,7 @@ body {font-size:16px;}
 
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Finanças</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
   </div>
 
   <div class="w3-container">
@@ -183,7 +187,7 @@ body {font-size:16px;}
           </table>
       </div>
     </br>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
   </br>
 <div class="w3-container" id="chartdiv2"></div>
 </br>
@@ -250,11 +254,11 @@ body {font-size:16px;}
 						</table>
           </div>
 		    </br>
-		    <hr style="width:50px;border:5px solid red" class="w3-round">
+		    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
 		  </br>
 		<div class="w3-container" id="chartdiv3"></div>
 		</br>
-        <hr style="width:50px;border:5px solid red" class="w3-round">
+        <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
           <h2 class="w3-text-red"><b>Inserir despesa</b></h2>
     </br>
     <form class="w3-container w3-card-4" action="insertDespesas.php" method="post">
@@ -320,7 +324,7 @@ body {font-size:16px;}
               </table>
           </div>
 		    </br>
-		    <hr style="width:50px;border:5px solid red" class="w3-round">
+		    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
 		  </br>
 		<div class="w3-container" id="chartdiv5"></div>
         </div>

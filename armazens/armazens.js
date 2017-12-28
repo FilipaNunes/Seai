@@ -1,3 +1,23 @@
+notificationNumber = 0;
+function displayNotification(notification){
+  var noteNumber = notificationNumber++;
+  var container = document.getElementById("notification-container");
+  var notificationElement = document.createElement("DIV");
+  var txt = document.createTextNode(notification);
+  notificationElement.appendChild(txt);
+  notificationElement.setAttribute('class', 'notification');
+  notificationElement.setAttribute('id', 'note'+noteNumber);
+  notificationElement = container.appendChild(notificationElement);
+  //notificationElement = document.getElementById('note'+noteNumber);
+  setTimeout(()=>{
+    container.removeChild(notificationElement);
+  },4500)
+}
+
+var evaluate_name;
+var evaluate_coordinates;
+var evaluate_submit;
+
 function Delete(id){
 
 	var xmlhttp = new XMLHttpRequest();
@@ -22,7 +42,7 @@ function Delete(id){
 					timer: 3000
 				})
 				setTimeout(()=>{
-					window.location.reload(true);
+					window.location.href='index.php';
 				},3000)
 			}
 		};
@@ -65,41 +85,122 @@ function ConfirmarDelete(id){
 	})
 }
 
-function AdicionarArmazem(){
+function NomeArmazem(callback){
+	evaluate_name = 0;
 	var nome_armazem = document.getElementById('nome').value;
-	var morada_arm = document.getElementById('morada_arm').value;
-	var lotacao_max = document.getElementById('lotacao_max').value;
 
 	var xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-		  var response = JSON.parse(this.responseText);
-		  if(response.status==="not_valid"){
+			var response = JSON.parse(this.responseText);
+			if(response.status==="not_ok"){
 				document.getElementById("n_disponivel").innerHTML="Já existe um armazém com o nome inserido! Escolha outro!";
 				document.getElementById('nome').style.borderColor = "#f44336";
-			}else if(response.status==="valid"){
-					document.getElementById("n_disponivel").innerHTML=null;
+				callback(false);
+			}else if(response.status==="ok"){
+					document.getElementById("n_disponivel").innerHTML='';
 					document.getElementById('nome').style.borderColor = "#ccc";
-				swal({
-					title: 'Sucesso',
-					text: 'O armazém foi adicionado com sucesso!',
-					type: 'success',
-					showConfirmButton: false,
-					timer: 2500
-				})
-				setTimeout(()=>{
-					window.location.reload(true);
-				},2500)
-		  }
+					evaluate_name = 1;
+					callback(true);
 		}
 	};
+}
 
-	xmlhttp.open("POST", "regist_arm.php", true);
+	xmlhttp.open("POST", "nome_armazem.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var message = "nome=" + nome_armazem + "&" + "morada_arm=" + morada_arm + "&" + "lotacao_max=" + lotacao_max;
+	var message = "nome=" + nome_armazem;
 	xmlhttp.send(message);
 	return;
+}
 
+function Coordenadas(callback){
+
+	if( document.getElementById('latitude') !== null && document.getElementById('longitude') !== null){
+		evaluate_coordinates = 0;
+		var latitude = document.getElementById('latitude').value;
+		var longitude = document.getElementById('longitude').value;
+
+		var xmlhttp = new XMLHttpRequest();
+
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var response = JSON.parse(this.responseText);
+				if(response.status==="not_ok"){
+					document.getElementById("coordenadas").innerHTML="Já existe um armazém com as coordenadas inseridas!";
+					document.getElementById('latitude').style.borderColor = "#f44336";
+					document.getElementById('longitude').style.borderColor = "#f44336";
+					callback(false);
+				}else if(response.status==="ok"){
+					document.getElementById("coordenadas").innerHTML='';
+					document.getElementById('latitude').style.borderColor = "#ccc";
+					document.getElementById('longitude').style.borderColor = "#ccc";
+					evaluate_coordinates = 1;
+					callback(true);
+			}
+		};
+	}
+
+		xmlhttp.open("POST", "coordenadas.php", true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		var message = "latitude=" + latitude + "&" + "longitude=" + longitude;
+		xmlhttp.send(message);
+		return;
+	}
+}
+
+function AdicionarArmazem(){
+
+	var nome_armazem = document.getElementById('nome').value;
+	var morada_arm = document.getElementById('morada_arm').value;
+	var lotacao_max = document.getElementById('lotacao_max').value;
+	var latitude = document.getElementById('latitude').value;
+	var longitude = document.getElementById('longitude').value;
+
+	Coordenadas(function(result){
+		if(result === true){
+			NomeArmazem(function(result){
+				if(result === true){
+					var xmlhttp = new XMLHttpRequest();
+
+					xmlhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+						  var response = JSON.parse(this.responseText);
+						  if(response.status==="not_ok"){
+								swal({
+									title: 'Erro',
+									text: 'Não foi possível concluir a ação! Tente outra vez!',
+									type: 'error',
+									showConfirmButton: false,
+									timer: 2500
+								})
+								setTimeout(()=>{
+									window.location.href='index.php';
+								},2500)
+							}else if(response.status==="ok"){
+								swal({
+									title: 'Sucesso',
+									text: 'O armazém foi adicionado com sucesso!',
+									type: 'success',
+									showConfirmButton: false,
+									timer: 2500
+								})
+								setTimeout(()=>{
+									window.location.href='index.php';
+								},2500)
+						}
+					};
+				}
+					xmlhttp.open("POST", "regist_arm.php", true);
+					xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					var message = "nome=" + nome_armazem + "&" + "morada_arm=" + morada_arm + "&" + "lotacao_max=" + lotacao_max +
+												"&" + "latitude=" + latitude + "&" + "longitude=" + longitude ;
+					xmlhttp.send(message);
+					return;
+				} else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
+			})
+		}
+		else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
+	});
 
 }

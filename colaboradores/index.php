@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Drone 2u</title>
-  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+   <title>Drone2u</title>
+   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+   <style>
+      body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+      body {font-size:16px;}
+      .w3-half img{margin-bottom:-6px;margin-top:16px;}
+   </style>
 </head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;}
-</style>
+
+
 <body>
 
 <!-- Sidebar/menu -->
@@ -72,9 +74,8 @@ body {font-size:16px;}
 
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Colaboradores</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>O conhecimento e as competências da Drone 2u provêm da experiência académica dos seus colaboradores:</p>
-  </br>
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
+    <p><br><br>O conhecimento e as competências da Drone2u provêm da experiência académica dos seus colaboradores:</p>
   </div>
 
   <!-- The Team -->

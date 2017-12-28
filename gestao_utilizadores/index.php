@@ -6,7 +6,6 @@
 <head>
   <title>Drone2u</title>
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/notificacao.css">
@@ -23,6 +22,7 @@ body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;}
 </style>
+</head>
 <body>
 
 <!-- Sidebar/menu -->
@@ -83,8 +83,10 @@ body {font-size:16px;}
   <!-- Packages / Pricing Tables -->
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Gestão de Utilizadores</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
   </div>
+
+  <div class="w3-container">
   <table class="w3-table-all">
   <tbody>
 	<tr >
@@ -97,6 +99,8 @@ body {font-size:16px;}
 	<th style='background-color:#f44336; text-align:center'> <font color='white'> </th>
 	</tr>
 	<?php Utilizadores(); ?>
+</div>
+</div>
 
   <script>
   // Script to open and close sidebar
