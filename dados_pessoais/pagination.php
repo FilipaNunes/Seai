@@ -7,6 +7,10 @@ include_once("login/session.php");
 <?php
 
 	function Table(){
+		
+		if(!isset($_GET["page"])) {
+			unset($_SESSION["estado"]);
+		}
 
 		$limite = 6;
 		if (isset($_GET["page"])){
@@ -45,7 +49,7 @@ include_once("login/session.php");
 				echo "<center>Nenhuma encomenda se encontra nesse estado.</center>";
 				?> <hr style="width:50px;border:5px solid red" class="w3-round">
 				   <h2 class="w3-text-red"><b>Pesquisar Informações</b></h2>
-					<form method='post' action='filter.php'>
+					<form style="display:inline;" method='post' action='filter.php'>
 						<select class="w3-select" id="estado" name="estado" required>
 						  <option value="" disabled selected>Estado</option>
 						  <option value="Pendente">Pendente</option>
@@ -54,10 +58,11 @@ include_once("login/session.php");
 						</select>
 					<p></p>
 						  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
-					</form>
+					</form> <?php if (isset($_SESSION["estado"])) { ?> <a class="w3-btn w3-red" href="dados_pessoais2.php">Mostrar todas</a>
+					
 
 	 <?php
-		unset($_SESSION["estado"]);
+					}
 			}
 		}
 		else { ?>
@@ -95,7 +100,6 @@ include_once("login/session.php");
 					  ORDER BY encomenda.id_e DESC
 					  OFFSET $inicio
 					  LIMIT $limite";
-			unset($_SESSION["estado"]);
 		}
 		      
 		$values = array($user_id);
@@ -172,7 +176,7 @@ include_once("login/session.php");
 		}
 		      ?> <hr style="width:50px;border:5px solid red" class="w3-round">
 			<h2 class="w3-text-red"><b>Pesquisar Informações</b></h2>
-				<form method='post' action='filter.php'>
+				<form style="display:inline;" method='post' action='filter.php'>
 					<select class="w3-select" id="estado" name="estado" required>
 					  <option value="" disabled selected>Estado</option>
 					  <option value="Pendente">Pendente</option>
@@ -181,10 +185,10 @@ include_once("login/session.php");
 					</select>
 				<p></p>
 					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
-				</form>
+				</form> <?php if (isset($_SESSION["estado"])) { ?> <a class="w3-btn w3-red" href="dados_pessoais2.php">Mostrar todas</a>
 
 	 <?php
-
+				}
 	  }
 
 	}
