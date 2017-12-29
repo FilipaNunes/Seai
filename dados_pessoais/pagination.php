@@ -7,7 +7,7 @@ include_once("login/session.php");
 <?php
 
 	function Table(){
-		
+
 		if(!isset($_GET["page"])) {
 			unset($_SESSION["estado"]);
 		}
@@ -59,7 +59,7 @@ include_once("login/session.php");
 					<p></p>
 						  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
 					</form> <?php if (isset($_SESSION["estado"])) { ?> <a class="w3-btn w3-red" href="dados_pessoais2.php">Mostrar todas</a>
-					
+
 
 	 <?php
 					}
@@ -101,7 +101,7 @@ include_once("login/session.php");
 					  OFFSET $inicio
 					  LIMIT $limite";
 		}
-		      
+
 		$values = array($user_id);
 		$insert = array(':id');
 
@@ -184,7 +184,7 @@ include_once("login/session.php");
 					  <option value="Entregue">Entregue</option>
 					</select>
 				<p></p>
-					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
+					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input><p></p>
 				</form> <?php if (isset($_SESSION["estado"])) { ?> <a class="w3-btn w3-red" href="dados_pessoais2.php">Mostrar todas</a>
 
 	 <?php

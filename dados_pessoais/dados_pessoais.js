@@ -85,14 +85,13 @@ function Delete(id){
 	xmlhttp.open("POST", "delete.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
 
-	message = "id=" + id;
+	var message = "id=" + id;
 	xmlhttp.send(message);
 	return;
 
 }
 
 function ConfirmarDelete(id){
-	//console.log(id);
 	swal({
 	  title: 'Tem a certeza que quer apagar esta encomenda?',
 	  text: "Esta ação não é reversível!",

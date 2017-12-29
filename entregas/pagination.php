@@ -6,7 +6,7 @@ include_once("login/session.php");?>
 <?php
 
 	function Table(){
-		
+
 		if(!isset($_GET["page"])) {
 			unset($_SESSION["estado"]);
 		}
@@ -18,12 +18,12 @@ include_once("login/session.php");?>
 		}
 		else $page=1;
 		$inicio = ($page-1) * $limite;
-		
+
 		if (!isset($_SESSION["estado"])) {
 		$query = "SELECT id_e FROM faz
 				  WHERE id_e IS NOT NULL";
 		}
-		
+
 		else {
 			$estado = $_SESSION["estado"];
 
@@ -35,7 +35,7 @@ include_once("login/session.php");?>
 		$result = execQuery($query,null,null);
 
 		$num_registos = $result->rowCount($result);
-		
+
 		if ($num_registos == 0) {
 			if (!isset($_SESSION["estado"])) echo "<center>Não foi efetuada nenhuma encomenda.</center>";
 			else {
@@ -75,9 +75,9 @@ include_once("login/session.php");?>
 					  </thead>
 
 		<?php
-		
+
 		$paginas_totais = ceil($num_registos / $limite);
-		
+
 		if (!isset($_SESSION["estado"])) {
 		$query = "SELECT * FROM faz
 				  JOIN encomenda ON faz.id_e=encomenda.id_e
@@ -86,7 +86,7 @@ include_once("login/session.php");?>
 				  OFFSET $inicio
 				  LIMIT $limite";
 		}
-		
+
 		else {
 			$query = "SELECT * FROM faz
 				  JOIN encomenda ON faz.id_e=encomenda.id_e
@@ -96,7 +96,7 @@ include_once("login/session.php");?>
 				  OFFSET $inicio
 				  LIMIT $limite";
 		}
-				  
+
 		$result = execQuery($query,null,null);
 		$num_registos = $result->rowCount($result);
 
@@ -155,8 +155,8 @@ include_once("login/session.php");?>
 					  <?php }
 		echo "
 			</table>";
-		
-		
+
+
 		if ($paginas_totais>1) {
 		$pagLink = "<div class='pagination'>";
 		for ($i=1; $i<=$paginas_totais; $i++) {
@@ -164,7 +164,7 @@ include_once("login/session.php");?>
 		}
 		echo $pagLink . "</div>";
 		}
-		
+
 		?> <hr style="width:50px;border:5px solid red" class="w3-round">
 			<h2 class="w3-text-red"><b>Pesquisar Informações</b></h2>
 				<form style="display:inline;" method='post' action='filter.php'>
@@ -175,13 +175,13 @@ include_once("login/session.php");?>
 					  <option value="Entregue">Entregue</option>
 					</select>
 				<p></p>
-					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
+					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input><p></p>
 				</form> <?php if (isset($_SESSION["estado"])) { ?> <a class="w3-btn w3-red" href="entregas.php">Mostrar todas</a>
 
 	 <?php
-	 
+
 				}
-	 
+
 		}
 
 	}

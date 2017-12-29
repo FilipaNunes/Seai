@@ -89,6 +89,34 @@ function NomeArmazem(callback){
 	evaluate_name = 0;
 	var nome_armazem = document.getElementById('nome').value;
 
+  	var xmlhttp = new XMLHttpRequest();
+
+  	xmlhttp.onreadystatechange = function() {
+  		if (this.readyState == 4 && this.status == 200) {
+  			var response = JSON.parse(this.responseText);
+  			if(response.status==="not_ok"){
+  				document.getElementById("n_disponivel").innerHTML="Já existe um armazém com o nome inserido! Escolha outro!";
+  				document.getElementById('nome').style.borderColor = "#f44336";
+  				callback(false);
+  			}else if(response.status==="ok"){
+  					document.getElementById("n_disponivel").innerHTML='';
+  					document.getElementById('nome').style.borderColor = "#ccc";
+  					evaluate_name = 1;
+  					callback(true);
+  		}
+  	};
+  }
+  	xmlhttp.open("POST", "nome_armazem.php", true);
+  	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  	var message = "nome=" + nome_armazem;
+  	xmlhttp.send(message);
+  	return;
+}
+
+function NomeArmazem2(callback){
+	evaluate_name = 0;
+	var nome_armazem = document.getElementById('nome').value;
+
   if(nome_armazem == '' ) document.getElementById('nome').value = document.getElementById('nome').placeholder;
   else{
   	var xmlhttp = new XMLHttpRequest();
@@ -204,6 +232,15 @@ function AdicionarArmazem(){
 		}
 		else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
 	});
+}
+
+function Preencher(){
+  var nome_armazem = document.getElementById('nome').placeholder;
+  var lotacao = document.getElementById('lotacao_max').placeholder;
+
+  if( document.getElementById('nome').value == '' )document.getElementById('nome').value = document.getElementById('nome').placeholder;
+
+  if(document.getElementById('lotacao_max').value == '') document.getElementById('lotacao_max').value = document.getElementById('lotacao_max').placeholder;
 }
 
 function EditarArmazem(){

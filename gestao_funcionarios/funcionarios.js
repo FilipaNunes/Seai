@@ -52,6 +52,39 @@ function CheckEmail(callback){
 	return;
 }
 
+function CheckEmail2(callback){
+	var emailInput = document.getElementById('email').value;
+
+	var xmlhttp = new XMLHttpRequest();
+
+	if(emailInput==='' || emailInput===null) document.getElementById('email').value = document.getElementById('email').placeholder;
+  else if(evaluate_submit === 1)return;
+	else{
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  var response = JSON.parse(this.responseText);
+		  if(response.status==="not_ok"){
+        document.getElementById("email_indis").innerHTML="Email já está registado! Introduza outro!";
+        document.getElementById('email').style.borderColor = "#f44336";
+        evaluate_email=0;
+        callback(false);
+			}
+		  else{
+        document.getElementById("email_indis").innerHTML='';
+        document.getElementById('email').style.borderColor = "#ccc";
+		    evaluate_email = 1;
+        callback(true);
+	     }
+	    }
+	 };}
+
+	xmlhttp.open("POST", "email.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var message = "email=" + emailInput;
+	xmlhttp.send(message);
+	return;
+}
+
 function CheckNif(callback){
 	var nif = document.getElementById('nif').value;
 
@@ -151,6 +184,18 @@ function ConfirmarDelete(id){
 			return false;
 		}
 	})
+}
+
+function Preencher(){
+  var morada = document.getElementById('morada').placeholder;
+  var email = document.getElementById('email').placeholder;
+  var telemovel = document.getElementById('telemovel').placeholder;
+
+
+  if( document.getElementById('morada').value == '' )document.getElementById('morada').value = document.getElementById('morada').placeholder;
+  if(document.getElementById('email').value == '') document.getElementById('email').value = document.getElementById('email').placeholder;
+  if(document.getElementById('telemovel').value == '') document.getElementById('telemovel').value = document.getElementById('telemovel').placeholder;
+
 }
 
 function AdicionarFuncionario(){
@@ -344,4 +389,93 @@ function AdicionarDados(){
     else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
 
   });
+}
+
+
+  function EditarFuncionario(){
+
+  	var email = document.getElementById('email').value;
+    var email_2 = document.getElementById('email').placeholder;
+  	var morada = document.getElementById('morada').value;
+    var funcionario = document.getElementById('funcionario').value;
+    var telemovel = document.getElementById('telemovel').value;
+
+    if(email === email_2){
+      var flag = 1;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = JSON.parse(this.responseText);
+          if(response.status==="not_ok"){
+            swal({
+              title: 'Erro',
+              text: 'Não foi possível concluir a ação! Tente outra vez!',
+              type: 'error',
+              showConfirmButton: false,
+              timer: 2500
+            })
+            setTimeout(()=>{
+              window.location.href='index.php';
+            },2500)
+          }else if(response.status==="ok"){
+            swal({
+              title: 'Sucesso',
+              text: 'As informações do funcionário foram atualizadas com sucesso!',
+              type: 'success',
+              showConfirmButton: false,
+              timer: 2500
+            })
+            setTimeout(()=>{
+              window.location.href='index.php';
+            },2500)
+        }
+      };
+    }
+      xmlhttp.open("POST", "editar_func.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      var message = "email=" + email + "&" + "morada=" + morada + "&" + "funcionario=" + funcionario + "&" + "telemovel=" + telemovel + "&" + "flag=" + flag ;
+      xmlhttp.send(message);
+      return;
+    }
+    else{
+      CheckEmail(function(result){
+        if(result === true){
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var response = JSON.parse(this.responseText);
+              if(response.status==="not_ok"){
+                swal({
+                  title: 'Erro',
+                  text: 'Não foi possível concluir a ação! Tente outra vez!',
+                  type: 'error',
+                  showConfirmButton: false,
+                  timer: 2500
+                })
+                setTimeout(()=>{
+                  window.location.href='index.php';
+                },2500)
+              }else if(response.status==="ok"){
+                swal({
+                  title: 'Sucesso',
+                  text: 'As informações do funcionário foram atualizadas com sucesso!',
+                  type: 'success',
+                  showConfirmButton: false,
+                  timer: 2500
+                })
+                setTimeout(()=>{
+                  window.location.href='index.php';
+                },2500)
+            }
+          };
+        }
+          xmlhttp.open("POST", "editar_func.php", true);
+          xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          var message = "email=" + email + "&" + "morada=" + morada + "&" + "funcionario=" + funcionario + "&" + "telemovel=" + telemovel;
+          xmlhttp.send(message);
+          return;
+    }
+    else displayNotification('Por favor corrija os campos do formulário assinalados a vermelho!');
+    });
+  }
 }
