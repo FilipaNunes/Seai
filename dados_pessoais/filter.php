@@ -6,7 +6,7 @@ include_once("login/session.php");
 
 if (isset($_POST["pesquisar"]) AND isset($_POST["estado"])) {
 	$_SESSION["estado"] = $_POST["estado"];
-	header("Location: dados_pessoais2.php");
+	header("Location: dados_pessoais2.php?page=1");
 }
 
 ?>
