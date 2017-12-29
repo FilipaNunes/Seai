@@ -1,10 +1,16 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305659/public_html/SEAI/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/Seai/"); ?>
 
-<?php include_once("database/database.php");?>
+<?php include_once("database/database.php");
+include_once("login/session.php");
+?>
 
 <?php
 
 	function Table(){
+		
+		if(!isset($_GET["page"])) {
+			unset($_SESSION["estado"]);
+		}
 
 		$limite = 6;
 		if (isset($_GET["page"])){
@@ -16,8 +22,19 @@
 
 		$user_id = $_SESSION["user_id"];
 
-		$query = "SELECT id_c FROM faz
-				  WHERE id_c=:id";
+		if (!isset($_SESSION["estado"])) {
+			$query = "SELECT id_c FROM faz
+					  WHERE id_c=:id";
+		}
+
+		else {
+			$estado = $_SESSION["estado"];
+
+			$query = "SELECT * FROM faz
+					  JOIN encomenda ON faz.id_e=encomenda.id_e
+					  WHERE faz.id_c = :id AND estado='$estado'";
+
+		}
 
 		$values = array($user_id);
 		$insert = array(':id');
@@ -26,7 +43,28 @@
 
 		$num_registos = $result->rowCount($result);
 
-		if ($num_registos == 0) echo "<center>Não foi efetuada nenhuma encomenda.</center>";
+		if ($num_registos == 0) {
+			if (!isset($_SESSION["estado"])) echo "<center>Não foi efetuada nenhuma encomenda.</center>";
+			else {
+				echo "<center>Nenhuma encomenda se encontra nesse estado.</center>";
+				?> <hr style="width:50px;border:5px solid red" class="w3-round">
+				   <h2 class="w3-text-red"><b>Pesquisar Informações</b></h2>
+					<form style="display:inline;" method='post' action='filter.php'>
+						<select class="w3-select" id="estado" name="estado" required>
+						  <option value="" disabled selected>Estado</option>
+						  <option value="Pendente">Pendente</option>
+						  <option value="Enviada">Enviada</option>
+						  <option value="Entregue">Entregue</option>
+						</select>
+					<p></p>
+						  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
+					</form> <?php if (isset($_SESSION["estado"])) { ?> <a class="w3-btn w3-red" href="dados_pessoais2.php">Mostrar todas</a>
+					
+
+	 <?php
+					}
+			}
+		}
 		else { ?>
 			<table class="w3-table-all">
 					  <thead>
@@ -46,13 +84,24 @@
 
 		<?php $paginas_totais = ceil($num_registos / $limite);
 
-		$query = "SELECT * FROM faz
-				  JOIN encomenda ON faz.id_e=encomenda.id_e
-				  WHERE faz.id_c = :id
-				  ORDER BY encomenda.id_e DESC
-				  OFFSET $inicio
-				  LIMIT $limite";
+		if (!isset($_SESSION["estado"])) {
+			$query = "SELECT * FROM faz
+					  JOIN encomenda ON faz.id_e=encomenda.id_e
+					  WHERE faz.id_c = :id
+					  ORDER BY encomenda.id_e DESC
+					  OFFSET $inicio
+					  LIMIT $limite";
+		}
 
+		else {
+			$query = "SELECT * FROM faz
+					  JOIN encomenda ON faz.id_e=encomenda.id_e
+					  WHERE faz.id_c = :id AND estado = '$estado'
+					  ORDER BY encomenda.id_e DESC
+					  OFFSET $inicio
+					  LIMIT $limite";
+		}
+		      
 		$values = array($user_id);
 		$insert = array(':id');
 
@@ -125,7 +174,21 @@
 		for ($i=1; $i<=$paginas_totais; $i++) $pagLink .= "<a href='dados_pessoais2.php?page=".$i."'>".$i."</a>";
 		echo $pagLink . "</div>";
 		}
+		      ?> <hr style="width:50px;border:5px solid red" class="w3-round">
+			<h2 class="w3-text-red"><b>Pesquisar Informações</b></h2>
+				<form style="display:inline;" method='post' action='filter.php'>
+					<select class="w3-select" id="estado" name="estado" required>
+					  <option value="" disabled selected>Estado</option>
+					  <option value="Pendente">Pendente</option>
+					  <option value="Enviada">Enviada</option>
+					  <option value="Entregue">Entregue</option>
+					</select>
+				<p></p>
+					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
+				</form> <?php if (isset($_SESSION["estado"])) { ?> <a class="w3-btn w3-red" href="dados_pessoais2.php">Mostrar todas</a>
 
+	 <?php
+				}
 	  }
 
 	}
