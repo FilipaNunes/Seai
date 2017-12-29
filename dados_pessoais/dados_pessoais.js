@@ -52,10 +52,10 @@ function Delete(id){
 					type: 'error',
 					showConfirmButton: false,
 					timer: 3000
-				});
+				})
 				setTimeout(()=>{
-					window.location.reload(true);
-				},3000)
+					window.location.href='dados_pessoais2.php';
+				},3000);
 			} else if(response.status==='ok'){
 				swal({
 					title: 'Sucesso',
@@ -66,7 +66,7 @@ function Delete(id){
 				})
 				setTimeout(()=>{
 					window.location.href='dados_pessoais2.php';
-				},3000)
+				},3000);
 			} else if (response.status==='not_ok2'){
 				swal({
 					title: 'Erro',
@@ -77,7 +77,7 @@ function Delete(id){
 				})
 				setTimeout(()=>{
 					window.location.href='dados_pessoais2.php';
-				},2500)
+				},2500);
 			}
 		};
 	}
@@ -85,7 +85,7 @@ function Delete(id){
 	xmlhttp.open("POST", "delete.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
 
-	var message = "id=" + id;
+	message = "id=" + id;
 	xmlhttp.send(message);
 	return;
 
@@ -94,7 +94,7 @@ function Delete(id){
 function ConfirmarDelete(id){
 	//console.log(id);
 	swal({
-	  title: 'Tem a certeza que quer apagar este registo?',
+	  title: 'Tem a certeza que quer apagar esta encomenda?',
 	  text: "Esta ação não é reversível!",
 	  type: 'warning',
 	  showCancelButton: true,
@@ -106,7 +106,7 @@ function ConfirmarDelete(id){
 	  cancelButtonClass: 'btn btn-danger',
 	  buttonsStyling: true
 	}).then(function (result) {
-  if (result.value) Delete(id)
+  if (result.value) Delete(id);
   else if (result.dismiss === 'cancel') {
 			swal({
 				title: 'Erro',

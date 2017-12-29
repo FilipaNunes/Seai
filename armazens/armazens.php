@@ -41,8 +41,13 @@
 					<td style='text-align:center'> $ocupacao </td>
 					<td style='text-align:center'> $lotacao_max</td>
 					<td style='text-align:center'>
-						<a onclick='event.preventDefault(); return ConfirmarDelete($id)' href=#>
+						<a onclick='event.preventDefault(); return ConfirmarDelete($id)' href='#'>
 							<img src='../img/delete.png' height='22em' />
+						</a>
+					</td>
+					<td style='text-align:center'>
+						<a href='editar_armazem.php?id=".$id."'>
+							<img src='../img/edit.png' height='22em' />
 						</a>
 					</td>
 				</tr>
@@ -57,7 +62,6 @@
 			for ($i=1; $i<=$paginas_totais; $i++) $pagLink .= "<a href='index.php?page=".$i."'>".$i."</a>";
 			echo $pagLink . "</div>";
 		}
-
 
 	}
 

@@ -1,5 +1,4 @@
-<?php include_once('armazens.php'); ?>
-
+<?php include_once('infor_arm.php') ?>
 
 <!DOCTYPE html>
 <html>
@@ -34,7 +33,10 @@
 	if ($_SESSION["user_id"] == NULL) header("Location: ../index.php");
 	//print_r($_SESSION["user_id"]);
 	$user_data = user_data_db();
-    $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC);
+  $user_data1 = $user_data->fetch(PDO::FETCH_ASSOC);
+  if(!isset($_GET['id'])) header('Location: index.php');
+  if(isset($_GET['id']) && (!(is_numeric($_GET['id']) == 1))) header('Location: index.php');
+  if(VerificarId($_GET['id']) != true) header('Location: index.php');
 ?>
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Fechar Menu</a>
@@ -76,98 +78,43 @@
   <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
   <span>Drone2u</span>
 </header>
-
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="Fechar Menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
-
   <div class="w3-container" id="packages" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Armazéns</b></h1>
     <hr style="width:50px;border:5px solid red;" class="w3-round w3-left">
   </div>
 
-  <div class="w3-container">
-      <div class="w3-row w3-center">
-        <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Dados dos Armazéns');">
-          <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Dados dos Armazéns</div>
-        </a>
-        <a href="javascript:void(0)" id="testbtn" onclick="openTab(event, 'Inserir Armazém');">
-          <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Inserir Armazém</div>
-        </a>
-      </div>
-
-
-      <div id="Dados dos Armazéns" class="w3-container armazens" style="display:none">
-        <p></p>
-        <div class="w3-row">
-        <table class="w3-table-all">
-        <tbody>
-      	<tr>
-        	<th style='background-color:#f44336; text-align:center'> <font color='white'> Nome do Armazém</th>
-        	<th style='background-color:#f44336; text-align:center'> <font color='white'> Morada </th>
-        	<th style='background-color:#f44336; text-align:center'> <font color='white'> Lotação atual</th>
-        	<th style='background-color:#f44336; text-align:center'> <font color='white'> Lotação máxima </th>
-        	<th style='background-color:#f44336; text-align:center'> <font color='white'></th>
-          <th style='background-color:#f44336; text-align:center'> <font color='white'></th>
-      	</tr>
-	       <?php armazens(); ?>
-      </div>
-    </div>
-
-  <div id="Inserir Armazém" class="w3-container armazens" style="display:none">
+  <div class="w3-container" >
     <p></p>
-  	<form class="w3-container w3-card-4" onSubmit='event.preventDefault(); AdicionarArmazem()'>
+  	<form class="w3-container w3-card-4" onSubmit='event.preventDefault(); EditarArmazem()'>
+      <?php  $informacoes =  Get_Informacoes($_GET['id']); ?>
       <p></p>
       <label class="w3-text-red"><b>Nome</b></label>
-      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9_\s]{3,40}' onblur='NomeArmazem(function(){})' required></p>
+      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='<?php print_r($informacoes['nome'])?>' title='Se não quiser mudar o nome, clique de novo no botão' pattern='[a-zA-Z0-9_\s]{3,40}' onblur='NomeArmazem(function(){})' required></p>
       <div id="n_disponivel" style="color:#f44336"></div>
       <p>
-      <label class="w3-text-red"><b>Morada</b></label>
-      <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-Z0-9º.\s]{3,40}' required></p>
+      <label class="w3-text-red"><b>Morada: </b></label> <?php  print_r($informacoes['morada_arm']); ?>
       <p>
       <label class="w3-text-red"><b>Lotação Máxima</b></label>
       <input class="w3-input w3-border" id="lotacao_max" name="lotacao_max" type="text" placeholder=' Inserir lotação máxima do armazém' pattern='[0-9]{1,5}' required></p>
       <p>
-      <label class="w3-text-red"><b>Latitude</b></label>
-      <input class="w3-input border" id="latitude" name="latitude" type="text" placeholder=' Inserir latitude do armazém' pattern='[0-9.-]{1,30}' onblur='Coordenadas(function(){})' required></p>
+      <label class="w3-text-red"><b>Latitude: </b></label> <?php  print_r($informacoes['latitude']); ?>
       <p>
-      <label class="w3-text-red"><b>Longitude</b></label>
-      <input class="w3-input border" id="longitude" name="longitude" type="text" placeholder=' Inserir longitude do armazém' pattern='[0-9.-]{1,30}' onblur='Coordenadas(function(){})' required></p>
-      <div id="coordenadas" style="color:#f44336"></div>
+      <label class="w3-text-red"><b>Longitude: </b></label><?php  print_r($informacoes['longitude']); ?>
       <p>
-      <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Adicionar Novo Armazém' id='btnSubmit'>
+      <input class="w3-red w3-input" type='hidden' name='armazem' value='<?php print_r($_GET['id'])?>' id='armazem'>
+      <input class="w3-red w3-input" type='submit' name='btnSubmit' value='Atualizar Armazém' id='btnSubmit' onclick='NomeArmazem(function(){})'>
     </form>
   </div>
 
   </div>
-</div>
 
 <div id='notification-container' class='notification-container'></div>
-
-
-<script>
-  function openTab(evt, tabName) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName("armazens");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
-       tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.firstElementChild.className += " w3-border-red";
-  }
-</script>
-
-<script>
-  var mybtn = document.getElementById("testbtn");
-  mybtn.click();
-</script>
 
 <script>
   // Script to open and close sidebar

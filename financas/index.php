@@ -258,7 +258,7 @@ body {font-size:16px;}
 		  </br>
 		<div class="w3-container" id="chartdiv3"></div>
 		</br>
-        <hr style="width:50px;border:5px solid red" class="w3-round w3-left">
+        <hr style="width:50px;border:5px solid red" class="w3-round w3-left"><br><br>
           <h2 class="w3-text-red"><b>Inserir despesa</b></h2>
     </br>
     <form class="w3-container w3-card-4" action="insertDespesas.php" method="post">

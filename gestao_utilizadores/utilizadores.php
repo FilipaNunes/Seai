@@ -38,7 +38,7 @@
 			$email = $array['email'];
 			$telemovel = $array['telemovel'];
 
-			$key = array_search($id,array_column($n_encomendas,'id_c'));
+			$key = array_search($id_u,array_column($n_encomendas,'id_c'));
 
 			if($key===false)$encomendas = 0;
 			else $encomendas = $n_encomendas[$key]['count'];

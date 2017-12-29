@@ -84,6 +84,7 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
+<div class="w3-container">
   <h2>Inserir despesas do mês:</h2>
   </br>
     <form class="w3-container w3-card-4" action="insertDespesasTotais.php" method="post">
@@ -128,6 +129,7 @@ body {font-size:16px;}
     <input class="w3-input w3-border" name="outras" type="number" placeholder='Colocar "0" caso a despesa não exista' required></p>
     <button class="w3-btn w3-red" type="submit">Submeter</button></p>
     </form>
+</div>
   </br>
 
 
