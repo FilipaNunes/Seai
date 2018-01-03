@@ -72,8 +72,8 @@ include_once("login/session.php");
 						  <th style='text-align:center'>Serviço</th>
 						  <th style='text-align:center'>Produto</th>
 						  <th style='text-align:center'>Custo (€)</th>
-						  <th style='text-align:center'>Destino</th>
 						  <th style='text-align:center'>Recolha</th>
+						  <th style='text-align:center'>Destino</th>
 							<th style='text-align:center'>Submissão</th>
 						  <th style='text-align:center'>Envio</th>
 						  <th style='text-align:center'>Entrega</th>
@@ -142,9 +142,6 @@ include_once("login/session.php");
 								  if(1.5 < $encomenda["peso"] AND 2 >= $encomenda["peso"]) echo ">1,5 a 2 Kg";?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["tipo_encomenda"].'';?></td>
 						<td style='text-align:center'><?php echo ''.$encomenda["custo"].'';?></td>
-						<td style='text-align:center' class="morada"><?php echo ''.$destino['nome'].'';?>
-								<span class="moradatexto"><?php echo ''.$destino['morada_arm'].'';?></span>
-						</td>
 						<td style='text-align:center' class="morada"><?php
 									if ($destino2 != NULL AND $destino3 == NULL){
 										echo ''.$destino2['nome'].'';?>
@@ -156,6 +153,9 @@ include_once("login/session.php");
 									<?php }
 								  if ($destino2 == NULL AND $destino3 == NULL) echo 'Indefinido';?>
 							</td>
+						<td style='text-align:center' class="morada"><?php echo ''.$destino['nome'].'';?>
+								<span class="moradatexto"><?php echo ''.$destino['morada_arm'].'';?></span>
+						</td>
 						<td style='text-align:center'><?php $data_sub = date('d-m-Y H:i', strtotime(''.$encomenda["data_submissao"].' '.$encomenda["hora_submissao"].'')); echo $data_sub;?>
 						<td style='text-align:center'><?php if($encomenda["data_env"] != NULL AND $encomenda["hora_env"] != NULL) {$data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;}?></td>
 						<td style='text-align:center'><?php if($encomenda["data_entr"] != NULL AND $encomenda["hora_entr"] != NULL) {$data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;}?></td>
