@@ -22,9 +22,7 @@
 <?php
 function execQuery($query,$insert, $array){
   db();
-global $conn;
-//debug
-error_log("\ndbg:SQL-Query: " . $query . " --end--");
+  global $conn;
 
   $result = $conn->prepare($query);
 
@@ -47,7 +45,7 @@ function check_admin_db() {
 
         $values = array($user_id);
 		$insert = array(':id');
-		
+
 		$result = execQuery($query, $insert, $values);
 
         $admin = $result->fetch(PDO::FETCH_ASSOC);
@@ -70,7 +68,7 @@ function check_login_db ($username,$password){
 		$insert = array(':username');
 
 		$result = execQuery($query, $insert, $values);
-		
+
         $numrows = $result->rowCount($result);
 
         if ($numrows > 0){
@@ -91,7 +89,7 @@ function user_data_db (){
 		$query = "SELECT *
                   FROM clientes
                   WHERE id_c = :id";
-				  
+
 		$values = array($user_id);
 		$insert = array(':id');
 

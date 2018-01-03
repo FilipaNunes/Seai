@@ -7,7 +7,7 @@
 	function addUser($login,$password,$email){
 		$options = ['cost' => 12];
 		$query = "INSERT INTO clientes(username,password,email)
-			      VALUES(:name, :pass, :email)";
+			        VALUES(:name, :pass, :email)";
 
 		$password_hashed = password_hash($password, PASSWORD_DEFAULT, $options);
 

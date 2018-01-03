@@ -5,19 +5,34 @@
 <?php
     $id=$_POST['id'];
 
-		$query = "SELECT id_e FROM faz WHERE id_c=:id AND (estado = :estado OR estado = :estado2)";
+		$query = "SELECT id_e FROM faz WHERE id_c=:id AND NOT (estado = :estado OR estado = :estado2)";
+    $query2 = "SELECT id_e FROM faz WHERE id_c=:id AND (estado = :estado OR estado = :estado2)";
 
 		$values = array($id,'Pendente', 'entregue');
 		$insert = array(':id',':estado', ':estado2');
 
 		$result = execQuery($query,$insert,$values);
+    $result2 = execQuery($query2,$insert,$values);
 
 		$num_encomendas = $result->rowCount($result);
+    $num_encomendas2 = $result2->rowCount($result);
 
 		if($num_encomendas>0) $message = array('status' => 'not_ok');
+    else if ($num_encomendas2 == 0) {
+      $query="DELETE FROM clientes WHERE id_c  = :id";
+
+			$values = array($id);
+			$insert = array(':id');
+
+			$result = execQuery($query,$insert,$values);
+      $message = array('status' => 'ok');
+    }
 		else{
 
-      $query = "SELECT faz.id_e,custo,peso,data_submissao FROM faz JOIN encomenda ON faz.id_e = encomenda.id_e WHERE id_c=:id AND estado = :estado";
+      $query = "SELECT faz.id_e,custo,peso,data_submissao
+                FROM faz
+                JOIN encomenda ON faz.id_e = encomenda.id_e
+                WHERE id_c=:id AND estado = :estado";
 
   		$values = array($id,'Pendente');
   		$insert = array(':id',':estado');
@@ -62,8 +77,8 @@
         }
       }
 
-			$query="DELETE FROM faz WHERE id_c = :id";
-			$query1="DELETE FROM encomenda WHERE cliente = :id";
+			$query="UPDATE faz SET id_c = null WHERE id_c = :id";
+			$query1="UPDATE encomenda SET id_c = null WHERE cliente = :id";
 	  	$query2="DELETE FROM clientes WHERE id_c  = :id";
 
 

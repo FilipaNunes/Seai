@@ -1,6 +1,8 @@
 <?php include_once("../database/database.php");?>
 
 <?php
+
+
 // Require the bundled autoload file - the path may need to change
 // based on where you downloaded and unzipped the SDK
 require '../lib/twilio-php-master/Twilio/autoload.php';
@@ -34,7 +36,7 @@ echo "<meta HTTP-EQUIV='refresh' CONTENT='5';URL='0'>";
 
 	$num_registos = $result->rowCount($result);
 
-/*
+
 		if($num_registos > 0 && $flag==FALSE)
 		{
 
@@ -56,7 +58,6 @@ echo "<meta HTTP-EQUIV='refresh' CONTENT='5';URL='0'>";
 
 
 		}
-*/
 
 
 ?>
