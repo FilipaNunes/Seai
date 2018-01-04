@@ -34,6 +34,7 @@ include_once("login/session.php");?>
 
 		$result = execQuery($query,null,null);
 
+
 		$num_registos = $result->rowCount($result);
 
 		if ($num_registos == 0) {
@@ -46,8 +47,8 @@ include_once("login/session.php");?>
 						<select class="w3-select" id="estado" name="estado" required>
 						  <option value="" disabled selected>Estado</option>
 						  <option value="Pendente">Pendente</option>
-						  <option value="Enviada">Enviada</option>
-						  <option value="Entregue">Entregue</option>
+						  <option value="enviada">Enviada</option>
+						  <option value="entregue">Entregue</option>
 						</select>
 					<p></p>
 						  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
@@ -64,7 +65,7 @@ include_once("login/session.php");?>
 						  <th style='text-align:center'>Cliente</th>
 						  <th style='text-align:center'>Produto</th>
 						  <th style='text-align:center'>Custo (€)</th>
-						  <th style='text-align:center'>Recolha</th>	
+						  <th style='text-align:center'>Recolha</th>
 						  <th style='text-align:center'>Destino</th>
 							<th style='text-align:center'>Submissão</th>
 						  <th style='text-align:center'>Envio</th>
@@ -145,7 +146,7 @@ include_once("login/session.php");?>
 							</td>
 						<td style='text-align:center' class="morada"><?php echo ''.$destino['nome'].'';?>
 								<span class="moradatexto"><?php echo ''.$destino['morada_arm'].'';?></span>
-						</td>	
+						</td>
 						<td style='text-align:center'><?php $data_sub = date('d-m-Y H:i', strtotime(''.$encomenda["data_submissao"].' '.$encomenda["hora_submissao"].'')); echo $data_sub;?>
 						<td style='text-align:center'><?php if($encomenda["data_env"] != NULL AND $encomenda["hora_env"] != NULL) {$data_env = date('d-m-Y H:i', strtotime(''.$encomenda["data_env"].' '.$encomenda["hora_env"].'')); echo $data_env;}?></td>
 						<td style='text-align:center'><?php if($encomenda["data_entr"] != NULL AND $encomenda["hora_entr"] != NULL) {$data_entr = date('d-m-Y H:i', strtotime(''.$encomenda["data_entr"].' '.$encomenda["hora_entr"].'')); echo $data_entr;}?></td>
@@ -172,8 +173,8 @@ include_once("login/session.php");?>
 					<select class="w3-select" id="estado" name="estado" required>
 					  <option value="" disabled selected>Estado</option>
 					  <option value="Pendente">Pendente</option>
-					  <option value="Enviada">Enviada</option>
-					  <option value="Entregue">Entregue</option>
+					  <option value="enviada">Enviada</option>
+					  <option value="entregue">Entregue</option>
 					</select>
 				<p></p>
 					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input><p></p>

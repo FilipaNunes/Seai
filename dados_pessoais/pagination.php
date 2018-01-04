@@ -53,8 +53,8 @@ include_once("login/session.php");
 						<select class="w3-select" id="estado" name="estado" required>
 						  <option value="" disabled selected>Estado</option>
 						  <option value="Pendente">Pendente</option>
-						  <option value="Enviada">Enviada</option>
-						  <option value="Entregue">Entregue</option>
+						  <option value="enviada">Enviada</option>
+						  <option value="entregue">Entregue</option>
 						</select>
 					<p></p>
 						  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input>
@@ -180,8 +180,8 @@ include_once("login/session.php");
 					<select class="w3-select" id="estado" name="estado" required>
 					  <option value="" disabled selected>Estado</option>
 					  <option value="Pendente">Pendente</option>
-					  <option value="Enviada">Enviada</option>
-					  <option value="Entregue">Entregue</option>
+					  <option value="enviada">Enviada</option>
+					  <option value="entregue">Entregue</option>
 					</select>
 				<p></p>
 					  <input class="w3-btn w3-red" type='submit' name='pesquisar' value='Pesquisar'></input><p></p>
