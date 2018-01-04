@@ -21,7 +21,7 @@ include_once("login/session.php");?>
 
 		if (!isset($_SESSION["estado"])) {
 		$query = "SELECT id_e FROM faz
-				  WHERE id_e IS NOT NULL";
+				  WHERE id_e IS NOT NULL AND id_c IS NOT NULL";
 		}
 
 		else {
@@ -29,7 +29,7 @@ include_once("login/session.php");?>
 
 			$query = "SELECT * FROM faz
 					  JOIN encomenda ON faz.id_e=encomenda.id_e
-					  WHERE faz.id_e IS NOT NULL AND estado='$estado'";
+					  WHERE faz.id_e IS NOT NULL AND faz.id_c IS NOT NULL AND estado='$estado'";
 		}
 
 		$result = execQuery($query,null,null);
@@ -82,6 +82,7 @@ include_once("login/session.php");?>
 		$query = "SELECT * FROM faz
 				  JOIN encomenda ON faz.id_e=encomenda.id_e
 				  JOIN clientes ON faz.id_c=clientes.id_c
+				  WHERE faz.id_e IS NOT NULL AND faz.id_c IS NOT NULL
 				  ORDER BY encomenda.id_e DESC
 				  OFFSET $inicio
 				  LIMIT $limite";
@@ -91,7 +92,7 @@ include_once("login/session.php");?>
 			$query = "SELECT * FROM faz
 				  JOIN encomenda ON faz.id_e=encomenda.id_e
 				  JOIN clientes ON faz.id_c=clientes.id_c
-				  WHERE estado = '$estado'
+				  WHERE faz.id_e IS NOT NULL AND faz.id_c IS NOT NULL AND estado = '$estado'
 				  ORDER BY encomenda.id_e DESC
 				  OFFSET $inicio
 				  LIMIT $limite";
