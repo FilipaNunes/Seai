@@ -162,7 +162,7 @@ body {font-size:16px;}
                                 <b>Morada: </b>
                             </td>
                             <td>
-                                <input type="text" class="text-input w3-border" id="morada" placeholder='Morada' name="address" value="<?=$user_data1["morada"]?>" style="width:93%" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº]){2,}" required />
+                                <input type="text" class="text-input w3-border" id="morada" placeholder='Morada' name="address" value="<?=$user_data1["morada"]?>" style="width:93%" title="A morada apenas deve incluir letras, espaços, números e o caracter º." pattern="([A-z0-9À-ž\sº.]){2,}" required />
                             </td>
                         </tr>
 					</table>

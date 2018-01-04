@@ -122,11 +122,11 @@
   	<form class="w3-container w3-card-4" onSubmit='event.preventDefault(); AdicionarArmazem()'>
       <p></p>
       <label class="w3-text-red"><b>Nome</b></label>
-      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-Z0-9_\s]{3,40}' onblur='NomeArmazem(function(){})' required></p>
+      <input class="w3-input border" id="nome" name="nome" type="text" placeholder='Inserir nome do armazém' pattern='[a-zA-ZÀ-ž0-9_\s]{3,40}' onblur='NomeArmazem(function(){})' required></p>
       <div id="n_disponivel" style="color:#f44336"></div>
       <p>
       <label class="w3-text-red"><b>Morada</b></label>
-      <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-Z0-9º.\s]{3,40}' required></p>
+      <input class="w3-input w3-border" id="morada_arm" name="morada_arm" type="text" placeholder='Inserir morada do armazém' pattern='[a-zA-ZÀ-ž0-9º.\s]{3,40}' required></p>
       <p>
       <label class="w3-text-red"><b>Lotação Máxima</b></label>
       <input class="w3-input w3-border" id="lotacao_max" name="lotacao_max" type="text" placeholder=' Inserir lotação máxima do armazém' pattern='[0-9]{1,5}' required></p>

@@ -147,10 +147,10 @@
     	<form class="w3-container w3-card-4" onsubmit='event.preventDefault(); return AdicionarFuncionario();' method="POST" id="form" accept-charset="UTF-8">
         <p>
         <label class="w3-text-red"><b>Nome do Funcionário</b></label>
-        <input class="w3-input w3-border" id="nome_completo" name="nome_completo" type="text" placeholder='Inserir nome do funcionário' title="O nome tem de ter entre 3 e 40 caracteres" pattern='[a-zA-Z0-9\s]{3,40}' required></p>
+        <input class="w3-input w3-border" id="nome_completo" name="nome_completo" type="text" placeholder='Inserir nome do funcionário' title="O nome tem de ter entre 3 e 40 caracteres" pattern='[a-zA-ZÀ-ž0-9\s]{3,40}' required></p>
         <p>
         <label class="w3-text-red"><b>Morada</b></label>
-        <input class="w3-input w3-border" id="morada" name="morada" type="text" placeholder='Inserir morada do funcionário' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
+        <input class="w3-input w3-border" id="morada" name="morada" type="text" placeholder='Inserir morada do funcionário' pattern='[a-zA-ZÀ-ž0-9º.\s]{3,40}' required></p>
         <p>
         <label class="w3-text-red"><b>Email</b></label>
         <input class="w3-input border" id="email" name="email" type="email" placeholder=' Inserir email do funcionário' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}' onblur='CheckEmail(function(){})' required></p>

@@ -104,7 +104,7 @@
         <label class="w3-text-red"><b>Nome do Funcionário: </b></label> <?php print_r($informacoes['nome_completo'])?>
         <p>
         <label class="w3-text-red"><b>Morada</b></label>
-        <input class="w3-input w3-border" id="morada" name="morada" type="text" placeholder='<?php print_r($informacoes['morada'])?>' pattern='[a-zA-Z0-9\s]{3,40}' required></p>
+        <input class="w3-input w3-border" id="morada" name="morada" type="text" placeholder='<?php print_r($informacoes['morada'])?>' pattern='[a-zA-ZÀ-ž0-9º.\s]{3,40}' required></p>
         <p>
         <label class="w3-text-red"><b>Email</b></label>
         <input class="w3-input border" id="email" name="email" type="email" placeholder='<?php print_r($informacoes['email'])?>' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}' onblur='CheckEmail2(function(){})' required></p>
