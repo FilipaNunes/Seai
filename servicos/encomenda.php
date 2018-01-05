@@ -159,7 +159,7 @@
 		<div id='quant_errada' style='color:#f44336'></div>
 	</p>
     <p>
-    <label class="w3-text-red"><b>Escolha o ponto de recolha:</b></label><p></p>
+    <label class="w3-text-red"><b>Escolha o local de recolha:</b></label><p></p>
 		<input  type="radio" name="ponto_recolha" id="armazem"
 		<?php if (isset($ponto_recolha) && $ponto_recolha=="armazem"){
 			echo "checked";

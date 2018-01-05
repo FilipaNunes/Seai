@@ -9,7 +9,7 @@
 					<select class="select" name="option" id="localrecolha" onclick="MoradaEntrega()" required>
 					<option value="" disabled selected>Escolher</option>';
 
-		$query = 'SELECT nome, morada_arm FROM ponto_entrega_recolha';
+		$query = 'SELECT nome, morada_arm FROM ponto_entrega_recolha ORDER BY nome';
 
 		$result = execQuery($query,null,null);
 
@@ -28,7 +28,7 @@
 	}
 
 	function RecolhaArmazem(){
-		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao<lotacao_max';
+		$query = 'SELECT nome, morada_arm FROM armazem WHERE ocupacao<lotacao_max ORDER BY nome';
 
 		$result = execQuery($query,null,null);
 
@@ -57,7 +57,7 @@
 
 	function MoradaEntrega(){
 
-		$query = 'SELECT nome, morada_arm FROM ponto_entrega_recolha';
+		$query = 'SELECT nome, morada_arm FROM ponto_entrega_recolha ORDER BY nome';
 
 		$result = execQuery($query,null,null);
 
